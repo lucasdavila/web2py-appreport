@@ -1,0 +1,13 @@
+appreport é um modulo opensource escrito em python, que prove a geração de formulários html para emissão de relatórios com base em uma tabela de banco de dados, o mesmo possui template para o framework web2py.
+
+criado por Lucas D'Avila - email lucassdvl@gmail.com / twitter @lucadavila
+
+################################
+CHANGE LOG
+
+0.0.2
+-Fixed bug in method "__get_name_field" of class "ReportHtmlDbWeb2py"
+
+0.0.3
+-changed structure module, created news modules 'pdf_builder' and 'report_factory'
+

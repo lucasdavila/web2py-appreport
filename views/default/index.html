@@ -1,0 +1,97 @@
+{{extend 'layout.html'}}
+
+<h2>Download</h2>
+<ul>
+    <li>Download the local version of plugin <a href={{=URL('static', 'web2py.plugin.appreport.w2p')}}>here</a>.</li>
+    <li>Or download the latest version here <a href="">#TODO add link para ultima versão, no git hub ?</a></li>
+</ul>
+
+<h2>Demo</h2>
+<ul>
+    <li>Screencast <a href="">#TODO add link screencast</a>.</li>
+    </li>
+</ul>
+
+<h2>Docs</h2>
+<ul>
+    <li>You can access the menus above to verify the functioning of the plugin in conjunction with the sources files, available in this app.</li>
+    <li>Or read the instructions below:</li>
+</ul>
+    <br />
+    
+The plugin appreport, has two helpers, one called REPORTFORM, and another called REPORT.
+    <ul>
+        <li>The REPORTFORM helper generates an HTML form for emission of the report, based on the definition of the database table, passed in the argument.</li>
+
+        <li>The helper REPORT generates a PDF report based on the table from the database and the variables of the form of emission (filter) passed in the arguments, but the helper REPORT, can also generate reports more complex PDF without the need to set a table, based in the custom html code passed in the arguments (in cases where it is past the table and html, the report will be issued based on html, ignoring the definition of the table.).
+        </li>
+
+    </ul>
+    </p>
+
+    <h3>Helper REPORTFORM and REPORT for simple reports</h3>
+    <ol>
+        <li>Download the plugin appreport</li>
+        <li>Create a new app called reports</li> 
+        <li>Import the plugin in your app appreport</li>        
+        <li>Set the following table in models / db.py:
+            <pre>
+                person = db.define_table('person',
+                Field('name'),
+                Field('phone'),
+                Field('email'))
+            </pre>
+        </li>
+
+        <li>Define the following action in controllers / default.py (remember of indentations, absents in the example):
+            <pre>
+                def report():
+                form = plugin_appreport.REPORTFORM(person)
+
+                if form.accepts(request.vars, session):
+                return plugin_appreport.REPORT(table = person, title = 'List of persons', filter = dict(form.vars))
+
+                return dict(form = form)
+            </pre>
+        </li>
+
+        <li>Visit the link <a href="http://127.0.0.1:8000\reports\default\report">127.0.0.1:8000\reports\default\report</a></li>
+    </ol>
+
+    <br />
+    <h3>HREPORT Helper for reports customized or complex</h3>
+    <ol>
+        <li>Repeat steps 1, 2, 3 and 4 of the above example.</li>
+
+        <li>Define the following action in controllers / default.py (remember of indentations, absents in the example):
+            <pre>
+def custom_report():
+    
+    html = """
+&lthtml&gt
+                &ltbody&gt
+                    &lttable&gt
+                        &ltthead&gt
+                            &lttr&gt
+                                &ltth&gtAuthor&lt/th&gt
+                                &ltth&gtEmail&lt/th&gt
+                                &ltth&gtTwitter&lt/th&gt
+                            &lt/tr&gt
+                        &lt/thead&gt
+                        &lttbody&gt
+                            &lttr&gt
+                                &lttd&gtLucas Davila&lt/td&gt
+                                &lttd&gtlucassdvl@gmail.com&lt/td&gt
+                                &lttd&gt@lucadavila&lt/td&gt                                
+                            &lt/tr&gt
+                        &lt/tbody&gt
+                    &lt/table&gt
+                &lt/body&gt
+            &lt/html&gt
+    """
+    return plugin_appreport.REPORT(html = html, title = 'my custom report using the plugin appreport')
+            </pre>
+        </li>
+
+        <li>Visit the link <a href="http://127.0.0.1:8000\reports\default\custom_report">127.0.0.1:8000\reports\default\custom_report</a></li>
+    </ol>   

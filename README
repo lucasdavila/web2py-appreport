@@ -1,0 +1,10 @@
+plugin appreport, is an implementation of the module appreport, for the framework web2py, through the helpers, is possible generate PDF reports and html forms for emission of the reports, based only on the definition of the table data model.
+
+created by Lucas D'Avila - email <lucassdvl@gmail.com> / twitter @lucadavila
+
+################################
+CHANGE LOG
+
+0.0.?
+-?
+
