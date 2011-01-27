@@ -1,0 +1,767 @@
+(dp1
+S'output'
+p2
+S''
+sS'layer'
+p3
+S'/home/lucasdavila/central/ws/web2py/src/web2pydev/applications/plugin_appreport/controllers/person.py'
+p4
+sS'code'
+p5
+S'# coding: utf8\n\ndef create():\n\n    form = crud.create(person)\n    persons = crud.select(person, person.id > 0)\n\n    return dict(form = form, persons = persons)\n    \n\ndef simple_report():\n\n    form = plugin_appreport.REPORTFORM(table=person)\n\n    if form.accepts(request.vars, session):\n        return plugin_appreport.REPORT(table = person, title = \'List of persons\', filter = dict(form.vars))\n\n    return dict(form = form)\n    \n\n\ndef complex_report():\n\n    form = plugin_appreport.REPORTFORM(table=person)\n\n    if form.accepts(request.vars, session):\n        persons = db(person.id > 0).select()#TODO pegar form.get_query ?\n        return plugin_appreport.REPORT(html = response.render(view=\'default/complex_report.html\', vars=dict(persons = persons)), title = \'List of persons\')\n\n    return dict(form = form)\n\n\n\ndef custom_report():\n    \n    html = """<html>\n                <body>\n                    <table>\n                        <thead>\n                            <tr>\n                                <th>Author</th>\n                                <th>Email</th>\n                                <th>Twitter</th>\n                            </tr>\n                        </thead>\n                        <tbody>\n                            <tr>\n                                <td>Lucas Davila</td>\n                                <td>lucassdvl@gmail.com</td>\n                                <td>@lucadavila</td>                                \n                            </tr>\n                        </tbody>\n                    </table>\n                </body>\n            </html>\n    """\n    return plugin_appreport.REPORT(html = html, title = \'my custom report using the plugin appreport\')\n\nresponse._vars=response._caller(complex_report)\n'
+p6
+sS'snapshot'
+p7
+(dp8
+S'exception'
+p9
+(dp10
+S'load'
+p11
+S'<bound method RestrictedError.load of RestrictedError()>'
+p12
+sS'__module__'
+p13
+S"'gluon.restricted'"
+p14
+sg5
+S'\'response.write(\\\'<!DOCTYPE html>\\\\n<html lang="\\\', ...t   -->    \\\\n  </body>\\\\n</html>\\\\n\\\', escape=False)\''
+p15
+sS'__getslice__'
+p16
+S"<method-wrapper '__getslice__' of RestrictedError object>"
+p17
+sS'__str__'
+p18
+S"<method-wrapper '__str__' of RestrictedError object>"
+p19
+sS'__reduce__'
+p20
+S'<built-in method __reduce__ of RestrictedError object>'
+p21
+sg3
+S"'/home/lucasdavila/central/ws/web2py/src/web2pyde...plugin_appreport/views/person/complex_report.html'"
+p22
+sS'__dict__'
+p23
+S'{\'code\': \'response.write(\\\'<!DOCTYPE html>\\\\n<html lang="\\\', ...t   -->    \\\\n  </body>\\\\n</html>\\\\n\\\', escape=False)\', \'environment\': {\'A\': <class \'gluon.html.A\'>, \'Auth\': <class \'gluon.tools.Auth\'>, \'B\': <class \'gluon.html.B\'>, \'BEAUTIFY\': <class \'gluon.html.BEAUTIFY\'>, \'BODY\': <class \'gluon.html.BODY\'>, \'BR\': <class \'gluon.html.BR\'>, \'CENTER\': <class \'gluon.html.CENTER\'>, \'CLEANUP\': <class \'gluon.validators.CLEANUP\'>, \'CODE\': <class \'gluon.html.CODE\'>, \'CRYPT\': <class \'gluon.validators.CRYPT\'>, ...}, \'layer\': \'/home/lucasdavila/central/ws/web2py/src/web2pyde...plugin_appreport/views/person/complex_report.html\', \'output\': \'\', \'snapshot\': {\'date\': \'Tue Jan 25 22:01:28 2011\', \'etype\': "<type \'exceptions.NameError\'>", \'evalue\': "name \'form\' is not defined", \'exception\': {\'__class__\': "<type \'exceptions.NameError\'>", \'__delattr__\': "<method-wrapper \'__delattr__\' of exceptions.NameError object>", \'__dict__\': \'{}\', \'__doc__\': "\'Name not found globally.\'", \'__format__\': \'<built-in method __format__ of exceptions.NameError object>\', \'__getattribute__\': "<method-wrapper \'__getattribute__\' of exceptions.NameError object>", \'__getitem__\': "<method-wrapper \'__getitem__\' of exceptions.NameError object>", \'__getslice__\': "<method-wrapper \'__getslice__\' of exceptions.NameError object>", \'__hash__\': "<method-wrapper \'__hash__\' of exceptions.NameError object>", \'__init__\': "<method-wrapper \'__init__\' of exceptions.NameError object>", ...}, \'frames\': [{\'call\': r"(code=\'response.write(\\\'<!DOCTYPE html>\\\\n<html ...ugin_appreport/views/person/complex_report.html\')", \'dump\': {\'ccode\': \'<code object <module> at 0xaabf4a0, file "/home/...report/views/person/complex_report.html", line 1>\', \'environment\': "{\'A\': <class \'gluon.html.A\'>, \'Auth\': <class \'gl..., \'CRYPT\': <class \'gluon.validators.CRYPT\'>, ...}"}, \'file\': \'/home/lucasdavila/central/ws/web2py/src/web2pydev/gluon/restricted.py\', \'func\': \'restricted\', \'lines\': {183: \'        if type(code) == types.CodeType:\', 184: \'            ccode = code\', 185: \'        else:\', 186: \'            ccode = compile2(code,layer)\', 187: \'\', 188: \'        exec ccode in environment\', 189: \'    except HTTP:\', 190: \'        raise\', 191: \'    except Exception:\', 192: \'        # XXX Show exception in Wing IDE if running in debugger\'}, \'lnum\': 188}, {\'call\': \'()\', \'dump\': {}, \'file\': \'/home/lucasdavila/central/ws/web2py/src/web2pyde...plugin_appreport/views/person/complex_report.html\', \'func\': \'<module>\', \'lines\': {90: \'    response.write(XML(left_sidebar_style))\', 91: \'    response.write(\\\' >\\\\n            <div style="padding: 4px;">\\\\n\\\\t      \\\', escape=False)\', 92: "    response.write(\'Content Left Sidebar\', escape=False)", 93: r"    response.write(\'\\t\\t  \\n            </div>\\n...</div><!-- left_sidebar -->\\n\\t  \', escape=False)", 94: \'    pass\', 95: \'response.write(\\\'\\\\n\\\\n\\\\t  <!-- content -->\\\\n\\\\t  <div id="content" \\\', escape=False)\', 96: \'response.write(XML(style_content))\', 97: r"response.write(\' >\\n\\t    \', escape=False)", 98: r"response.write(\'\\n<h2>Complex report</h2>\\n\', escape=False)", 99: \'response.write(form)\', ...}, \'lnum\': 99}], \'locals\': {\'A\': "<class \'gluon.html.A\'>", \'Auth\': "<class \'gluon.tools.Auth\'>", \'B\': "<class \'gluon.html.B\'>", \'BEAUTIFY\': "<class \'gluon.html.BEAUTIFY\'>", \'BODY\': "<class \'gluon.html.BODY\'>", \'BR\': "<class \'gluon.html.BR\'>", \'CENTER\': "<class \'gluon.html.CENTER\'>", \'CLEANUP\': "<class \'gluon.validators.CLEANUP\'>", \'CODE\': "<class \'gluon.html.CODE\'>", \'CRYPT\': "<class \'gluon.validators.CRYPT\'>", ...}, \'pyver\': \'Python 2.6.6: /usr/bin/python\', \'request\': {\'ajax\': \'False\', \'application\': "\'plugin_appreport\'", \'args\': \'[]\', \'body\': "<open file \'<fdopen>\', mode \'w+b\'>", \'cid\': \'None\', \'client\': "\'127.0.0.1\'", \'controller\': "\'person\'", \'cookies\': "<SimpleCookie: session_id_admin=\'127.0.0.1-ab65c...\'127.0.0.1-3fb54433-9a7e-4167-b09f-f0891a2471ca\'>", \'env\': "<Storage {\'content_length\': \'670\', \'debugging\': ...undaryxUJ1b1QF0IyQhp4g\', \'remote_port\': \'41124\'}>", \'extension\': "\'html\'", ...}, \'response\': {\'_caller\': \'<function <lambda>>\', \'_custom_commit\': \'None\', \'_custom_rollback\': \'None\', \'_vars\': "{\'vars\': {\'persons\': <gluon.dal.Rows object>}, \'view\': \'default/complex_report.html\'}", \'_view_environment\': "{\'A\': <class \'gluon.html.A\'>, \'Auth\': <class \'gl..., \'CRYPT\': <class \'gluon.validators.CRYPT\'>, ...}", \'body\': \'<cStringIO.StringO object>\', \'cookies\': "<SimpleCookie: session_id_plugin_appreport=\'127.0.0.1-56d0272b-4d25-4fdb-bf2c-da2c92731bad\'>", \'files\': \'[<gluon.html.XML object>, <gluon.html.XML object...<gluon.html.XML object>, <gluon.html.XML object>]\', \'flash\': "\'\'", \'headers\': "<Storage {\'Expires\': \'Wed, 26 Jan 2011 00:01:28 ...he, must-revalidate, post-check=0, pre-check=0\'}>", ...}, \'session\': {\'_formkey[default]\': "\'83b5acd8-9f67-44b4-ab81-bc0f0636b8b6\'", \'auth\': \'None\'}}, \'traceback\': \'Traceback (most recent call last):\\n  File "/home...n <module>\\nNameError: name \\\'form\\\' is not defined\\n\'}'
+p24
+sS'__sizeof__'
+p25
+S'<built-in method __sizeof__ of RestrictedError object>'
+p26
+sS'__weakref__'
+p27
+S'None'
+p28
+sS'__init__'
+p29
+S'<bound method RestrictedError.__init__ of RestrictedError()>'
+p30
+sS'__setattr__'
+p31
+S"<method-wrapper '__setattr__' of RestrictedError object>"
+p32
+sS'__reduce_ex__'
+p33
+S'<built-in method __reduce_ex__ of RestrictedError object>'
+p34
+sS'__new__'
+p35
+S'<built-in method __new__ of type object>'
+p36
+sS'__format__'
+p37
+S'<built-in method __format__ of RestrictedError object>'
+p38
+sS'__class__'
+p39
+S"<class 'gluon.restricted.RestrictedError'>"
+p40
+sS'environment'
+p41
+S"{'A': <class 'gluon.html.A'>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'CENTER': <class 'gluon.html.CENTER'>, 'CLEANUP': <class 'gluon.validators.CLEANUP'>, 'CODE': <class 'gluon.html.CODE'>, 'CRYPT': <class 'gluon.validators.CRYPT'>, ...}"
+p42
+sS'__doc__'
+p43
+S"'\\n    class used to wrap an exception that occurs... to log the exception and generate a ticket.\\n    '"
+p44
+sS'__getitem__'
+p45
+S"<method-wrapper '__getitem__' of RestrictedError object>"
+p46
+sS'__setstate__'
+p47
+S'<built-in method __setstate__ of RestrictedError object>'
+p48
+sS'__getattribute__'
+p49
+S"<method-wrapper '__getattribute__' of RestrictedError object>"
+p50
+sS'args'
+p51
+S'()'
+p52
+sS'__subclasshook__'
+p53
+S'<built-in method __subclasshook__ of type object>'
+p54
+sS'__unicode__'
+p55
+S'<built-in method __unicode__ of RestrictedError object>'
+p56
+sS'log'
+p57
+S'<bound method RestrictedError.log of RestrictedError()>'
+p58
+sS'traceback'
+p59
+S'\'Traceback (most recent call last):\\n  File "/home...n <module>\\nNameError: name \\\'form\\\' is not defined\\n\''
+p60
+sS'__delattr__'
+p61
+S"<method-wrapper '__delattr__' of RestrictedError object>"
+p62
+sg7
+S'{\'date\': \'Tue Jan 25 22:01:28 2011\', \'etype\': "<type \'exceptions.NameError\'>", \'evalue\': "name \'form\' is not defined", \'exception\': {\'__class__\': "<type \'exceptions.NameError\'>", \'__delattr__\': "<method-wrapper \'__delattr__\' of exceptions.NameError object>", \'__dict__\': \'{}\', \'__doc__\': "\'Name not found globally.\'", \'__format__\': \'<built-in method __format__ of exceptions.NameError object>\', \'__getattribute__\': "<method-wrapper \'__getattribute__\' of exceptions.NameError object>", \'__getitem__\': "<method-wrapper \'__getitem__\' of exceptions.NameError object>", \'__getslice__\': "<method-wrapper \'__getslice__\' of exceptions.NameError object>", \'__hash__\': "<method-wrapper \'__hash__\' of exceptions.NameError object>", \'__init__\': "<method-wrapper \'__init__\' of exceptions.NameError object>", ...}, \'frames\': [{\'call\': r"(code=\'response.write(\\\'<!DOCTYPE html>\\\\n<html ...ugin_appreport/views/person/complex_report.html\')", \'dump\': {\'ccode\': \'<code object <module> at 0xaabf4a0, file "/home/...report/views/person/complex_report.html", line 1>\', \'environment\': "{\'A\': <class \'gluon.html.A\'>, \'Auth\': <class \'gl..., \'CRYPT\': <class \'gluon.validators.CRYPT\'>, ...}"}, \'file\': \'/home/lucasdavila/central/ws/web2py/src/web2pydev/gluon/restricted.py\', \'func\': \'restricted\', \'lines\': {183: \'        if type(code) == types.CodeType:\', 184: \'            ccode = code\', 185: \'        else:\', 186: \'            ccode = compile2(code,layer)\', 187: \'\', 188: \'        exec ccode in environment\', 189: \'    except HTTP:\', 190: \'        raise\', 191: \'    except Exception:\', 192: \'        # XXX Show exception in Wing IDE if running in debugger\'}, \'lnum\': 188}, {\'call\': \'()\', \'dump\': {}, \'file\': \'/home/lucasdavila/central/ws/web2py/src/web2pyde...plugin_appreport/views/person/complex_report.html\', \'func\': \'<module>\', \'lines\': {90: \'    response.write(XML(left_sidebar_style))\', 91: \'    response.write(\\\' >\\\\n            <div style="padding: 4px;">\\\\n\\\\t      \\\', escape=False)\', 92: "    response.write(\'Content Left Sidebar\', escape=False)", 93: r"    response.write(\'\\t\\t  \\n            </div>\\n...</div><!-- left_sidebar -->\\n\\t  \', escape=False)", 94: \'    pass\', 95: \'response.write(\\\'\\\\n\\\\n\\\\t  <!-- content -->\\\\n\\\\t  <div id="content" \\\', escape=False)\', 96: \'response.write(XML(style_content))\', 97: r"response.write(\' >\\n\\t    \', escape=False)", 98: r"response.write(\'\\n<h2>Complex report</h2>\\n\', escape=False)", 99: \'response.write(form)\', ...}, \'lnum\': 99}], \'locals\': {\'A\': "<class \'gluon.html.A\'>", \'Auth\': "<class \'gluon.tools.Auth\'>", \'B\': "<class \'gluon.html.B\'>", \'BEAUTIFY\': "<class \'gluon.html.BEAUTIFY\'>", \'BODY\': "<class \'gluon.html.BODY\'>", \'BR\': "<class \'gluon.html.BR\'>", \'CENTER\': "<class \'gluon.html.CENTER\'>", \'CLEANUP\': "<class \'gluon.validators.CLEANUP\'>", \'CODE\': "<class \'gluon.html.CODE\'>", \'CRYPT\': "<class \'gluon.validators.CRYPT\'>", ...}, \'pyver\': \'Python 2.6.6: /usr/bin/python\', \'request\': {\'ajax\': \'False\', \'application\': "\'plugin_appreport\'", \'args\': \'[]\', \'body\': "<open file \'<fdopen>\', mode \'w+b\'>", \'cid\': \'None\', \'client\': "\'127.0.0.1\'", \'controller\': "\'person\'", \'cookies\': "<SimpleCookie: session_id_admin=\'127.0.0.1-ab65c...\'127.0.0.1-3fb54433-9a7e-4167-b09f-f0891a2471ca\'>", \'env\': "<Storage {\'content_length\': \'670\', \'debugging\': ...undaryxUJ1b1QF0IyQhp4g\', \'remote_port\': \'41124\'}>", \'extension\': "\'html\'", ...}, \'response\': {\'_caller\': \'<function <lambda>>\', \'_custom_commit\': \'None\', \'_custom_rollback\': \'None\', \'_vars\': "{\'vars\': {\'persons\': <gluon.dal.Rows object>}, \'view\': \'default/complex_report.html\'}", \'_view_environment\': "{\'A\': <class \'gluon.html.A\'>, \'Auth\': <class \'gl..., \'CRYPT\': <class \'gluon.validators.CRYPT\'>, ...}", \'body\': \'<cStringIO.StringO object>\', \'cookies\': "<SimpleCookie: session_id_plugin_appreport=\'127.0.0.1-56d0272b-4d25-4fdb-bf2c-da2c92731bad\'>", \'files\': \'[<gluon.html.XML object>, <gluon.html.XML object...<gluon.html.XML object>, <gluon.html.XML object>]\', \'flash\': "\'\'", \'headers\': "<Storage {\'Expires\': \'Wed, 26 Jan 2011 00:01:28 ...he, must-revalidate, post-check=0, pre-check=0\'}>", ...}, \'session\': {\'_formkey[default]\': "\'83b5acd8-9f67-44b4-ab81-bc0f0636b8b6\'", \'auth\': \'None\'}}'
+p63
+sS'__repr__'
+p64
+S"<method-wrapper '__repr__' of RestrictedError object>"
+p65
+sS'__hash__'
+p66
+S"<method-wrapper '__hash__' of RestrictedError object>"
+p67
+sg2
+S"''"
+p68
+ssS'evalue'
+p69
+S''
+sS'request'
+p70
+(dp71
+S'function'
+p72
+S"'complex_report'"
+p73
+sS'body'
+p74
+S"<open file '<fdopen>', mode 'w+b'>"
+p75
+sS'wsgi'
+p76
+S"<Storage {'start_response': <function <lambda> a...>, 'HTTP_ACCEPT_ENCODING': 'gzip,deflate,sdch'}}>"
+p77
+sS'extension'
+p78
+S"'html'"
+p79
+sS'vars'
+p80
+S"<Storage {'person.email': '', 'person.phone': ''...a7a', '_formname': 'default', 'person.name': ''}>"
+p81
+sS'cid'
+p82
+S'None'
+p83
+sS'url'
+p84
+S'<gluon.html.XML object>'
+p85
+sS'raw_extension'
+p86
+S'None'
+p87
+sg51
+S'[]'
+p88
+sS'controller'
+p89
+S"'person'"
+p90
+sS'cookies'
+p91
+S"<SimpleCookie: session_id_admin='127.0.0.1-ab65c...'127.0.0.1-3fb54433-9a7e-4167-b09f-f0891a2471ca'>"
+p92
+sS'application'
+p93
+S"'plugin_appreport'"
+p94
+sS'ajax'
+p95
+S'False'
+p96
+sS'client'
+p97
+S"'127.0.0.1'"
+p98
+sS'env'
+p99
+S"<Storage {'content_length': '670', 'debugging': ...undaryxUJ1b1QF0IyQhp4g', 'remote_port': '41124'}>"
+p100
+sS'raw_args'
+p101
+S'None'
+p102
+sS'get_vars'
+p103
+S'<Storage {}>'
+p104
+sS'folder'
+p105
+S"'/home/lucasdavila/central/ws/web2py/src/web2pydev/applications/plugin_appreport/'"
+p106
+sS'now'
+p107
+S'datetime.datetime(2011, 1, 25, 22, 1, 28, 315251)'
+p108
+sS'post_vars'
+p109
+S"<Storage {'person.email': '', 'person.phone': ''...a7a', '_formname': 'default', 'person.name': ''}>"
+p110
+ssS'frames'
+p111
+(lp112
+(dp113
+S'file'
+p114
+S'/home/lucasdavila/central/ws/web2py/src/web2pydev/gluon/restricted.py'
+p115
+sS'dump'
+p116
+(dp117
+S'environment'
+p118
+S"{'A': <class 'gluon.html.A'>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'CENTER': <class 'gluon.html.CENTER'>, 'CLEANUP': <class 'gluon.validators.CLEANUP'>, 'CODE': <class 'gluon.html.CODE'>, 'CRYPT': <class 'gluon.validators.CRYPT'>, ...}"
+p119
+sS'ccode'
+p120
+S'<code object <module> at 0xaabf4e8, file "/home/.../plugin_appreport/controllers/person.py", line 3>'
+p121
+ssS'lnum'
+p122
+I188
+sS'lines'
+p123
+(dp124
+I192
+S'        # XXX Show exception in Wing IDE if running in debugger'
+p125
+sI183
+S'        if type(code) == types.CodeType:'
+p126
+sI184
+S'            ccode = code'
+p127
+sI185
+S'        else:'
+p128
+sI186
+S'            ccode = compile2(code,layer)'
+p129
+sI187
+S''
+sI188
+S'        exec ccode in environment'
+p130
+sI189
+S'    except HTTP:'
+p131
+sI190
+S'        raise'
+p132
+sI191
+S'    except Exception:'
+p133
+ssS'call'
+p134
+S"(code='# coding: utf8\\n\\ndef create():\\n\\n    form = crud.c...\\nresponse._vars=response._caller(complex_report)\\n', environment={'A': <class 'gluon.html.A'>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'CENTER': <class 'gluon.html.CENTER'>, 'CLEANUP': <class 'gluon.validators.CLEANUP'>, 'CODE': <class 'gluon.html.CODE'>, 'CRYPT': <class 'gluon.validators.CRYPT'>, ...}, layer='/home/lucasdavila/central/ws/web2py/src/web2pyde...plications/plugin_appreport/controllers/person.py')"
+p135
+sS'func'
+p136
+S'restricted'
+p137
+sa(dp138
+g114
+S'/home/lucasdavila/central/ws/web2py/src/web2pydev/applications/plugin_appreport/controllers/person.py'
+p139
+sg116
+(dp140
+sg122
+I59
+sg123
+(dp141
+I48
+S'                                <td>Lucas Davila</td>'
+p142
+sI49
+S'                                <td>lucassdvl@gmail.com</td>'
+p143
+sI50
+S'                                <td>@lucadavila</td>'
+p144
+sI51
+S'                            </tr>'
+p145
+sI52
+S'                        </tbody>'
+p146
+sI53
+S'                    </table>'
+p147
+sI54
+S'                </body>'
+p148
+sI55
+S'            </html>'
+p149
+sI56
+S'    """'
+p150
+sI57
+S"    return plugin_appreport.REPORT(html = html, title = 'my custom report using the plugin appreport')"
+p151
+ssg134
+S'()'
+p152
+sg136
+S'<module>'
+p153
+sa(dp154
+g114
+S'/home/lucasdavila/central/ws/web2py/src/web2pydev/gluon/globals.py'
+p155
+sg116
+(dp156
+S'self'
+p157
+S'undefined'
+p158
+sS'f'
+S'<function complex_report>'
+p159
+ssg122
+I95
+sg123
+(dp160
+I96
+S'        self._view_environment = None'
+p161
+sI97
+S'        self._custom_commit = None'
+p162
+sI98
+S'        self._custom_rollback = None'
+p163
+sI99
+S''
+sI90
+S"        self.flash = ''           # used by the default view layout"
+p164
+sI91
+S'        self.meta = Storage()     # used by web2py_ajax.html'
+p165
+sI92
+S'        self.menu = []            # used by the default view layout'
+p166
+sI93
+S'        self.files = []           # used by web2py_ajax.html'
+p167
+sI94
+S'        self._vars = None'
+p168
+sI95
+S'        self._caller = lambda f: f()'
+p169
+ssg134
+S'(f=<function complex_report>)'
+p170
+sg136
+S'<lambda>'
+p171
+sa(dp172
+g114
+S'/home/lucasdavila/central/ws/web2py/src/web2pydev/applications/plugin_appreport/controllers/person.py'
+p173
+sg116
+(dp174
+S'response.render'
+p175
+S"<bound method Response.render of <Storage {'stat...bject at 0xaa94ccc>], '_custom_rollback': None}>>"
+p176
+sS'title'
+p177
+g158
+sS'builtinvars'
+p178
+S'<built-in function vars>'
+p179
+sS'persons'
+p180
+S'<gluon.dal.Rows object>'
+p181
+sS'html'
+p182
+g158
+sS'global response'
+p183
+S"<Storage {'status': 200, 'body': <cStringIO.Stri...object at 0xaa94ccc>], '_custom_rollback': None}>"
+p184
+sS'global plugin_appreport'
+p185
+S'<__builtin__.PluginAppreport instance>'
+p186
+sS'builtindict'
+p187
+S"<type 'dict'>"
+p188
+sS'plugin_appreport.REPORT'
+p189
+S'<bound method PluginAppreport.REPORT of <__builtin__.PluginAppreport instance>>'
+p190
+sS'view'
+p191
+g158
+ssg122
+I28
+sg123
+(dp192
+I32
+S''
+sI23
+S''
+sI24
+S'    form = plugin_appreport.REPORTFORM(table=person)'
+p193
+sI25
+S''
+sI26
+S'    if form.accepts(request.vars, session):'
+p194
+sI27
+S'        persons = db(person.id > 0).select()#TODO pegar form.get_query ?'
+p195
+sI28
+S"        return plugin_appreport.REPORT(html = response.render(view='default/complex_report.html', vars=dict(persons = persons)), title = 'List of persons')"
+p196
+sI29
+S''
+sI30
+S'    return dict(form = form)'
+p197
+sI31
+S''
+ssg134
+S'()'
+p198
+sg136
+S'complex_report'
+p199
+sa(dp200
+g114
+S'/home/lucasdavila/central/ws/web2py/src/web2pydev/gluon/globals.py'
+p201
+sg116
+(dp202
+S'self'
+p203
+S"<Storage {'status': 200, 'body': <cStringIO.Stri...object at 0xaa94ccc>], '_custom_rollback': None}>"
+p204
+sS'self._view_environment'
+p205
+S"{'A': <class 'gluon.html.A'>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'CENTER': <class 'gluon.html.CENTER'>, 'CLEANUP': <class 'gluon.validators.CLEANUP'>, 'CODE': <class 'gluon.html.CODE'>, 'CRYPT': <class 'gluon.validators.CRYPT'>, ...}"
+p206
+sS'global run_view_in'
+p207
+S'<function run_view_in>'
+p208
+ssg122
+I130
+sg123
+(dp209
+I128
+S'            (self.body, self.view) = (obody, oview)'
+p210
+sI129
+S'        else:'
+p211
+sI130
+S'            run_view_in(self._view_environment)'
+p212
+sI131
+S'            page = self.body.getvalue()'
+p213
+sI132
+S'        return page'
+p214
+sI133
+S''
+sI134
+S'    def stream('
+p215
+sI125
+S'            run_view_in(self._view_environment)'
+p216
+sI126
+S'            page = self.body.getvalue()'
+p217
+sI127
+S'            self.body.close()'
+p218
+ssg134
+S"(self=<Storage {'status': 200, 'body': <cStringIO.Stri...object at 0xaa94ccc>], '_custom_rollback': None}>, *a=(), **b={'vars': {'persons': <gluon.dal.Rows object>}, 'view': 'default/complex_report.html'})"
+p219
+sg136
+S'render'
+p220
+sa(dp221
+g114
+S'/home/lucasdavila/central/ws/web2py/src/web2pydev/gluon/compileapp.py'
+p222
+sg116
+(dp223
+S'environment'
+p224
+S"{'A': <class 'gluon.html.A'>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'CENTER': <class 'gluon.html.CENTER'>, 'CLEANUP': <class 'gluon.validators.CLEANUP'>, 'CODE': <class 'gluon.html.CODE'>, 'CRYPT': <class 'gluon.validators.CRYPT'>, ...}"
+p225
+sS'layer'
+p226
+S"'/home/lucasdavila/central/ws/web2py/src/web2pyde...plugin_appreport/views/person/complex_report.html'"
+p227
+sS'global restricted'
+p228
+S'<function restricted>'
+p229
+sS'ccode'
+p230
+S'\'response.write(\\\'<!DOCTYPE html>\\\\n<html lang="\\\', ...t   -->    \\\\n  </body>\\\\n</html>\\\\n\\\', escape=False)\''
+p231
+ssg122
+I475
+sg123
+(dp232
+I470
+S'                                            context=environment),layer))'
+p233
+sI471
+S'        else:'
+p234
+sI472
+S'            ccode = parse_template(response.view,'
+p235
+sI473
+S"                                   os.path.join(folder, 'views'),"
+p236
+sI474
+S'                                   context=environment)'
+p237
+sI475
+S'        restricted(ccode, environment, layer)'
+p238
+sI476
+S''
+sI477
+S'def remove_compiled_application(folder):'
+p239
+sI478
+S'    """'
+p240
+sI479
+S'    Deletes the folder `compiled` containing the compiled application.'
+p241
+ssg134
+S"(environment={'A': <class 'gluon.html.A'>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'CENTER': <class 'gluon.html.CENTER'>, 'CLEANUP': <class 'gluon.validators.CLEANUP'>, 'CODE': <class 'gluon.html.CODE'>, 'CRYPT': <class 'gluon.validators.CRYPT'>, ...})"
+p242
+sg136
+S'run_view_in'
+p243
+sa(dp244
+g114
+S'/home/lucasdavila/central/ws/web2py/src/web2pydev/gluon/restricted.py'
+p245
+sg116
+(dp246
+S'global RestrictedError'
+p247
+S"<class 'gluon.restricted.RestrictedError'>"
+p248
+sS'environment'
+p249
+S"{'A': <class 'gluon.html.A'>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'CENTER': <class 'gluon.html.CENTER'>, 'CLEANUP': <class 'gluon.validators.CLEANUP'>, 'CODE': <class 'gluon.html.CODE'>, 'CRYPT': <class 'gluon.validators.CRYPT'>, ...}"
+p250
+sS'layer'
+p251
+S"'/home/lucasdavila/central/ws/web2py/src/web2pyde...plugin_appreport/views/person/complex_report.html'"
+p252
+sS'code'
+p253
+S'\'response.write(\\\'<!DOCTYPE html>\\\\n<html lang="\\\', ...t   -->    \\\\n  </body>\\\\n</html>\\\\n\\\', escape=False)\''
+p254
+ssg122
+I196
+sg123
+(dp255
+I192
+S'        # XXX Show exception in Wing IDE if running in debugger'
+p256
+sI193
+S"        if __debug__ and 'WINGDB_ACTIVE' in os.environ:"
+p257
+sI194
+S'            etype, evalue, tb = sys.exc_info()'
+p258
+sI195
+S'            sys.excepthook(etype, evalue, tb)'
+p259
+sI196
+S"        raise RestrictedError(layer, code, '', environment)"
+p260
+sI197
+S''
+sI198
+S'def snapshot(info=None, context=5, code=None, environment=None):'
+p261
+sI199
+S'    """Return a dict describing a given traceback (based on cgitb.text)."""'
+p262
+sI200
+S'    import os, types, time, traceback, linecache, inspect, pydoc, cgitb'
+p263
+sI191
+S'    except Exception:'
+p264
+ssg134
+S'(code=\'response.write(\\\'<!DOCTYPE html>\\\\n<html lang="\\\', ...t   -->    \\\\n  </body>\\\\n</html>\\\\n\\\', escape=False)\', environment={\'A\': <class \'gluon.html.A\'>, \'Auth\': <class \'gluon.tools.Auth\'>, \'B\': <class \'gluon.html.B\'>, \'BEAUTIFY\': <class \'gluon.html.BEAUTIFY\'>, \'BODY\': <class \'gluon.html.BODY\'>, \'BR\': <class \'gluon.html.BR\'>, \'CENTER\': <class \'gluon.html.CENTER\'>, \'CLEANUP\': <class \'gluon.validators.CLEANUP\'>, \'CODE\': <class \'gluon.html.CODE\'>, \'CRYPT\': <class \'gluon.validators.CRYPT\'>, ...}, layer=\'/home/lucasdavila/central/ws/web2py/src/web2pyde...plugin_appreport/views/person/complex_report.html\')'
+p265
+sg136
+g137
+sasS'pyver'
+p266
+S'Python 2.6.6: /usr/bin/python'
+p267
+sS'session'
+p268
+(dp269
+S'_formkey[default]'
+p270
+S"'83b5acd8-9f67-44b4-ab81-bc0f0636b8b6'"
+p271
+sS'auth'
+p272
+S'None'
+p273
+ssS'etype'
+p274
+S"<class 'gluon.restricted.RestrictedError'>"
+p275
+sS'date'
+p276
+S'Tue Jan 25 22:01:28 2011'
+p277
+sS'response'
+p278
+(dp279
+S'status'
+p280
+S'200'
+p281
+sg74
+S'<cStringIO.StringO object>'
+p282
+sg91
+S"<SimpleCookie: session_id_plugin_appreport='127.0.0.1-56d0272b-4d25-4fdb-bf2c-da2c92731bad'>"
+p283
+sS'_vars'
+p284
+S"{'vars': {'persons': <gluon.dal.Rows object>}, 'view': 'default/complex_report.html'}"
+p285
+sS'title'
+p286
+S"'Plugin appreport'"
+p287
+sS'session_file'
+p288
+S"<open file '/home/lucasdavila/central/ws/web2py/...6d0272b-4d25-4fdb-bf2c-da2c92731bad', mode 'rb+'>"
+p289
+sS'flash'
+p290
+S"''"
+p291
+sS'_custom_rollback'
+p292
+S'None'
+p293
+sS'session_id'
+p294
+S"'127.0.0.1-56d0272b-4d25-4fdb-bf2c-da2c92731bad'"
+p295
+sS'headers'
+p296
+S"<Storage {'Expires': 'Wed, 26 Jan 2011 00:01:28 ...he, must-revalidate, post-check=0, pre-check=0'}>"
+p297
+sS'meta'
+p298
+S"<Storage {'keywords': 'web2py, python, framework... 'Web2py Enterprise Framework', 'author': 'you'}>"
+p299
+sS'session_filename'
+p300
+S"'/home/lucasdavila/central/ws/web2py/src/web2pyde...ns/127.0.0.1-56d0272b-4d25-4fdb-bf2c-da2c92731bad'"
+p301
+sS'postprocessing'
+p302
+S'[]'
+p303
+sS'menu'
+p304
+S"[(<lazyT 'Home'>, False, <gluon.html.XML object>, []), (<lazyT 'Files'>, False, <gluon.html.XML object>, [('person', False, <gluon.html.XML object>)]), (<lazyT 'Repors'>, False, <gluon.html.XML object>, [('Simple', False, <gluon.html.XML object>), ('Custon', False, <gluon.html.XML object>), ('Complex', False, <gluon.html.XML object>)]), (<lazyT 'About'>, False, <gluon.html.XML object>, [])]"
+p305
+sS'_view_environment'
+p306
+S"{'A': <class 'gluon.html.A'>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'CENTER': <class 'gluon.html.CENTER'>, 'CLEANUP': <class 'gluon.validators.CLEANUP'>, 'CODE': <class 'gluon.html.CODE'>, 'CRYPT': <class 'gluon.validators.CRYPT'>, ...}"
+p307
+sS'subtitle'
+p308
+S"<lazyT 'customize me!'>"
+p309
+sS'session_id_name'
+p310
+S"'session_id_plugin_appreport'"
+p311
+sS'_custom_commit'
+p312
+S'None'
+p313
+sS'_caller'
+p314
+S'<function <lambda>>'
+p315
+sS'files'
+p316
+S'[<gluon.html.XML object>, <gluon.html.XML object>, <gluon.html.XML object>, <gluon.html.XML object>, <gluon.html.XML object>, <gluon.html.XML object>]'
+p317
+sS'view'
+p318
+S"'person/complex_report.html'"
+p319
+ssS'locals'
+p320
+(dp321
+g41
+S"{'A': <class 'gluon.html.A'>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'CENTER': <class 'gluon.html.CENTER'>, 'CLEANUP': <class 'gluon.validators.CLEANUP'>, 'CODE': <class 'gluon.html.CODE'>, 'CRYPT': <class 'gluon.validators.CRYPT'>, ...}"
+p322
+sg3
+S"'/home/lucasdavila/central/ws/web2py/src/web2pyde...plugin_appreport/views/person/complex_report.html'"
+p323
+sg5
+S'\'response.write(\\\'<!DOCTYPE html>\\\\n<html lang="\\\', ...t   -->    \\\\n  </body>\\\\n</html>\\\\n\\\', escape=False)\''
+p324
+sS'ccode'
+p325
+S'<code object <module> at 0xaabf4a0, file "/home/...report/views/person/complex_report.html", line 1>'
+p326
+sssg59
+S'Traceback (most recent call last):\n  File "/home/lucasdavila/central/ws/web2py/src/web2pydev/gluon/restricted.py", line 188, in restricted\n    exec ccode in environment\n  File "/home/lucasdavila/central/ws/web2py/src/web2pydev/applications/plugin_appreport/controllers/person.py", line 59, in <module>\n  File "/home/lucasdavila/central/ws/web2py/src/web2pydev/gluon/globals.py", line 95, in <lambda>\n    self._caller = lambda f: f()\n  File "/home/lucasdavila/central/ws/web2py/src/web2pydev/applications/plugin_appreport/controllers/person.py", line 28, in complex_report\n    return plugin_appreport.REPORT(html = response.render(view=\'default/complex_report.html\', vars=dict(persons = persons)), title = \'List of persons\')\n  File "/home/lucasdavila/central/ws/web2py/src/web2pydev/gluon/globals.py", line 130, in render\n    run_view_in(self._view_environment)\n  File "/home/lucasdavila/central/ws/web2py/src/web2pydev/gluon/compileapp.py", line 475, in run_view_in\n    restricted(ccode, environment, layer)\n  File "/home/lucasdavila/central/ws/web2py/src/web2pydev/gluon/restricted.py", line 196, in restricted\n    raise RestrictedError(layer, code, \'\', environment)\nRestrictedError\n'
+p327
+s.

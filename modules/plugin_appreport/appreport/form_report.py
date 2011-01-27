@@ -23,6 +23,9 @@ from gluon.http import *
 from gluon.validators import *
 from gluon.sqlhtml import *
 
+from libs import utils
+
+
 #TODO overwrite class FORM() ?
 class FormReportWeb2py():
     
@@ -58,4 +61,27 @@ class FormReportWeb2py():
                 TD(f[0]),
                 TD(f[1])
                 ))
+
+            form.prep_filter = self.prep_filter
+
         return form
+
+    def prep_filter(self, filter):
+
+        """
+
+        Example use:
+        
+            #in a controller define the following action:
+            def complex_report():
+                form = FormReportWeb2py(table=person)
+
+                if form.accepts(request.vars, session):
+                    persons = db(form.prep_filter(filter = dict(form.vars))).select()
+                    html = response.render('person/report_persons.html', dict(persons = persons))
+                    return ReportHtml(html = html)
+
+                return dict(form = form)
+        """
+
+        return utils.UtilsWeb2py().prep_filter(vars = filter, table = self.table)

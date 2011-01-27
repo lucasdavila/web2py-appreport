@@ -1,5 +1,7 @@
 # coding: utf8
 
+import os.path
+
 #to start using plugin_appreport in a controller define the following action:   
 #para começar a usar o plugin_appreport em um controlador defina o seguinte action:
 #
@@ -7,10 +9,9 @@
 #    form = plugin_appreport.REPORTFORM(db.table_name)
 #    
 #    if form.accepts(request.vars, session):
-#        return plugin_appreport.REPORT(table = db.table_name, title = 'List of ?',filter = dict(form.vars))
+#        return plugin_appreport.REPORT(table = db.table_name, filter = dict(form.vars))
 #            
 #    return dict(form = form)
-
 
 #reference to appreport module
 plugin_appreport_appreport = local_import('plugin_appreport.appreport', reload = False)
@@ -24,8 +25,10 @@ class PluginAppreport:
         return plugin_appreport_appreport.form_report.FormReportWeb2py(table = table).get_form()
 
     #TODO add parametro html, se != None chamar classe html ?
-    def REPORT(self, table = None, filter = '', title = 'Report', html = '', orientation = 'P', unit = 'mm', format = 'A4'):
+    def REPORT(self, table = None, filter = '', html = '', engine = 'pisa', charset = 'utf-8', title = 'Report', orientation = 'P', unit = 'mm', format = 'A4'):
         """wrapper to module >> appreport.report_html_db_web2py / class >> ReportHtmlDbWeb2py / method >> dumps
+
+        Note: arg "title, orientation, unit and format" are used only by engine pyfpdf
 
         table = db.table    
         filter = dict(form.vars) or {'table_name.field_name':'value', 'table_name.field2_name':'value2'}
@@ -60,15 +63,20 @@ class PluginAppreport:
         """
         
         user_name = auth.user.first_name if auth.user is not None else ''
+        path_reports = os.path.join(request.folder, 'private/plugin_appreport/reports')
         
         if html.strip() != '':
             report = plugin_appreport_appreport.report.ReportHtml(user_name = user_name,
-            title = title, html = html, orientation = orientation, unit = unit, format = format)
+            title = title, html = html, orientation = orientation, unit = unit, format = format, charset = charset)
         else:
-            report = plugin_appreport_appreport.report.ReportHtmlDbWeb2py(table = table, filter = filter, user_name = user_name, title = title, orientation = orientation, unit = unit, format = format)
-                    
-        pdf_builder = plugin_appreport_appreport.pdf_builder.PdfBuilderPyfpdf(report = report)
+            report = plugin_appreport_appreport.report.ReportHtmlDbWeb2py(table = table, filter = filter, user_name = user_name, title = title, orientation = orientation, unit = unit, format = format, charset = charset)
+
+
+        if engine == 'pisa':
+            pdf_builder = plugin_appreport_appreport.pdf_builder.PdfBuilderPisa(report = report)
+        else:
+            pdf_builder = plugin_appreport_appreport.pdf_builder.PdfBuilderPyfpdf(report = report)
             
-        return plugin_appreport_appreport.report_factory.ReportFactoryWeb2py(response = response, request = request, path_reports = 'private/plugin_appreport/reports', pdf_builder = pdf_builder).dumps(report = report)
+        return plugin_appreport_appreport.report_factory.ReportFactoryWeb2py(response = response, request = request, path_reports = path_reports, pdf_builder = pdf_builder).dumps(report = report)
             
 plugin_appreport = PluginAppreport()

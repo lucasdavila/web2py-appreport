@@ -1,0 +1,631 @@
+(dp1
+S'output'
+p2
+S''
+sS'layer'
+p3
+S'/home/lucasdavila/central/ws/web2py/src/web2pydev/applications/plugin_appreport/models/plugin_appreport.py'
+p4
+sS'code'
+p5
+S'# coding: utf8\n\n#to start using plugin_appreport in a controller define the following action:   \n#para come\xc3\xa7ar a usar o plugin_appreport em um controlador defina o seguinte action:\n#\n#def report():\n#    form = plugin_appreport.REPORTFORM(db.table_name)\n#    \n#    if form.accepts(request.vars, session):\n#        return plugin_appreport.REPORT(table = db.table_name, title = \'List of ?\',filter = dict(form.vars))\n#            \n#    return dict(form = form)\n\n\n#reference to appreport module\nplugin_appreport_appreport = local_import(\'plugin_appreport.appreport\', reload = False)\n\nclass PluginAppreport:\n    \n    def REPORTFORM(self, table):\n        """wrapper to module >> appreport.form_report_web2py / class >> FormReportWeb2py / method >> get_form\n        """\n        dir(plugin_appreport_appreport)\n        return plugin_appreport_appreport.form_report.FormReportWeb2py(table = table).get_form()\n\n    #TODO add parametro html, se != None chamar classe html ?\n    def REPORT(self, table = None, filter = \'\', title = \'Report\', html = \'\', orientation = \'P\', unit = \'mm\', format = \'A4\'):\n        """wrapper to module >> appreport.report_html_db_web2py / class >> ReportHtmlDbWeb2py / method >> dumps\n\n        table = db.table    \n        filter = dict(form.vars) or {\'table_name.field_name\':\'value\', \'table_name.field2_name\':\'value2\'}\n        title = \'title of report\'\n        html = html custom if given the report will be generated as html passed, ignoring the table definition, example:\n            <html>\n                <body>\n                    <table>\n                        <thead>\n                            <tr>\n                                <th>Id</th>\n                                <th>Name</th>\n                                <th>Phone</th>\n                                <th>Email</th>\n                            </tr>\n                        </thead>\n                        <tbody>\n                            <tr>\n                                <td>1</td>\n                                <td>lucas davila</td>\n                                <td>123455</td>\n                                <td>lucassdvl@gmail.com</td>\n                            </tr>\n                        </tbody>\n                    </table>\n                </body>\n            </html>\n\n            \n        Orientation: \'P\' for portrait (retrato) or \'L\' for landscape (paisagem)\n    \n        """\n        \n        user_name = auth.user.first_name if auth.user is not None else \'\'\n        \n        if html.strip() != \'\':\n            report = plugin_appreport_appreport.report.ReportHtml(user_name = user_name,\n            title = title, html = html, orientation = orientation, unit = unit, format = format)\n        else:\n            report = plugin_appreport_appreport.report.ReportHtmlDbWeb2py(table = table, filter = filter, user_name = user_name, title = title, orientation = orientation, unit = unit, format = format)\n                    \n        pdf_builder = plugin_appreport_appreport.pdf_builder.PdfBuilderPyfpdf(report = report)\n            \n        return plugin_appreport_appreport.report_factory.ReportFactoryWeb2py(response = response, request = request, path_reports = \'private/plugin_appreport/reports\', pdf_builder = pdf_builder).dumps(report = report)\n            \nplugin_appreport = PluginAppreport()\n'
+p6
+sS'snapshot'
+p7
+(dp8
+S'exception'
+p9
+(dp10
+S'__getslice__'
+p11
+S"<method-wrapper '__getslice__' of exceptions.SyntaxError object>"
+p12
+sS'text'
+p13
+S"'from libs.pisa.xhtml2pff.ho.pisa as pisa\\n'"
+p14
+sS'__str__'
+p15
+S"<method-wrapper '__str__' of exceptions.SyntaxError object>"
+p16
+sS'__reduce__'
+p17
+S'<built-in method __reduce__ of exceptions.SyntaxError object>'
+p18
+sS'__dict__'
+p19
+S'{}'
+p20
+sS'__sizeof__'
+p21
+S'<built-in method __sizeof__ of exceptions.SyntaxError object>'
+p22
+sS'__init__'
+p23
+S"<method-wrapper '__init__' of exceptions.SyntaxError object>"
+p24
+sS'__setattr__'
+p25
+S"<method-wrapper '__setattr__' of exceptions.SyntaxError object>"
+p26
+sS'__reduce_ex__'
+p27
+S'<built-in method __reduce_ex__ of exceptions.SyntaxError object>'
+p28
+sS'__new__'
+p29
+S'<built-in method __new__ of type object>'
+p30
+sS'__format__'
+p31
+S'<built-in method __format__ of exceptions.SyntaxError object>'
+p32
+sS'__class__'
+p33
+S"<type 'exceptions.SyntaxError'>"
+p34
+sS'filename'
+p35
+S"'applications/plugin_appreport/modules/plugin_appreport/appreport/pdf_builder.py'"
+p36
+sS'lineno'
+p37
+S'6'
+sS'msg'
+p38
+S"'invalid syntax'"
+p39
+sS'__doc__'
+p40
+S"'Invalid syntax.'"
+p41
+sS'__getitem__'
+p42
+S"<method-wrapper '__getitem__' of exceptions.SyntaxError object>"
+p43
+sS'__setstate__'
+p44
+S'<built-in method __setstate__ of exceptions.SyntaxError object>'
+p45
+sS'__getattribute__'
+p46
+S"<method-wrapper '__getattribute__' of exceptions.SyntaxError object>"
+p47
+sS'print_file_and_line'
+p48
+S'None'
+p49
+sS'args'
+p50
+S"('invalid syntax', ('applications/plugin_appreport/modules/plugin_appreport/appreport/pdf_builder.py', 6, 35, 'from libs.pisa.xhtml2pff.ho.pisa as pisa\\n'))"
+p51
+sS'__subclasshook__'
+p52
+S'<built-in method __subclasshook__ of type object>'
+p53
+sS'offset'
+p54
+S'35'
+p55
+sS'__unicode__'
+p56
+S'<built-in method __unicode__ of exceptions.SyntaxError object>'
+p57
+sS'__delattr__'
+p58
+S"<method-wrapper '__delattr__' of exceptions.SyntaxError object>"
+p59
+sS'__repr__'
+p60
+S"<method-wrapper '__repr__' of exceptions.SyntaxError object>"
+p61
+sS'__hash__'
+p62
+S"<method-wrapper '__hash__' of exceptions.SyntaxError object>"
+p63
+ssS'evalue'
+p64
+S'invalid syntax (pdf_builder.py, line 6)'
+p65
+sS'request'
+p66
+(dp67
+S'function'
+p68
+S"'complex_report'"
+p69
+sS'body'
+p70
+S'<cStringIO.StringO object>'
+p71
+sS'wsgi'
+p72
+S"<Storage {'start_response': <function <lambda> a...>, 'HTTP_ACCEPT_ENCODING': 'gzip,deflate,sdch'}}>"
+p73
+sS'extension'
+p74
+S"'html'"
+p75
+sS'vars'
+p76
+S'<Storage {}>'
+p77
+sS'cid'
+p78
+S'None'
+p79
+sS'url'
+p80
+S'<gluon.html.XML object>'
+p81
+sS'raw_extension'
+p82
+S'None'
+p83
+sg50
+S'[]'
+p84
+sS'controller'
+p85
+S"'person'"
+p86
+sS'cookies'
+p87
+S"<SimpleCookie: session_id_admin='127.0.0.1-ab65c...'127.0.0.1-3fb54433-9a7e-4167-b09f-f0891a2471ca'>"
+p88
+sS'application'
+p89
+S"'plugin_appreport'"
+p90
+sS'ajax'
+p91
+S'False'
+p92
+sS'client'
+p93
+S"'127.0.0.1'"
+p94
+sS'env'
+p95
+S"<Storage {'wsgi_multithread': True, 'debugging':... 'wsgi_run_once': False, 'remote_port': '49175'}>"
+p96
+sS'raw_args'
+p97
+S'None'
+p98
+sS'get_vars'
+p99
+S'<Storage {}>'
+p100
+sS'folder'
+p101
+S"'/home/lucasdavila/central/ws/web2py/src/web2pydev/applications/plugin_appreport/'"
+p102
+sS'now'
+p103
+S'datetime.datetime(2011, 1, 26, 20, 46, 13, 679501)'
+p104
+sS'post_vars'
+p105
+S'<Storage {}>'
+p106
+ssS'frames'
+p107
+(lp108
+(dp109
+S'file'
+p110
+S'/home/lucasdavila/central/ws/web2py/src/web2pydev/gluon/restricted.py'
+p111
+sS'dump'
+p112
+(dp113
+S'environment'
+p114
+S"{'A': <class 'gluon.html.A'>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'CENTER': <class 'gluon.html.CENTER'>, 'CLEANUP': <class 'gluon.validators.CLEANUP'>, 'CODE': <class 'gluon.html.CODE'>, 'CRYPT': <class 'gluon.validators.CRYPT'>, ...}"
+p115
+sS'ccode'
+p116
+S'<code object <module> at 0x904db60, file "/home/...n_appreport/models/plugin_appreport.py", line 16>'
+p117
+ssS'lnum'
+p118
+I188
+sS'lines'
+p119
+(dp120
+I192
+S'        # XXX Show exception in Wing IDE if running in debugger'
+p121
+sI183
+S'        if type(code) == types.CodeType:'
+p122
+sI184
+S'            ccode = code'
+p123
+sI185
+S'        else:'
+p124
+sI186
+S'            ccode = compile2(code,layer)'
+p125
+sI187
+S''
+sI188
+S'        exec ccode in environment'
+p126
+sI189
+S'    except HTTP:'
+p127
+sI190
+S'        raise'
+p128
+sI191
+S'    except Exception:'
+p129
+ssS'call'
+p130
+S"(code='# coding: utf8\\n\\n#to start using plugin_appreport...           \\nplugin_appreport = PluginAppreport()\\n', environment={'A': <class 'gluon.html.A'>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'CENTER': <class 'gluon.html.CENTER'>, 'CLEANUP': <class 'gluon.validators.CLEANUP'>, 'CODE': <class 'gluon.html.CODE'>, 'CRYPT': <class 'gluon.validators.CRYPT'>, ...}, layer='/home/lucasdavila/central/ws/web2py/src/web2pyde...tions/plugin_appreport/models/plugin_appreport.py')"
+p131
+sS'func'
+p132
+S'restricted'
+p133
+sa(dp134
+g110
+S'/home/lucasdavila/central/ws/web2py/src/web2pydev/applications/plugin_appreport/models/plugin_appreport.py'
+p135
+sg112
+(dp136
+S'local_import'
+p137
+S'<function <lambda>>'
+p138
+sS'builtinreload'
+p139
+S'<built-in function reload>'
+p140
+sS'builtinFalse'
+p141
+g92
+sS'plugin_appreport_appreport'
+p142
+S'undefined'
+p143
+ssg118
+I16
+sg119
+(dp144
+I11
+S'#'
+sI12
+S'#    return dict(form = form)'
+p145
+sI13
+S''
+sI14
+S''
+sI15
+S'#reference to appreport module'
+p146
+sI16
+S"plugin_appreport_appreport = local_import('plugin_appreport.appreport', reload = False)"
+p147
+sI17
+S''
+sI18
+S'class PluginAppreport:'
+p148
+sI19
+S''
+sI20
+S'    def REPORTFORM(self, table):'
+p149
+ssg130
+S'()'
+p150
+sg132
+S'<module>'
+p151
+sa(dp152
+g110
+S'/home/lucasdavila/central/ws/web2py/src/web2pydev/gluon/compileapp.py'
+p153
+sg112
+(dp154
+S'global local_import_aux'
+p155
+S'<function local_import_aux>'
+p156
+sS'reload'
+p157
+g92
+sS'app'
+p158
+S"'plugin_appreport'"
+p159
+sS'name'
+p160
+S"'plugin_appreport.appreport'"
+p161
+ssg118
+I241
+sg119
+(dp162
+I236
+S"    environment['SQLFORM'] = SQLFORM"
+p163
+sI237
+S"    environment['SQLTABLE'] = SQLTABLE"
+p164
+sI238
+S"    environment['LOAD'] = LoadFactory(environment)"
+p165
+sI239
+S"    environment['local_import'] = \\"
+p166
+sI240
+S'        lambda name, reload=False, app=request.application:\\'
+p167
+sI241
+S'        local_import_aux(name,reload,app)'
+p168
+sI242
+S"    BaseAdapter.set_folder(os.path.join(request.folder, 'databases'))"
+p169
+sI243
+S'    response._view_environment = copy.copy(environment)'
+p170
+sI244
+S'    return environment'
+p171
+sI245
+S''
+ssg130
+S"(name='plugin_appreport.appreport', reload=False, app='plugin_appreport')"
+p172
+sg132
+S'<lambda>'
+p173
+sa(dp174
+g110
+S'/home/lucasdavila/central/ws/web2py/src/web2pydev/gluon/compileapp.py'
+p175
+sg112
+(dp176
+S'name'
+p177
+S"'applications.plugin_appreport.modules.plugin_appreport.appreport'"
+p178
+sS'module'
+p179
+g143
+sS'builtin__import__'
+p180
+S'<built-in function __import__>'
+p181
+ssg118
+I172
+sg119
+(dp182
+I167
+S'    This prevents conflict between applications and un-necessary execs.'
+p183
+sI168
+S'    It can be used to import any module, including regular Python modules.'
+p184
+sI169
+S'    """'
+p185
+sI170
+S"    items = name.replace('/','.')"
+p186
+sI171
+S'    name = "applications.%s.modules.%s" % (app, items)'
+p187
+sI172
+S'    module = __import__(name)'
+p188
+sI173
+S'    for item in name.split(".")[1:]:'
+p189
+sI174
+S'        module = getattr(module, item)'
+p190
+sI175
+S'    if force:'
+p191
+sI176
+S'        reload(module)'
+p192
+ssg130
+S"(name='applications.plugin_appreport.modules.plugin_appreport.appreport', force=False, app='plugin_appreport')"
+p193
+sg132
+S'local_import_aux'
+p194
+sa(dp195
+g110
+S'/home/lucasdavila/central/ws/web2py/src/web2pydev/applications/plugin_appreport/modules/plugin_appreport/appreport/__init__.py'
+p196
+sg112
+(dp197
+S'pdf_builder'
+p198
+g143
+ssg118
+I2
+sg119
+(dp199
+I1
+S'import form_report'
+p200
+sI2
+S'import pdf_builder'
+p201
+sI3
+S'import report'
+p202
+sI4
+S'import report_factory'
+p203
+ssg130
+S'()'
+p204
+sg132
+g151
+sasS'pyver'
+p205
+S'Python 2.6.6: /usr/bin/python'
+p206
+sS'session'
+p207
+(dp208
+S'_formkey[person/None]'
+p209
+S"'088ef73d-ff1e-44a6-8f8e-0f861f3cba55'"
+p210
+sS'_formkey[default]'
+p211
+S"'24fd221f-bab5-47ef-88fa-acca6090eea4'"
+p212
+sS'_formkey[favorite_music/None]'
+p213
+S"'5033c80c-21f4-4275-996e-dae96170d1db'"
+p214
+sS'auth'
+p215
+S'None'
+p216
+ssS'etype'
+p217
+S"<type 'exceptions.SyntaxError'>"
+p218
+sS'date'
+p219
+S'Wed Jan 26 20:46:13 2011'
+p220
+sS'response'
+p221
+(dp222
+S'status'
+p223
+S'200'
+p224
+sg70
+S'<cStringIO.StringO object>'
+p225
+sg87
+S"<SimpleCookie: session_id_plugin_appreport='127.0.0.1-56d0272b-4d25-4fdb-bf2c-da2c92731bad'>"
+p226
+sS'_vars'
+p227
+S'None'
+p228
+sS'title'
+p229
+S"'Plugin appreport'"
+p230
+sS'session_file'
+p231
+S"<open file '/home/lucasdavila/central/ws/web2py/...6d0272b-4d25-4fdb-bf2c-da2c92731bad', mode 'rb+'>"
+p232
+sS'flash'
+p233
+S"''"
+p234
+sS'_custom_rollback'
+p235
+S'None'
+p236
+sS'session_id'
+p237
+S"'127.0.0.1-56d0272b-4d25-4fdb-bf2c-da2c92731bad'"
+p238
+sS'headers'
+p239
+S"<Storage {'Expires': 'Wed, 26 Jan 2011 22:46:13 ...he, must-revalidate, post-check=0, pre-check=0'}>"
+p240
+sS'meta'
+p241
+S"<Storage {'keywords': 'web2py, python, framework... 'Web2py Enterprise Framework', 'author': 'you'}>"
+p242
+sS'session_filename'
+p243
+S"'/home/lucasdavila/central/ws/web2py/src/web2pyde...ns/127.0.0.1-56d0272b-4d25-4fdb-bf2c-da2c92731bad'"
+p244
+sS'postprocessing'
+p245
+S'[]'
+p246
+sS'menu'
+p247
+S"[(<lazyT 'Home'>, False, <gluon.html.XML object>, []), (<lazyT 'Files'>, False, <gluon.html.XML object>, [('person', False, <gluon.html.XML object>)]), (<lazyT 'Repors'>, False, <gluon.html.XML object>, [('Simple', False, <gluon.html.XML object>), ('Custon', False, <gluon.html.XML object>), ('Complex', False, <gluon.html.XML object>)]), (<lazyT 'About'>, False, <gluon.html.XML object>, [])]"
+p248
+sS'_view_environment'
+p249
+S"{'A': <class 'gluon.html.A'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'CENTER': <class 'gluon.html.CENTER'>, 'CLEANUP': <class 'gluon.validators.CLEANUP'>, 'CODE': <class 'gluon.html.CODE'>, 'CRYPT': <class 'gluon.validators.CRYPT'>, 'DAL': <class 'gluon.dal.DAL'>, ...}"
+p250
+sS'subtitle'
+p251
+S"<lazyT 'customize me!'>"
+p252
+sS'session_id_name'
+p253
+S"'session_id_plugin_appreport'"
+p254
+sS'_custom_commit'
+p255
+S'None'
+p256
+sS'_caller'
+p257
+S'<function <lambda>>'
+p258
+sS'files'
+p259
+S'[]'
+p260
+sS'view'
+p261
+S"'person/complex_report.html'"
+p262
+ssS'locals'
+p263
+(dp264
+S'__builtins__'
+p265
+S"{'ArithmeticError': <type 'exceptions.ArithmeticError'>, 'AssertionError': <type 'exceptions.AssertionError'>, 'AttributeError': <type 'exceptions.AttributeError'>, 'BaseException': <type 'exceptions.BaseException'>, 'BufferError': <type 'exceptions.BufferError'>, 'BytesWarning': <type 'exceptions.BytesWarning'>, 'DeprecationWarning': <type 'exceptions.DeprecationWarning'>, 'EOFError': <type 'exceptions.EOFError'>, 'Ellipsis': Ellipsis, 'EnvironmentError': <type 'exceptions.EnvironmentError'>, ...}"
+p266
+sS'__file__'
+p267
+S'None'
+p268
+sS'form_report'
+p269
+S'None'
+p270
+sS'__package__'
+p271
+S'None'
+p272
+sS'__path__'
+p273
+S'None'
+p274
+sS'libs'
+p275
+S'None'
+p276
+sS'__name__'
+p277
+S'None'
+p278
+sg40
+S'None'
+p279
+sssS'traceback'
+p280
+S'Traceback (most recent call last):\n  File "/home/lucasdavila/central/ws/web2py/src/web2pydev/gluon/restricted.py", line 188, in restricted\n    exec ccode in environment\n  File "/home/lucasdavila/central/ws/web2py/src/web2pydev/applications/plugin_appreport/models/plugin_appreport.py", line 16, in <module>\n    plugin_appreport_appreport = local_import(\'plugin_appreport.appreport\', reload = False)\n  File "/home/lucasdavila/central/ws/web2py/src/web2pydev/gluon/compileapp.py", line 241, in <lambda>\n    local_import_aux(name,reload,app)\n  File "/home/lucasdavila/central/ws/web2py/src/web2pydev/gluon/compileapp.py", line 172, in local_import_aux\n    module = __import__(name)\n  File "applications/plugin_appreport/modules/plugin_appreport/appreport/__init__.py", line 2, in <module>\n    import pdf_builder\n  File "applications/plugin_appreport/modules/plugin_appreport/appreport/pdf_builder.py", line 6\n    from libs.pisa.xhtml2pff.ho.pisa as pisa\n                                      ^\nSyntaxError: invalid syntax\n'
+p281
+s.

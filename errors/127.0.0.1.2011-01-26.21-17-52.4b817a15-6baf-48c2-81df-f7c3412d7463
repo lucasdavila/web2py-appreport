@@ -1,0 +1,686 @@
+(dp1
+S'output'
+p2
+S''
+sS'layer'
+p3
+S'/home/lucasdavila/central/ws/web2py/src/web2pydev/applications/plugin_appreport/controllers/person.py'
+p4
+sS'code'
+p5
+S'# coding: utf8\n\ndef create():\n\n    form = crud.create(person)\n    form_favs = crud.create(favorite_music)\n    persons = db().select(db.person.ALL, db.favorite_music.ALL, left=favorite_music.on(person.id == favorite_music.person))\n\n    return dict(form = form, form_favs = form_favs, persons = persons)\n    \n\ndef simple_report():\n\n    form = plugin_appreport.REPORTFORM(table=person)\n\n    if form.accepts(request.vars, session):\n        return plugin_appreport.REPORT(table = person, title = \'List of persons\', filter = dict(form.vars))\n\n    return dict(form = form)\n    \ndef report_persons():\n\n    return dict(persons = db(person.id > 0).select())\n\n\ndef complex_report():\n\n    form = plugin_appreport.REPORTFORM(table=person)\n\n    if form.accepts(request.vars, session):\n        persons = db(form.prep_filter(filter = dict(form.vars))).select()\n        html = response.render(\'person/report_persons.html\', dict(persons = persons))\n        return plugin_appreport.REPORT(html = html, title = \'List of persons\')\n\n    return dict(form = form)\n\n\n\ndef custom_report():\n    \n    html = """<html>\n                <body>\n                    <table>\n                        <thead>\n                            <tr>\n                                <th>Author</th>\n                                <th>Email</th>\n                                <th>Twitter</th>\n                            </tr>\n                        </thead>\n                        <tbody>\n                            <tr>\n                                <td>Lucas Davila</td>\n                                <td>lucassdvl@gmail.com</td>\n                                <td>@lucadavila</td>                                \n                            </tr>\n                        </tbody>\n                    </table>\n                </body>\n            </html>\n    """\n    return plugin_appreport.REPORT(html = html, title = \'my custom report using the plugin appreport\')\n\nresponse._vars=response._caller(complex_report)\n'
+p6
+sS'snapshot'
+p7
+(dp8
+S'exception'
+p9
+(dp10
+S'__getslice__'
+p11
+S"<method-wrapper '__getslice__' of exceptions.IOError object>"
+p12
+sS'__str__'
+p13
+S"<method-wrapper '__str__' of exceptions.IOError object>"
+p14
+sS'__reduce__'
+p15
+S'<built-in method __reduce__ of exceptions.IOError object>'
+p16
+sS'__dict__'
+p17
+S'{}'
+p18
+sS'__sizeof__'
+p19
+S'<built-in method __sizeof__ of exceptions.IOError object>'
+p20
+sS'__init__'
+p21
+S"<method-wrapper '__init__' of exceptions.IOError object>"
+p22
+sS'__setattr__'
+p23
+S"<method-wrapper '__setattr__' of exceptions.IOError object>"
+p24
+sS'__reduce_ex__'
+p25
+S'<built-in method __reduce_ex__ of exceptions.IOError object>'
+p26
+sS'__new__'
+p27
+S'<built-in method __new__ of type object>'
+p28
+sS'errno'
+p29
+S'2'
+sS'__format__'
+p30
+S'<built-in method __format__ of exceptions.IOError object>'
+p31
+sS'__class__'
+p32
+S"<type 'exceptions.IOError'>"
+p33
+sS'filename'
+p34
+S"'private/plugin_appreport/reports/report_anonymous_2011-01-26_21-17-52_083381.pdf'"
+p35
+sS'__doc__'
+p36
+S"'I/O operation failed.'"
+p37
+sS'__getitem__'
+p38
+S"<method-wrapper '__getitem__' of exceptions.IOError object>"
+p39
+sS'__setstate__'
+p40
+S'<built-in method __setstate__ of exceptions.IOError object>'
+p41
+sS'__getattribute__'
+p42
+S"<method-wrapper '__getattribute__' of exceptions.IOError object>"
+p43
+sS'args'
+p44
+S"(2, 'No such file or directory')"
+p45
+sS'__subclasshook__'
+p46
+S'<built-in method __subclasshook__ of type object>'
+p47
+sS'__unicode__'
+p48
+S'<built-in method __unicode__ of exceptions.IOError object>'
+p49
+sS'strerror'
+p50
+S"'No such file or directory'"
+p51
+sS'__delattr__'
+p52
+S"<method-wrapper '__delattr__' of exceptions.IOError object>"
+p53
+sS'__repr__'
+p54
+S"<method-wrapper '__repr__' of exceptions.IOError object>"
+p55
+sS'__hash__'
+p56
+S"<method-wrapper '__hash__' of exceptions.IOError object>"
+p57
+ssS'evalue'
+p58
+S"[Errno 2] No such file or directory: 'private/plugin_appreport/reports/report_anonymous_2011-01-26_21-17-52_083381.pdf'"
+p59
+sS'request'
+p60
+(dp61
+S'function'
+p62
+S"'complex_report'"
+p63
+sS'body'
+p64
+S"<open file '<fdopen>', mode 'w+b'>"
+p65
+sS'wsgi'
+p66
+S"<Storage {'start_response': <function <lambda> a...>, 'HTTP_ACCEPT_ENCODING': 'gzip,deflate,sdch'}}>"
+p67
+sS'extension'
+p68
+S"'html'"
+p69
+sS'vars'
+p70
+S"<Storage {'person.email': '', 'person.phone': ''...117', '_formname': 'default', 'person.name': ''}>"
+p71
+sS'cid'
+p72
+S'None'
+p73
+sS'url'
+p74
+S'<gluon.html.XML object>'
+p75
+sS'raw_extension'
+p76
+S'None'
+p77
+sg44
+S'[]'
+p78
+sS'controller'
+p79
+S"'person'"
+p80
+sS'cookies'
+p81
+S"<SimpleCookie: session_id_admin='127.0.0.1-ab65c...'127.0.0.1-3fb54433-9a7e-4167-b09f-f0891a2471ca'>"
+p82
+sS'application'
+p83
+S"'plugin_appreport'"
+p84
+sS'ajax'
+p85
+S'False'
+p86
+sS'client'
+p87
+S"'127.0.0.1'"
+p88
+sS'env'
+p89
+S"<Storage {'content_length': '670', 'debugging': ...undarywmAAFsLZ8yDnqrJW', 'remote_port': '54486'}>"
+p90
+sS'raw_args'
+p91
+S'None'
+p92
+sS'get_vars'
+p93
+S'<Storage {}>'
+p94
+sS'folder'
+p95
+S"'/home/lucasdavila/central/ws/web2py/src/web2pydev/applications/plugin_appreport/'"
+p96
+sS'now'
+p97
+S'datetime.datetime(2011, 1, 26, 21, 17, 52, 83381)'
+p98
+sS'post_vars'
+p99
+S"<Storage {'person.email': '', 'person.phone': ''...117', '_formname': 'default', 'person.name': ''}>"
+p100
+ssS'frames'
+p101
+(lp102
+(dp103
+S'file'
+p104
+S'/home/lucasdavila/central/ws/web2py/src/web2pydev/gluon/restricted.py'
+p105
+sS'dump'
+p106
+(dp107
+S'environment'
+p108
+S"{'A': <class 'gluon.html.A'>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'CENTER': <class 'gluon.html.CENTER'>, 'CLEANUP': <class 'gluon.validators.CLEANUP'>, 'CODE': <class 'gluon.html.CODE'>, 'CRYPT': <class 'gluon.validators.CRYPT'>, ...}"
+p109
+sS'ccode'
+p110
+S'<code object <module> at 0x9b7b8d8, file "/home/.../plugin_appreport/controllers/person.py", line 3>'
+p111
+ssS'lnum'
+p112
+I188
+sS'lines'
+p113
+(dp114
+I192
+S'        # XXX Show exception in Wing IDE if running in debugger'
+p115
+sI183
+S'        if type(code) == types.CodeType:'
+p116
+sI184
+S'            ccode = code'
+p117
+sI185
+S'        else:'
+p118
+sI186
+S'            ccode = compile2(code,layer)'
+p119
+sI187
+S''
+sI188
+S'        exec ccode in environment'
+p120
+sI189
+S'    except HTTP:'
+p121
+sI190
+S'        raise'
+p122
+sI191
+S'    except Exception:'
+p123
+ssS'call'
+p124
+S"(code='# coding: utf8\\n\\ndef create():\\n\\n    form = crud.c...\\nresponse._vars=response._caller(complex_report)\\n', environment={'A': <class 'gluon.html.A'>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'CENTER': <class 'gluon.html.CENTER'>, 'CLEANUP': <class 'gluon.validators.CLEANUP'>, 'CODE': <class 'gluon.html.CODE'>, 'CRYPT': <class 'gluon.validators.CRYPT'>, ...}, layer='/home/lucasdavila/central/ws/web2py/src/web2pyde...plications/plugin_appreport/controllers/person.py')"
+p125
+sS'func'
+p126
+S'restricted'
+p127
+sa(dp128
+g104
+S'/home/lucasdavila/central/ws/web2py/src/web2pydev/applications/plugin_appreport/controllers/person.py'
+p129
+sg106
+(dp130
+sg112
+I64
+sg113
+(dp131
+I53
+S'                                <td>Lucas Davila</td>'
+p132
+sI54
+S'                                <td>lucassdvl@gmail.com</td>'
+p133
+sI55
+S'                                <td>@lucadavila</td>'
+p134
+sI56
+S'                            </tr>'
+p135
+sI57
+S'                        </tbody>'
+p136
+sI58
+S'                    </table>'
+p137
+sI59
+S'                </body>'
+p138
+sI60
+S'            </html>'
+p139
+sI61
+S'    """'
+p140
+sI62
+S"    return plugin_appreport.REPORT(html = html, title = 'my custom report using the plugin appreport')"
+p141
+ssg124
+S'()'
+p142
+sg126
+S'<module>'
+p143
+sa(dp144
+g104
+S'/home/lucasdavila/central/ws/web2py/src/web2pydev/gluon/globals.py'
+p145
+sg106
+(dp146
+S'self'
+p147
+S'undefined'
+p148
+sS'f'
+S'<function complex_report>'
+p149
+ssg112
+I95
+sg113
+(dp150
+I96
+S'        self._view_environment = None'
+p151
+sI97
+S'        self._custom_commit = None'
+p152
+sI98
+S'        self._custom_rollback = None'
+p153
+sI99
+S''
+sI90
+S"        self.flash = ''           # used by the default view layout"
+p154
+sI91
+S'        self.meta = Storage()     # used by web2py_ajax.html'
+p155
+sI92
+S'        self.menu = []            # used by the default view layout'
+p156
+sI93
+S'        self.files = []           # used by web2py_ajax.html'
+p157
+sI94
+S'        self._vars = None'
+p158
+sI95
+S'        self._caller = lambda f: f()'
+p159
+ssg124
+S'(f=<function complex_report>)'
+p160
+sg126
+S'<lambda>'
+p161
+sa(dp162
+g104
+S'/home/lucasdavila/central/ws/web2py/src/web2pydev/applications/plugin_appreport/controllers/person.py'
+p163
+sg106
+(dp164
+S'title'
+p165
+g148
+sS'html'
+p166
+S"'\\n<html>\\n<body>\\n<h2>Report of persons</h2>\\n\\n<tabl...\\n        \\n    </tbody>\\n</table>\\n</body>\\n</html>\\n\\n'"
+p167
+sS'plugin_appreport.REPORT'
+p168
+S'<bound method PluginAppreport.REPORT of <__builtin__.PluginAppreport instance>>'
+p169
+sS'global plugin_appreport'
+p170
+S'<__builtin__.PluginAppreport instance>'
+p171
+ssg112
+I33
+sg113
+(dp172
+I32
+S"        html = response.render('person/report_persons.html', dict(persons = persons))"
+p173
+sI33
+S"        return plugin_appreport.REPORT(html = html, title = 'List of persons')"
+p174
+sI34
+S''
+sI35
+S'    return dict(form = form)'
+p175
+sI36
+S''
+sI37
+S''
+sI28
+S'    form = plugin_appreport.REPORTFORM(table=person)'
+p176
+sI29
+S''
+sI30
+S'    if form.accepts(request.vars, session):'
+p177
+sI31
+S'        persons = db(form.prep_filter(filter = dict(form.vars))).select()'
+p178
+ssg124
+S'()'
+p179
+sg126
+S'complex_report'
+p180
+sa(dp181
+g104
+S'/home/lucasdavila/central/ws/web2py/src/web2pydev/applications/plugin_appreport/models/plugin_appreport.py'
+p182
+sg106
+(dp183
+S'plugin_appreport_appreport.report_factory'
+p184
+S"<module 'applications.plugin_appreport.modules.p...s/plugin_appreport/appreport/report_factory.pyc'>"
+p185
+sS'global request'
+p186
+S"<Storage {'function': 'complex_report', 'body': ...7', '_formname': 'default', 'person.name': ''}>}>"
+p187
+sS'pdf_builder'
+p188
+S'<applications.plugin_appreport.modules.plugin_ap...rt.appreport.pdf_builder.PdfBuilderPisa instance>'
+p189
+sS').dumps'
+p190
+g148
+sS'global plugin_appreport_appreport'
+p191
+S"<module 'applications.plugin_appreport.modules.p...modules/plugin_appreport/appreport/__init__.pyc'>"
+p192
+sS'global response'
+p193
+S"<Storage {'status': 200, 'body': <cStringIO.Stri...t': None, 'files': [], '_custom_rollback': None}>"
+p194
+sS'plugin_appreport_appreport.report_factory.ReportFactoryWeb2py'
+p195
+S'<class applications.plugin_appreport.modules.plu...ort.appreport.report_factory.ReportFactoryWeb2py>'
+p196
+sS'report'
+p197
+S'<applications.plugin_appreport.modules.plugin_appreport.appreport.report.ReportHtml instance>'
+p198
+sS'path_reports'
+p199
+g148
+ssg112
+I78
+sg113
+(dp200
+I71
+S''
+sI72
+S''
+sI73
+S"        if engine == 'pisa':"
+p201
+sI74
+S'            pdf_builder = plugin_appreport_appreport.pdf_builder.PdfBuilderPisa(report = report)'
+p202
+sI75
+S'        else:'
+p203
+sI76
+S'            pdf_builder = plugin_appreport_appreport.pdf_builder.PdfBuilderPyfpdf(report = report)'
+p204
+sI77
+S''
+sI78
+S"        return plugin_appreport_appreport.report_factory.ReportFactoryWeb2py(response = response, request = request, path_reports = 'private/plugin_appreport/reports', pdf_builder = pdf_builder).dumps(report = report)"
+p205
+sI79
+S''
+sI80
+S'plugin_appreport = PluginAppreport()'
+p206
+ssg124
+S"(self=<__builtin__.PluginAppreport instance>, table=None, filter='', title='List of persons', html='\\n<html>\\n<body>\\n<h2>Report of persons</h2>\\n\\n<tabl...\\n        \\n    </tbody>\\n</table>\\n</body>\\n</html>\\n\\n', engine='pisa', orientation='P', unit='mm', format='A4')"
+p207
+sg126
+S'REPORT'
+p208
+sa(dp209
+g104
+S'/home/lucasdavila/central/ws/web2py/src/web2pydev/applications/plugin_appreport/modules/plugin_appreport/appreport/report_factory.py'
+p210
+sg106
+(dp211
+S'builtinopen'
+p212
+S'<built-in function open>'
+p213
+sS'file_report'
+p214
+g148
+sS'path_report'
+p215
+S"'private/plugin_appreport/reports/report_anonymous_2011-01-26_21-17-52_083381.pdf'"
+p216
+sS').read'
+p217
+g148
+ssg112
+I74
+sg113
+(dp218
+I69
+S'        if not os.path.exists(self.path_reports): os.makedirs(self.path_reports)'
+p219
+sI70
+S'        path_report = self._get_path_report(report = report)'
+p220
+sI71
+S''
+sI72
+S"        self.pdf_builder.output(path_report, 'F')"
+p221
+sI73
+S''
+sI74
+S'        file_report = open(path_report,"rb").read()'
+p222
+sI75
+S'        print path_report'
+p223
+sI76
+S"#        if path_report.endswith('.pdf'):"
+p224
+sI77
+S'#            os.unlink(path_report)'
+p225
+sI78
+S"        self.response.headers['Content-Type']='application/pdf'"
+p226
+ssg124
+S'(self=<applications.plugin_appreport.modules.plugin_ap...port.report_factory.ReportFactoryWeb2py instance>, report=<applications.plugin_appreport.modules.plugin_appreport.appreport.report.ReportHtml instance>)'
+p227
+sg126
+S'dumps'
+p228
+sasS'pyver'
+p229
+S'Python 2.6.6: /usr/bin/python'
+p230
+sS'session'
+p231
+(dp232
+S'_formkey[person/None]'
+p233
+S"'088ef73d-ff1e-44a6-8f8e-0f861f3cba55'"
+p234
+sS'_formkey[default]'
+p235
+S"'7cedc4a8-c51a-43a7-849e-034500123502'"
+p236
+sS'_formkey[favorite_music/None]'
+p237
+S"'5033c80c-21f4-4275-996e-dae96170d1db'"
+p238
+sS'auth'
+p239
+S'None'
+p240
+ssS'etype'
+p241
+S"<type 'exceptions.IOError'>"
+p242
+sS'date'
+p243
+S'Wed Jan 26 21:17:52 2011'
+p244
+sS'response'
+p245
+(dp246
+S'status'
+p247
+S'200'
+p248
+sg64
+S'<cStringIO.StringO object>'
+p249
+sg81
+S"<SimpleCookie: session_id_plugin_appreport='127.0.0.1-56d0272b-4d25-4fdb-bf2c-da2c92731bad'>"
+p250
+sS'_vars'
+p251
+S"{'persons': <gluon.dal.Rows object>}"
+p252
+sS'title'
+p253
+S"'Plugin appreport'"
+p254
+sS'session_file'
+p255
+S"<open file '/home/lucasdavila/central/ws/web2py/...6d0272b-4d25-4fdb-bf2c-da2c92731bad', mode 'rb+'>"
+p256
+sS'flash'
+p257
+S"''"
+p258
+sS'_custom_rollback'
+p259
+S'None'
+p260
+sS'session_id'
+p261
+S"'127.0.0.1-56d0272b-4d25-4fdb-bf2c-da2c92731bad'"
+p262
+sS'headers'
+p263
+S"<Storage {'Expires': 'Wed, 26 Jan 2011 23:17:52 ...he, must-revalidate, post-check=0, pre-check=0'}>"
+p264
+sS'meta'
+p265
+S"<Storage {'keywords': 'web2py, python, framework... 'Web2py Enterprise Framework', 'author': 'you'}>"
+p266
+sS'session_filename'
+p267
+S"'/home/lucasdavila/central/ws/web2py/src/web2pyde...ns/127.0.0.1-56d0272b-4d25-4fdb-bf2c-da2c92731bad'"
+p268
+sS'postprocessing'
+p269
+S'[]'
+p270
+sS'menu'
+p271
+S"[(<lazyT 'Home'>, False, <gluon.html.XML object>, []), (<lazyT 'Files'>, False, <gluon.html.XML object>, [('person', False, <gluon.html.XML object>)]), (<lazyT 'Repors'>, False, <gluon.html.XML object>, [('Simple', False, <gluon.html.XML object>), ('Custon', False, <gluon.html.XML object>), ('Complex', False, <gluon.html.XML object>)]), (<lazyT 'About'>, False, <gluon.html.XML object>, [])]"
+p272
+sS'_view_environment'
+p273
+S"{'A': <class 'gluon.html.A'>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'CENTER': <class 'gluon.html.CENTER'>, 'CLEANUP': <class 'gluon.validators.CLEANUP'>, 'CODE': <class 'gluon.html.CODE'>, 'CRYPT': <class 'gluon.validators.CRYPT'>, ...}"
+p274
+sS'subtitle'
+p275
+S"<lazyT 'customize me!'>"
+p276
+sS'session_id_name'
+p277
+S"'session_id_plugin_appreport'"
+p278
+sS'_custom_commit'
+p279
+S'None'
+p280
+sS'_caller'
+p281
+S'<function <lambda>>'
+p282
+sS'files'
+p283
+S'[]'
+p284
+sS'view'
+p285
+S"'person/complex_report.html'"
+p286
+ssS'locals'
+p287
+(dp288
+S'report'
+p289
+S'<applications.plugin_appreport.modules.plugin_appreport.appreport.report.ReportHtml instance>'
+p290
+sS'self'
+p291
+S'<applications.plugin_appreport.modules.plugin_ap...port.report_factory.ReportFactoryWeb2py instance>'
+p292
+sS'path_report'
+p293
+S"'private/plugin_appreport/reports/report_anonymous_2011-01-26_21-17-52_083381.pdf'"
+p294
+sssS'traceback'
+p295
+S'Traceback (most recent call last):\n  File "/home/lucasdavila/central/ws/web2py/src/web2pydev/gluon/restricted.py", line 188, in restricted\n    exec ccode in environment\n  File "/home/lucasdavila/central/ws/web2py/src/web2pydev/applications/plugin_appreport/controllers/person.py", line 64, in <module>\n  File "/home/lucasdavila/central/ws/web2py/src/web2pydev/gluon/globals.py", line 95, in <lambda>\n    self._caller = lambda f: f()\n  File "/home/lucasdavila/central/ws/web2py/src/web2pydev/applications/plugin_appreport/controllers/person.py", line 33, in complex_report\n    return plugin_appreport.REPORT(html = html, title = \'List of persons\')\n  File "/home/lucasdavila/central/ws/web2py/src/web2pydev/applications/plugin_appreport/models/plugin_appreport.py", line 78, in REPORT\n    return plugin_appreport_appreport.report_factory.ReportFactoryWeb2py(response = response, request = request, path_reports = \'private/plugin_appreport/reports\', pdf_builder = pdf_builder).dumps(report = report)\n  File "applications/plugin_appreport/modules/plugin_appreport/appreport/report_factory.py", line 74, in dumps\n    file_report = open(path_report,"rb").read()\nIOError: [Errno 2] No such file or directory: \'private/plugin_appreport/reports/report_anonymous_2011-01-26_21-17-52_083381.pdf\'\n'
+p296
+s.

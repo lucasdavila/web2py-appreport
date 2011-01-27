@@ -1,0 +1,893 @@
+(dp1
+S'output'
+p2
+S''
+sS'layer'
+p3
+S'/home/lucasdavila/central/ws/web2py/src/web2pydev/applications/plugin_appreport/models/plugin_appreport.py'
+p4
+sS'code'
+p5
+S'# coding: utf8\n\n#to start using plugin_appreport in a controller define the following action:   \n#para come\xc3\xa7ar a usar o plugin_appreport em um controlador defina o seguinte action:\n#\n#def report():\n#    form = plugin_appreport.REPORTFORM(db.table_name)\n#    \n#    if form.accepts(request.vars, session):\n#        return plugin_appreport.REPORT(table = db.table_name, title = \'List of ?\',filter = dict(form.vars))\n#            \n#    return dict(form = form)\n\n\n#reference to appreport module\nplugin_appreport_appreport = local_import(\'plugin_appreport.appreport\', reload = False)\n\nclass PluginAppreport:\n    \n    def REPORTFORM(self, table):\n        """wrapper to module >> appreport.form_report_web2py / class >> FormReportWeb2py / method >> get_form\n        """\n        dir(plugin_appreport_appreport)\n        return plugin_appreport_appreport.form_report.FormReportWeb2py(table = table).get_form()\n\n    #TODO add parametro html, se != None chamar classe html ?\n    def REPORT(self, table = None, filter = \'\', title = \'Report\', html = \'\', orientation = \'P\', unit = \'mm\', format = \'A4\'):\n        """wrapper to module >> appreport.report_html_db_web2py / class >> ReportHtmlDbWeb2py / method >> dumps\n\n        table = db.table    \n        filter = dict(form.vars) or {\'table_name.field_name\':\'value\', \'table_name.field2_name\':\'value2\'}\n        title = \'title of report\'\n        html = html custom if given the report will be generated as html passed, ignoring the table definition, example:\n            <html>\n                <body>\n                    <table>\n                        <thead>\n                            <tr>\n                                <th>Id</th>\n                                <th>Name</th>\n                                <th>Phone</th>\n                                <th>Email</th>\n                            </tr>\n                        </thead>\n                        <tbody>\n                            <tr>\n                                <td>1</td>\n                                <td>lucas davila</td>\n                                <td>123455</td>\n                                <td>lucassdvl@gmail.com</td>\n                            </tr>\n                        </tbody>\n                    </table>\n                </body>\n            </html>\n\n            \n        Orientation: \'P\' for portrait (retrato) or \'L\' for landscape (paisagem)\n    \n        """\n        \n        user_name = auth.user.first_name if auth.user is not None else \'\'\n        \n        if html.strip() != \'\':\n            report = plugin_appreport_appreport.report.ReportHtml(user_name = user_name,\n            title = title, html = html, orientation = orientation, unit = unit, format = format)\n        else:\n            report = plugin_appreport_appreport.report.ReportHtmlDbWeb2py(table = table, filter = filter, user_name = user_name, title = title, orientation = orientation, unit = unit, format = format)\n                    \n        pdf_builder = plugin_appreport_appreport.pdf_builder.PdfBuilderPyfpdf(report = report)\n            \n        return plugin_appreport_appreport.report_factory.ReportFactoryWeb2py(response = response, request = request, path_reports = \'private/plugin_appreport/reports\', pdf_builder = pdf_builder).dumps(report = report)\n            \nplugin_appreport = PluginAppreport()\n'
+p6
+sS'snapshot'
+p7
+(dp8
+S'exception'
+p9
+(dp10
+S'__hash__'
+p11
+S"<method-wrapper '__hash__' of exceptions.ImportError object>"
+p12
+sS'__setattr__'
+p13
+S"<method-wrapper '__setattr__' of exceptions.ImportError object>"
+p14
+sS'__reduce_ex__'
+p15
+S'<built-in method __reduce_ex__ of exceptions.ImportError object>'
+p16
+sS'__getslice__'
+p17
+S"<method-wrapper '__getslice__' of exceptions.ImportError object>"
+p18
+sS'__getitem__'
+p19
+S"<method-wrapper '__getitem__' of exceptions.ImportError object>"
+p20
+sS'__setstate__'
+p21
+S'<built-in method __setstate__ of exceptions.ImportError object>'
+p22
+sS'__reduce__'
+p23
+S'<built-in method __reduce__ of exceptions.ImportError object>'
+p24
+sS'__str__'
+p25
+S"<method-wrapper '__str__' of exceptions.ImportError object>"
+p26
+sS'__format__'
+p27
+S'<built-in method __format__ of exceptions.ImportError object>'
+p28
+sS'__getattribute__'
+p29
+S"<method-wrapper '__getattribute__' of exceptions.ImportError object>"
+p30
+sS'__class__'
+p31
+S"<type 'exceptions.ImportError'>"
+p32
+sS'__unicode__'
+p33
+S'<built-in method __unicode__ of exceptions.ImportError object>'
+p34
+sS'__delattr__'
+p35
+S"<method-wrapper '__delattr__' of exceptions.ImportError object>"
+p36
+sS'__subclasshook__'
+p37
+S'<built-in method __subclasshook__ of type object>'
+p38
+sS'__repr__'
+p39
+S"<method-wrapper '__repr__' of exceptions.ImportError object>"
+p40
+sS'args'
+p41
+S"('No module named reportlab.lib.units',)"
+p42
+sS'__dict__'
+p43
+S'{}'
+p44
+sS'__sizeof__'
+p45
+S'<built-in method __sizeof__ of exceptions.ImportError object>'
+p46
+sS'__doc__'
+p47
+S'"Import can\'t find module, or can\'t find name in module."'
+p48
+sS'__init__'
+p49
+S"<method-wrapper '__init__' of exceptions.ImportError object>"
+p50
+sS'__new__'
+p51
+S'<built-in method __new__ of type object>'
+p52
+ssS'evalue'
+p53
+S'No module named reportlab.lib.units'
+p54
+sS'request'
+p55
+(dp56
+S'function'
+p57
+S"'complex_report'"
+p58
+sS'body'
+p59
+S'<cStringIO.StringO object>'
+p60
+sS'wsgi'
+p61
+S"<Storage {'start_response': <function <lambda> a...>, 'HTTP_ACCEPT_ENCODING': 'gzip,deflate,sdch'}}>"
+p62
+sS'extension'
+p63
+S"'html'"
+p64
+sS'vars'
+p65
+S'<Storage {}>'
+p66
+sS'cid'
+p67
+S'None'
+p68
+sS'url'
+p69
+S'<gluon.html.XML object>'
+p70
+sS'raw_extension'
+p71
+S'None'
+p72
+sg41
+S'[]'
+p73
+sS'controller'
+p74
+S"'person'"
+p75
+sS'cookies'
+p76
+S"<SimpleCookie: session_id_admin='127.0.0.1-ab65c...'127.0.0.1-3fb54433-9a7e-4167-b09f-f0891a2471ca'>"
+p77
+sS'application'
+p78
+S"'plugin_appreport'"
+p79
+sS'ajax'
+p80
+S'False'
+p81
+sS'client'
+p82
+S"'127.0.0.1'"
+p83
+sS'env'
+p84
+S"<Storage {'wsgi_multithread': True, 'debugging':... 'wsgi_run_once': False, 'remote_port': '58268'}>"
+p85
+sS'raw_args'
+p86
+S'None'
+p87
+sS'get_vars'
+p88
+S'<Storage {}>'
+p89
+sS'folder'
+p90
+S"'/home/lucasdavila/central/ws/web2py/src/web2pydev/applications/plugin_appreport/'"
+p91
+sS'now'
+p92
+S'datetime.datetime(2011, 1, 26, 20, 51, 52, 301347)'
+p93
+sS'post_vars'
+p94
+S'<Storage {}>'
+p95
+ssS'frames'
+p96
+(lp97
+(dp98
+S'file'
+p99
+S'/home/lucasdavila/central/ws/web2py/src/web2pydev/gluon/restricted.py'
+p100
+sS'dump'
+p101
+(dp102
+S'environment'
+p103
+S"{'A': <class 'gluon.html.A'>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'CENTER': <class 'gluon.html.CENTER'>, 'CLEANUP': <class 'gluon.validators.CLEANUP'>, 'CODE': <class 'gluon.html.CODE'>, 'CRYPT': <class 'gluon.validators.CRYPT'>, ...}"
+p104
+sS'ccode'
+p105
+S'<code object <module> at 0xa405b18, file "/home/...n_appreport/models/plugin_appreport.py", line 16>'
+p106
+ssS'lnum'
+p107
+I188
+sS'lines'
+p108
+(dp109
+I192
+S'        # XXX Show exception in Wing IDE if running in debugger'
+p110
+sI183
+S'        if type(code) == types.CodeType:'
+p111
+sI184
+S'            ccode = code'
+p112
+sI185
+S'        else:'
+p113
+sI186
+S'            ccode = compile2(code,layer)'
+p114
+sI187
+S''
+sI188
+S'        exec ccode in environment'
+p115
+sI189
+S'    except HTTP:'
+p116
+sI190
+S'        raise'
+p117
+sI191
+S'    except Exception:'
+p118
+ssS'call'
+p119
+S"(code='# coding: utf8\\n\\n#to start using plugin_appreport...           \\nplugin_appreport = PluginAppreport()\\n', environment={'A': <class 'gluon.html.A'>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'CENTER': <class 'gluon.html.CENTER'>, 'CLEANUP': <class 'gluon.validators.CLEANUP'>, 'CODE': <class 'gluon.html.CODE'>, 'CRYPT': <class 'gluon.validators.CRYPT'>, ...}, layer='/home/lucasdavila/central/ws/web2py/src/web2pyde...tions/plugin_appreport/models/plugin_appreport.py')"
+p120
+sS'func'
+p121
+S'restricted'
+p122
+sa(dp123
+g99
+S'/home/lucasdavila/central/ws/web2py/src/web2pydev/applications/plugin_appreport/models/plugin_appreport.py'
+p124
+sg101
+(dp125
+S'local_import'
+p126
+S'<function <lambda>>'
+p127
+sS'builtinreload'
+p128
+S'<built-in function reload>'
+p129
+sS'builtinFalse'
+p130
+g81
+sS'plugin_appreport_appreport'
+p131
+S'undefined'
+p132
+ssg107
+I16
+sg108
+(dp133
+I11
+S'#'
+sI12
+S'#    return dict(form = form)'
+p134
+sI13
+S''
+sI14
+S''
+sI15
+S'#reference to appreport module'
+p135
+sI16
+S"plugin_appreport_appreport = local_import('plugin_appreport.appreport', reload = False)"
+p136
+sI17
+S''
+sI18
+S'class PluginAppreport:'
+p137
+sI19
+S''
+sI20
+S'    def REPORTFORM(self, table):'
+p138
+ssg119
+S'()'
+p139
+sg121
+S'<module>'
+p140
+sa(dp141
+g99
+S'/home/lucasdavila/central/ws/web2py/src/web2pydev/gluon/compileapp.py'
+p142
+sg101
+(dp143
+S'global local_import_aux'
+p144
+S'<function local_import_aux>'
+p145
+sS'reload'
+p146
+g81
+sS'app'
+p147
+S"'plugin_appreport'"
+p148
+sS'name'
+p149
+S"'plugin_appreport.appreport'"
+p150
+ssg107
+I241
+sg108
+(dp151
+I236
+S"    environment['SQLFORM'] = SQLFORM"
+p152
+sI237
+S"    environment['SQLTABLE'] = SQLTABLE"
+p153
+sI238
+S"    environment['LOAD'] = LoadFactory(environment)"
+p154
+sI239
+S"    environment['local_import'] = \\"
+p155
+sI240
+S'        lambda name, reload=False, app=request.application:\\'
+p156
+sI241
+S'        local_import_aux(name,reload,app)'
+p157
+sI242
+S"    BaseAdapter.set_folder(os.path.join(request.folder, 'databases'))"
+p158
+sI243
+S'    response._view_environment = copy.copy(environment)'
+p159
+sI244
+S'    return environment'
+p160
+sI245
+S''
+ssg119
+S"(name='plugin_appreport.appreport', reload=False, app='plugin_appreport')"
+p161
+sg121
+S'<lambda>'
+p162
+sa(dp163
+g99
+S'/home/lucasdavila/central/ws/web2py/src/web2pydev/gluon/compileapp.py'
+p164
+sg101
+(dp165
+S'name'
+p166
+S"'applications.plugin_appreport.modules.plugin_appreport.appreport'"
+p167
+sS'module'
+p168
+g132
+sS'builtin__import__'
+p169
+S'<built-in function __import__>'
+p170
+ssg107
+I172
+sg108
+(dp171
+I167
+S'    This prevents conflict between applications and un-necessary execs.'
+p172
+sI168
+S'    It can be used to import any module, including regular Python modules.'
+p173
+sI169
+S'    """'
+p174
+sI170
+S"    items = name.replace('/','.')"
+p175
+sI171
+S'    name = "applications.%s.modules.%s" % (app, items)'
+p176
+sI172
+S'    module = __import__(name)'
+p177
+sI173
+S'    for item in name.split(".")[1:]:'
+p178
+sI174
+S'        module = getattr(module, item)'
+p179
+sI175
+S'    if force:'
+p180
+sI176
+S'        reload(module)'
+p181
+ssg119
+S"(name='applications.plugin_appreport.modules.plugin_appreport.appreport', force=False, app='plugin_appreport')"
+p182
+sg121
+S'local_import_aux'
+p183
+sa(dp184
+g99
+S'/home/lucasdavila/central/ws/web2py/src/web2pydev/applications/plugin_appreport/modules/plugin_appreport/appreport/__init__.py'
+p185
+sg101
+(dp186
+S'pdf_builder'
+p187
+g132
+ssg107
+I2
+sg108
+(dp188
+I1
+S'import form_report'
+p189
+sI2
+S'import pdf_builder'
+p190
+sI3
+S'import report'
+p191
+sI4
+S'import report_factory'
+p192
+ssg119
+S'()'
+p193
+sg121
+g140
+sa(dp194
+g99
+S'/home/lucasdavila/central/ws/web2py/src/web2pydev/applications/plugin_appreport/modules/plugin_appreport/appreport/pdf_builder.py'
+p195
+sg101
+(dp196
+S'libs'
+p197
+g132
+sS'pisa'
+p198
+g132
+ssg107
+I8
+sg108
+(dp199
+I3
+S'from libs.pyfpdf.fpdf import FPDF'
+p200
+sI4
+S'from libs.pyfpdf.html import HTMLMixin'
+p201
+sI5
+S''
+sI6
+S'#import libs.pisa.xhtml2pdf.ho.pisa as pisa'
+p202
+sI7
+S''
+sI8
+S'import libs.pisa.xhtml2pdf.sx.pisa3.pisa as pisa'
+p203
+sI9
+S''
+sI10
+S'"""'
+p204
+sI11
+S"Copyright (c) 2010, 2011 Lucas D'Avila - email lucassdvl@gmail.com / twitter @lucadavila"
+p205
+sI12
+S''
+ssg119
+S'()'
+p206
+sg121
+g140
+sa(dp207
+g99
+S'/home/lucasdavila/central/ws/web2py/src/web2pydev/applications/plugin_appreport/modules/plugin_appreport/appreport/libs/pisa/xhtml2pdf/sx/pisa3/__init__.py'
+p208
+sg101
+(dp209
+S'pisa'
+p210
+g132
+ssg107
+I41
+sg108
+(dp211
+I36
+S''
+sI37
+S'import logging'
+p212
+sI38
+S'log = logging.getLogger(__name__)'
+p213
+sI39
+S''
+sI40
+S'try:'
+p214
+sI41
+S'    from pisa import *'
+p215
+sI42
+S'    if not REPORTLAB22:'
+p216
+sI43
+S'        raise ImportError, "Reportlab Toolkit Version 2.2 or higher needed"'
+p217
+sI44
+S'except ImportError, e:'
+p218
+sI45
+S'    import sys'
+p219
+ssg119
+S'()'
+p220
+sg121
+g140
+sa(dp221
+g99
+S'/home/lucasdavila/central/ws/web2py/src/web2pydev/applications/plugin_appreport/modules/plugin_appreport/appreport/libs/pisa/xhtml2pdf/sx/pisa3/pisa.py'
+p222
+sg101
+(dp223
+S'pisa_document'
+p224
+g132
+ssg107
+I32
+sg108
+(dp225
+I32
+S'from pisa_document import *'
+p226
+sI33
+S'from pisa_util import getFile'
+p227
+sI34
+S'from pisa_default import DEFAULT_CSS'
+p228
+sI35
+S''
+sI36
+S'import logging'
+p229
+sI27
+S'import urllib2'
+p230
+sI28
+S'import urlparse'
+p231
+sI29
+S'import tempfile'
+p232
+sI30
+S''
+sI31
+S'from pisa_version import *'
+p233
+ssg119
+S'()'
+p234
+sg121
+g140
+sa(dp235
+g99
+S'/home/lucasdavila/central/ws/web2py/src/web2pydev/applications/plugin_appreport/modules/plugin_appreport/appreport/libs/pisa/xhtml2pdf/sx/pisa3/pisa_document.py'
+p236
+sg101
+(dp237
+S'pisa_context'
+p238
+g132
+sS'pisaContext'
+p239
+g132
+ssg107
+I22
+sg108
+(dp240
+I17
+S''
+sI18
+S'__reversion__ = "$Revision: 20 $"'
+p241
+sI19
+S'__author__    = "$Author: holtwick $"'
+p242
+sI20
+S'__date__      = "$Date: 2007-10-09 12:58:24 +0200 (Di, 09 Okt 2007) $"'
+p243
+sI21
+S''
+sI22
+S'from pisa_context import pisaContext'
+p244
+sI23
+S'from pisa_parser import pisaParser'
+p245
+sI24
+S'from pisa_util import *'
+p246
+sI25
+S'from pisa_reportlab import *'
+p247
+sI26
+S'from pisa_default import DEFAULT_CSS'
+p248
+ssg119
+S'()'
+p249
+sg121
+g140
+sa(dp250
+g99
+S'/home/lucasdavila/central/ws/web2py/src/web2pydev/applications/plugin_appreport/modules/plugin_appreport/appreport/libs/pisa/xhtml2pdf/sx/pisa3/pisa_context.py'
+p251
+sg101
+(dp252
+S'pisa_util'
+p253
+g132
+ssg107
+I21
+sg108
+(dp254
+I16
+S''
+sI17
+S'__reversion__ = "$Revision: 20 $"'
+p255
+sI18
+S'__author__ = "$Author: holtwick $"'
+p256
+sI19
+S'__date__ = "$Date: 2007-10-09 12:58:24 +0200 (Di, 09 Okt 2007) $"'
+p257
+sI20
+S''
+sI21
+S'from pisa_util import *'
+p258
+sI22
+S'from pisa_reportlab import *'
+p259
+sI23
+S''
+sI24
+S'import pisa_default'
+p260
+sI25
+S'import pisa_parser'
+p261
+ssg119
+S'()'
+p262
+sg121
+g140
+sa(dp263
+g99
+S'/home/lucasdavila/central/ws/web2py/src/web2pydev/applications/plugin_appreport/modules/plugin_appreport/appreport/libs/pisa/xhtml2pdf/sx/pisa3/pisa_util.py'
+p264
+sg101
+(dp265
+S'inch'
+p266
+g132
+sS'reportlab'
+p267
+g132
+sS'cm'
+p268
+g132
+ssg107
+I22
+sg108
+(dp269
+I17
+S''
+sI18
+S'__reversion__ = "$Revision: 20 $"'
+p270
+sI19
+S'__author__ = "$Author: holtwick $"'
+p271
+sI20
+S'__date__ = "$Date: 2007-10-09 12:58:24 +0200 (Di, 09 Okt 2007) $"'
+p272
+sI21
+S''
+sI22
+S'from reportlab.lib.units import inch, cm'
+p273
+sI23
+S'from reportlab.lib.styles import *'
+p274
+sI24
+S'from reportlab.lib.enums import *'
+p275
+sI25
+S'from reportlab.lib.colors import *'
+p276
+sI26
+S'from reportlab.lib.pagesizes import *'
+p277
+ssg119
+S'()'
+p278
+sg121
+g140
+sasS'pyver'
+p279
+S'Python 2.6.6: /usr/bin/python'
+p280
+sS'session'
+p281
+(dp282
+S'_formkey[person/None]'
+p283
+S"'088ef73d-ff1e-44a6-8f8e-0f861f3cba55'"
+p284
+sS'_formkey[default]'
+p285
+S"'24fd221f-bab5-47ef-88fa-acca6090eea4'"
+p286
+sS'_formkey[favorite_music/None]'
+p287
+S"'5033c80c-21f4-4275-996e-dae96170d1db'"
+p288
+sS'auth'
+p289
+S'None'
+p290
+ssS'etype'
+p291
+S"<type 'exceptions.ImportError'>"
+p292
+sS'date'
+p293
+S'Wed Jan 26 20:51:52 2011'
+p294
+sS'response'
+p295
+(dp296
+S'status'
+p297
+S'200'
+p298
+sg59
+S'<cStringIO.StringO object>'
+p299
+sg76
+S"<SimpleCookie: session_id_plugin_appreport='127.0.0.1-56d0272b-4d25-4fdb-bf2c-da2c92731bad'>"
+p300
+sS'_vars'
+p301
+S'None'
+p302
+sS'title'
+p303
+S"'Plugin appreport'"
+p304
+sS'session_file'
+p305
+S"<open file '/home/lucasdavila/central/ws/web2py/...6d0272b-4d25-4fdb-bf2c-da2c92731bad', mode 'rb+'>"
+p306
+sS'flash'
+p307
+S"''"
+p308
+sS'_custom_rollback'
+p309
+S'None'
+p310
+sS'session_id'
+p311
+S"'127.0.0.1-56d0272b-4d25-4fdb-bf2c-da2c92731bad'"
+p312
+sS'headers'
+p313
+S"<Storage {'Expires': 'Wed, 26 Jan 2011 22:51:52 ...he, must-revalidate, post-check=0, pre-check=0'}>"
+p314
+sS'meta'
+p315
+S"<Storage {'keywords': 'web2py, python, framework... 'Web2py Enterprise Framework', 'author': 'you'}>"
+p316
+sS'session_filename'
+p317
+S"'/home/lucasdavila/central/ws/web2py/src/web2pyde...ns/127.0.0.1-56d0272b-4d25-4fdb-bf2c-da2c92731bad'"
+p318
+sS'postprocessing'
+p319
+S'[]'
+p320
+sS'menu'
+p321
+S"[(<lazyT 'Home'>, False, <gluon.html.XML object>, []), (<lazyT 'Files'>, False, <gluon.html.XML object>, [('person', False, <gluon.html.XML object>)]), (<lazyT 'Repors'>, False, <gluon.html.XML object>, [('Simple', False, <gluon.html.XML object>), ('Custon', False, <gluon.html.XML object>), ('Complex', False, <gluon.html.XML object>)]), (<lazyT 'About'>, False, <gluon.html.XML object>, [])]"
+p322
+sS'_view_environment'
+p323
+S"{'A': <class 'gluon.html.A'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'CENTER': <class 'gluon.html.CENTER'>, 'CLEANUP': <class 'gluon.validators.CLEANUP'>, 'CODE': <class 'gluon.html.CODE'>, 'CRYPT': <class 'gluon.validators.CRYPT'>, 'DAL': <class 'gluon.dal.DAL'>, ...}"
+p324
+sS'subtitle'
+p325
+S"<lazyT 'customize me!'>"
+p326
+sS'session_id_name'
+p327
+S"'session_id_plugin_appreport'"
+p328
+sS'_custom_commit'
+p329
+S'None'
+p330
+sS'_caller'
+p331
+S'<function <lambda>>'
+p332
+sS'files'
+p333
+S'[]'
+p334
+sS'view'
+p335
+S"'person/complex_report.html'"
+p336
+ssS'locals'
+p337
+(dp338
+S'__builtins__'
+p339
+S"{'ArithmeticError': <type 'exceptions.ArithmeticError'>, 'AssertionError': <type 'exceptions.AssertionError'>, 'AttributeError': <type 'exceptions.AttributeError'>, 'BaseException': <type 'exceptions.BaseException'>, 'BufferError': <type 'exceptions.BufferError'>, 'BytesWarning': <type 'exceptions.BytesWarning'>, 'DeprecationWarning': <type 'exceptions.DeprecationWarning'>, 'EOFError': <type 'exceptions.EOFError'>, 'Ellipsis': Ellipsis, 'EnvironmentError': <type 'exceptions.EnvironmentError'>, ...}"
+p340
+sS'__file__'
+p341
+S'None'
+p342
+sS'__author__'
+p343
+S'None'
+p344
+sS'__date__'
+p345
+S'None'
+p346
+sS'__name__'
+p347
+S'None'
+p348
+sS'__package__'
+p349
+S'None'
+p350
+sS'__reversion__'
+p351
+S'None'
+p352
+sg47
+S'None'
+p353
+sssS'traceback'
+p354
+S'Traceback (most recent call last):\n  File "/home/lucasdavila/central/ws/web2py/src/web2pydev/gluon/restricted.py", line 188, in restricted\n    exec ccode in environment\n  File "/home/lucasdavila/central/ws/web2py/src/web2pydev/applications/plugin_appreport/models/plugin_appreport.py", line 16, in <module>\n    plugin_appreport_appreport = local_import(\'plugin_appreport.appreport\', reload = False)\n  File "/home/lucasdavila/central/ws/web2py/src/web2pydev/gluon/compileapp.py", line 241, in <lambda>\n    local_import_aux(name,reload,app)\n  File "/home/lucasdavila/central/ws/web2py/src/web2pydev/gluon/compileapp.py", line 172, in local_import_aux\n    module = __import__(name)\n  File "applications/plugin_appreport/modules/plugin_appreport/appreport/__init__.py", line 2, in <module>\n    import pdf_builder\n  File "applications/plugin_appreport/modules/plugin_appreport/appreport/pdf_builder.py", line 8, in <module>\n    import libs.pisa.xhtml2pdf.sx.pisa3.pisa as pisa\n  File "applications/plugin_appreport/modules/plugin_appreport/appreport/libs/pisa/xhtml2pdf/sx/pisa3/__init__.py", line 41, in <module>\n    from pisa import *\n  File "applications/plugin_appreport/modules/plugin_appreport/appreport/libs/pisa/xhtml2pdf/sx/pisa3/pisa.py", line 32, in <module>\n    from pisa_document import *\n  File "applications/plugin_appreport/modules/plugin_appreport/appreport/libs/pisa/xhtml2pdf/sx/pisa3/pisa_document.py", line 22, in <module>\n    from pisa_context import pisaContext\n  File "applications/plugin_appreport/modules/plugin_appreport/appreport/libs/pisa/xhtml2pdf/sx/pisa3/pisa_context.py", line 21, in <module>\n    from pisa_util import *\n  File "applications/plugin_appreport/modules/plugin_appreport/appreport/libs/pisa/xhtml2pdf/sx/pisa3/pisa_util.py", line 22, in <module>\n    from reportlab.lib.units import inch, cm\nImportError: No module named reportlab.lib.units\n'
+p355
+s.

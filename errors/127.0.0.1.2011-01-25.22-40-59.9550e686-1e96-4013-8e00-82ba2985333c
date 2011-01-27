@@ -1,0 +1,522 @@
+(dp1
+S'output'
+p2
+S''
+sS'layer'
+p3
+S'/home/lucasdavila/central/ws/web2py/src/web2pydev/applications/plugin_appreport/controllers/person.py'
+p4
+sS'code'
+p5
+S'# coding: utf8\n\ndef create():\n\n    form = crud.create(person)\n    persons = crud.select(person, person.id > 0)\n\n    return dict(form = form, persons = persons)\n    \n\ndef simple_report():\n\n    form = plugin_appreport.REPORTFORM(table=person)\n\n    if form.accepts(request.vars, session):\n        return plugin_appreport.REPORT(table = person, title = \'List of persons\', filter = dict(form.vars))\n\n    return dict(form = form)\n    \n#def report_persons():\n#    return dict(persons = db(person.id > 0).select())\n\ndef complex_report():\n\n    form = plugin_appreport.REPORTFORM(table=person)\n\n    if form.accepts(request.vars, session):\n        print type(report_persons())\n        persons = db(person.id > 0).select() #TODO pegar form.get_query ?\n        html = response.render(\'person/report_persons.html\', dict(persons = persons))\n        return plugin_appreport.REPORT(html = html, title = \'List of persons\')\n\n    return dict(form = form)\n\n\n\ndef custom_report():\n    \n    html = """<html>\n                <body>\n                    <table>\n                        <thead>\n                            <tr>\n                                <th>Author</th>\n                                <th>Email</th>\n                                <th>Twitter</th>\n                            </tr>\n                        </thead>\n                        <tbody>\n                            <tr>\n                                <td>Lucas Davila</td>\n                                <td>lucassdvl@gmail.com</td>\n                                <td>@lucadavila</td>                                \n                            </tr>\n                        </tbody>\n                    </table>\n                </body>\n            </html>\n    """\n    return plugin_appreport.REPORT(html = html, title = \'my custom report using the plugin appreport\')\n\nresponse._vars=response._caller(complex_report)\n'
+p6
+sS'snapshot'
+p7
+(dp8
+S'exception'
+p9
+(dp10
+S'__hash__'
+p11
+S"<method-wrapper '__hash__' of exceptions.NameError object>"
+p12
+sS'__setattr__'
+p13
+S"<method-wrapper '__setattr__' of exceptions.NameError object>"
+p14
+sS'__reduce_ex__'
+p15
+S'<built-in method __reduce_ex__ of exceptions.NameError object>'
+p16
+sS'__getslice__'
+p17
+S"<method-wrapper '__getslice__' of exceptions.NameError object>"
+p18
+sS'__getitem__'
+p19
+S"<method-wrapper '__getitem__' of exceptions.NameError object>"
+p20
+sS'__setstate__'
+p21
+S'<built-in method __setstate__ of exceptions.NameError object>'
+p22
+sS'__reduce__'
+p23
+S'<built-in method __reduce__ of exceptions.NameError object>'
+p24
+sS'__str__'
+p25
+S"<method-wrapper '__str__' of exceptions.NameError object>"
+p26
+sS'__format__'
+p27
+S'<built-in method __format__ of exceptions.NameError object>'
+p28
+sS'__getattribute__'
+p29
+S"<method-wrapper '__getattribute__' of exceptions.NameError object>"
+p30
+sS'__class__'
+p31
+S"<type 'exceptions.NameError'>"
+p32
+sS'__unicode__'
+p33
+S'<built-in method __unicode__ of exceptions.NameError object>'
+p34
+sS'__delattr__'
+p35
+S"<method-wrapper '__delattr__' of exceptions.NameError object>"
+p36
+sS'__subclasshook__'
+p37
+S'<built-in method __subclasshook__ of type object>'
+p38
+sS'__repr__'
+p39
+S"<method-wrapper '__repr__' of exceptions.NameError object>"
+p40
+sS'args'
+p41
+S'("global name \'report_persons\' is not defined",)'
+p42
+sS'__dict__'
+p43
+S'{}'
+p44
+sS'__sizeof__'
+p45
+S'<built-in method __sizeof__ of exceptions.NameError object>'
+p46
+sS'__doc__'
+p47
+S"'Name not found globally.'"
+p48
+sS'__init__'
+p49
+S"<method-wrapper '__init__' of exceptions.NameError object>"
+p50
+sS'__new__'
+p51
+S'<built-in method __new__ of type object>'
+p52
+ssS'evalue'
+p53
+S"global name 'report_persons' is not defined"
+p54
+sS'request'
+p55
+(dp56
+S'function'
+p57
+S"'complex_report'"
+p58
+sS'body'
+p59
+S"<open file '<fdopen>', mode 'w+b'>"
+p60
+sS'wsgi'
+p61
+S"<Storage {'start_response': <function <lambda> a...>, 'HTTP_ACCEPT_ENCODING': 'gzip,deflate,sdch'}}>"
+p62
+sS'extension'
+p63
+S"'html'"
+p64
+sS'vars'
+p65
+S"<Storage {'person.email': '', 'person.phone': ''...03f', '_formname': 'default', 'person.name': ''}>"
+p66
+sS'cid'
+p67
+S'None'
+p68
+sS'url'
+p69
+S'<gluon.html.XML object>'
+p70
+sS'raw_extension'
+p71
+S'None'
+p72
+sg41
+S'[]'
+p73
+sS'controller'
+p74
+S"'person'"
+p75
+sS'cookies'
+p76
+S"<SimpleCookie: session_id_admin='127.0.0.1-ab65c...'127.0.0.1-3fb54433-9a7e-4167-b09f-f0891a2471ca'>"
+p77
+sS'application'
+p78
+S"'plugin_appreport'"
+p79
+sS'ajax'
+p80
+S'False'
+p81
+sS'client'
+p82
+S"'127.0.0.1'"
+p83
+sS'env'
+p84
+S"<Storage {'content_length': '670', 'debugging': ...undaryZGa1omgOOiTekdhM', 'remote_port': '54358'}>"
+p85
+sS'raw_args'
+p86
+S'None'
+p87
+sS'get_vars'
+p88
+S'<Storage {}>'
+p89
+sS'folder'
+p90
+S"'/home/lucasdavila/central/ws/web2py/src/web2pydev/applications/plugin_appreport/'"
+p91
+sS'now'
+p92
+S'datetime.datetime(2011, 1, 25, 22, 40, 59, 364674)'
+p93
+sS'post_vars'
+p94
+S"<Storage {'person.email': '', 'person.phone': ''...03f', '_formname': 'default', 'person.name': ''}>"
+p95
+ssS'frames'
+p96
+(lp97
+(dp98
+S'file'
+p99
+S'/home/lucasdavila/central/ws/web2py/src/web2pydev/gluon/restricted.py'
+p100
+sS'dump'
+p101
+(dp102
+S'environment'
+p103
+S"{'A': <class 'gluon.html.A'>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'CENTER': <class 'gluon.html.CENTER'>, 'CLEANUP': <class 'gluon.validators.CLEANUP'>, 'CODE': <class 'gluon.html.CODE'>, 'CRYPT': <class 'gluon.validators.CRYPT'>, ...}"
+p104
+sS'ccode'
+p105
+S'<code object <module> at 0xb0b86020, file "/home.../plugin_appreport/controllers/person.py", line 3>'
+p106
+ssS'lnum'
+p107
+I188
+sS'lines'
+p108
+(dp109
+I192
+S'        # XXX Show exception in Wing IDE if running in debugger'
+p110
+sI183
+S'        if type(code) == types.CodeType:'
+p111
+sI184
+S'            ccode = code'
+p112
+sI185
+S'        else:'
+p113
+sI186
+S'            ccode = compile2(code,layer)'
+p114
+sI187
+S''
+sI188
+S'        exec ccode in environment'
+p115
+sI189
+S'    except HTTP:'
+p116
+sI190
+S'        raise'
+p117
+sI191
+S'    except Exception:'
+p118
+ssS'call'
+p119
+S"(code='# coding: utf8\\n\\ndef create():\\n\\n    form = crud.c...\\nresponse._vars=response._caller(complex_report)\\n', environment={'A': <class 'gluon.html.A'>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'CENTER': <class 'gluon.html.CENTER'>, 'CLEANUP': <class 'gluon.validators.CLEANUP'>, 'CODE': <class 'gluon.html.CODE'>, 'CRYPT': <class 'gluon.validators.CRYPT'>, ...}, layer='/home/lucasdavila/central/ws/web2py/src/web2pyde...plications/plugin_appreport/controllers/person.py')"
+p120
+sS'func'
+p121
+S'restricted'
+p122
+sa(dp123
+g99
+S'/home/lucasdavila/central/ws/web2py/src/web2pydev/applications/plugin_appreport/controllers/person.py'
+p124
+sg101
+(dp125
+sg107
+I62
+sg108
+(dp126
+I51
+S'                                <td>Lucas Davila</td>'
+p127
+sI52
+S'                                <td>lucassdvl@gmail.com</td>'
+p128
+sI53
+S'                                <td>@lucadavila</td>'
+p129
+sI54
+S'                            </tr>'
+p130
+sI55
+S'                        </tbody>'
+p131
+sI56
+S'                    </table>'
+p132
+sI57
+S'                </body>'
+p133
+sI58
+S'            </html>'
+p134
+sI59
+S'    """'
+p135
+sI60
+S"    return plugin_appreport.REPORT(html = html, title = 'my custom report using the plugin appreport')"
+p136
+ssg119
+S'()'
+p137
+sg121
+S'<module>'
+p138
+sa(dp139
+g99
+S'/home/lucasdavila/central/ws/web2py/src/web2pydev/gluon/globals.py'
+p140
+sg101
+(dp141
+S'self'
+p142
+S'undefined'
+p143
+sS'f'
+S'<function complex_report>'
+p144
+ssg107
+I95
+sg108
+(dp145
+I96
+S'        self._view_environment = None'
+p146
+sI97
+S'        self._custom_commit = None'
+p147
+sI98
+S'        self._custom_rollback = None'
+p148
+sI99
+S''
+sI90
+S"        self.flash = ''           # used by the default view layout"
+p149
+sI91
+S'        self.meta = Storage()     # used by web2py_ajax.html'
+p150
+sI92
+S'        self.menu = []            # used by the default view layout'
+p151
+sI93
+S'        self.files = []           # used by web2py_ajax.html'
+p152
+sI94
+S'        self._vars = None'
+p153
+sI95
+S'        self._caller = lambda f: f()'
+p154
+ssg119
+S'(f=<function complex_report>)'
+p155
+sg121
+S'<lambda>'
+p156
+sa(dp157
+g99
+S'/home/lucasdavila/central/ws/web2py/src/web2pydev/applications/plugin_appreport/controllers/person.py'
+p158
+sg101
+(dp159
+S'builtintype'
+p160
+S"<type 'type'>"
+p161
+sS'report_persons'
+p162
+g143
+ssg107
+I28
+sg108
+(dp163
+I32
+S''
+sI23
+S'def complex_report():'
+p164
+sI24
+S''
+sI25
+S'    form = plugin_appreport.REPORTFORM(table=person)'
+p165
+sI26
+S''
+sI27
+S'    if form.accepts(request.vars, session):'
+p166
+sI28
+S'        print type(report_persons())'
+p167
+sI29
+S'        persons = db(person.id > 0).select() #TODO pegar form.get_query ?'
+p168
+sI30
+S"        html = response.render('person/report_persons.html', dict(persons = persons))"
+p169
+sI31
+S"        return plugin_appreport.REPORT(html = html, title = 'List of persons')"
+p170
+ssg119
+S'()'
+p171
+sg121
+S'complex_report'
+p172
+sasS'pyver'
+p173
+S'Python 2.6.6: /usr/bin/python'
+p174
+sS'session'
+p175
+(dp176
+S'_formkey[person/None]'
+p177
+S"'694cb263-72ed-4f0e-a3f5-f2dd18fe1b84'"
+p178
+sS'_formkey[default]'
+p179
+S"'288d1879-95f4-47b5-bef3-d10d573f3c62'"
+p180
+sS'auth'
+p181
+S'None'
+p182
+ssS'etype'
+p183
+S"<type 'exceptions.NameError'>"
+p184
+sS'date'
+p185
+S'Tue Jan 25 22:40:59 2011'
+p186
+sS'response'
+p187
+(dp188
+S'status'
+p189
+S'200'
+p190
+sg59
+S'<cStringIO.StringO object>'
+p191
+sg76
+S"<SimpleCookie: session_id_plugin_appreport='127.0.0.1-56d0272b-4d25-4fdb-bf2c-da2c92731bad'>"
+p192
+sS'_vars'
+p193
+S'None'
+p194
+sS'title'
+p195
+S"'Plugin appreport'"
+p196
+sS'session_file'
+p197
+S"<open file '/home/lucasdavila/central/ws/web2py/...6d0272b-4d25-4fdb-bf2c-da2c92731bad', mode 'rb+'>"
+p198
+sS'flash'
+p199
+S"''"
+p200
+sS'_custom_rollback'
+p201
+S'None'
+p202
+sS'session_id'
+p203
+S"'127.0.0.1-56d0272b-4d25-4fdb-bf2c-da2c92731bad'"
+p204
+sS'headers'
+p205
+S"<Storage {'Expires': 'Wed, 26 Jan 2011 00:40:59 ...he, must-revalidate, post-check=0, pre-check=0'}>"
+p206
+sS'meta'
+p207
+S"<Storage {'keywords': 'web2py, python, framework... 'Web2py Enterprise Framework', 'author': 'you'}>"
+p208
+sS'session_filename'
+p209
+S"'/home/lucasdavila/central/ws/web2py/src/web2pyde...ns/127.0.0.1-56d0272b-4d25-4fdb-bf2c-da2c92731bad'"
+p210
+sS'postprocessing'
+p211
+S'[]'
+p212
+sS'menu'
+p213
+S"[(<lazyT 'Home'>, False, <gluon.html.XML object>, []), (<lazyT 'Files'>, False, <gluon.html.XML object>, [('person', False, <gluon.html.XML object>)]), (<lazyT 'Repors'>, False, <gluon.html.XML object>, [('Simple', False, <gluon.html.XML object>), ('Custon', False, <gluon.html.XML object>), ('Complex', False, <gluon.html.XML object>)]), (<lazyT 'About'>, False, <gluon.html.XML object>, [])]"
+p214
+sS'_view_environment'
+p215
+S"{'A': <class 'gluon.html.A'>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'CENTER': <class 'gluon.html.CENTER'>, 'CLEANUP': <class 'gluon.validators.CLEANUP'>, 'CODE': <class 'gluon.html.CODE'>, 'CRYPT': <class 'gluon.validators.CRYPT'>, ...}"
+p216
+sS'subtitle'
+p217
+S"<lazyT 'customize me!'>"
+p218
+sS'session_id_name'
+p219
+S"'session_id_plugin_appreport'"
+p220
+sS'_custom_commit'
+p221
+S'None'
+p222
+sS'_caller'
+p223
+S'<function <lambda>>'
+p224
+sS'files'
+p225
+S'[]'
+p226
+sS'view'
+p227
+S"'person/complex_report.html'"
+p228
+ssS'locals'
+p229
+(dp230
+S'form'
+p231
+S'<gluon.html.FORM object>'
+p232
+sssS'traceback'
+p233
+S'Traceback (most recent call last):\n  File "/home/lucasdavila/central/ws/web2py/src/web2pydev/gluon/restricted.py", line 188, in restricted\n    exec ccode in environment\n  File "/home/lucasdavila/central/ws/web2py/src/web2pydev/applications/plugin_appreport/controllers/person.py", line 62, in <module>\n  File "/home/lucasdavila/central/ws/web2py/src/web2pydev/gluon/globals.py", line 95, in <lambda>\n    self._caller = lambda f: f()\n  File "/home/lucasdavila/central/ws/web2py/src/web2pydev/applications/plugin_appreport/controllers/person.py", line 28, in complex_report\n    print type(report_persons())\nNameError: global name \'report_persons\' is not defined\n'
+p234
+s.

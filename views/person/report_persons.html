@@ -1,0 +1,46 @@
+
+<html>
+
+    <head>
+        <meta charset="utf-8" />	 
+    </head>
+
+<body>
+    <h2>Report of persons relatório</h2>
+
+    <table border="0">
+        <thead>
+            <tr>
+                <td><strong>Name</strong></td>
+                <td><strong>Phone</strong></td>
+                <td><strong>e-mail</strong></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><strong>Favorite music</strong></td>
+                <td><strong>Artist</strong></td>
+            </tr>                
+        
+        </thead>
+        <tbody>
+            {{for p in persons:}}
+                <tr>
+                    <td>{{=p.name}}</td>
+                    <td>{{=p.phone}}</td>
+                    <td>{{=p.email}}</td>
+                </tr>  
+                    {{for m in p.favorite_music.select():}}
+                        <tr>
+
+                            <td></td>
+                            <td>{{=m.title}}</td>
+                            <td>{{=m.artist}}</td>
+    
+                        </tr>                      
+                {{pass}}
+            {{pass}}
+        </tbody>
+    </table>
+    </body>
+</html>
+

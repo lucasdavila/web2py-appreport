@@ -1,0 +1,835 @@
+(dp1
+S'output'
+p2
+S''
+sS'layer'
+p3
+S'/home/lucasdavila/central/ws/web2py/src/web2pydev/applications/plugin_appreport/controllers/person.py'
+p4
+sS'code'
+p5
+S'# coding: utf8\n\ndef create():\n\n    form = crud.create(person)\n    form_favs = crud.create(favorite_music)\n    persons = db().select(db.person.ALL, db.favorite_music.ALL, left=favorite_music.on(person.id == favorite_music.person))\n\n    return dict(form = form, form_favs = form_favs, persons = persons)\n    \n\ndef simple_report():\n\n    form = plugin_appreport.REPORTFORM(table=person)\n\n    if form.accepts(request.vars, session):\n        return plugin_appreport.REPORT(table = person, title = \'List of persons\', filter = dict(form.vars))\n\n    return dict(form = form)\n    \ndef report_persons():\n\n    return dict(persons = db(person.id > 0).select())\n\n\ndef complex_report():\n\n    form = plugin_appreport.REPORTFORM(table=person)\n\n    if form.accepts(request.vars, session):\n        persons = db(form.prep_filter(filter = dict(form.vars))).select()\n        html = response.render(\'person/report_persons.html\', dict(persons = persons))\n        return plugin_appreport.REPORT(html = html, title = \'List of persons\')\n\n    return dict(form = form)\n\n\n\ndef custom_report():\n    \n    html = """<html>\n                <body>\n                    <table>\n                        <thead>\n                            <tr>\n                                <th>Author</th>\n                                <th>Email</th>\n                                <th>Twitter</th>\n                            </tr>\n                        </thead>\n                        <tbody>\n                            <tr>\n                                <td>Lucas Davila</td>\n                                <td>lucassdvl@gmail.com</td>\n                                <td>@lucadavila</td>                                \n                            </tr>\n                        </tbody>\n                    </table>\n                </body>\n            </html>\n    """\n    return plugin_appreport.REPORT(html = html, title = \'my custom report using the plugin appreport\')\n\nresponse._vars=response._caller(simple_report)\n'
+p6
+sS'snapshot'
+p7
+(dp8
+S'exception'
+p9
+(dp10
+S'__hash__'
+p11
+S"<method-wrapper '__hash__' of exceptions.AttributeError object>"
+p12
+sS'__setattr__'
+p13
+S"<method-wrapper '__setattr__' of exceptions.AttributeError object>"
+p14
+sS'__reduce_ex__'
+p15
+S'<built-in method __reduce_ex__ of exceptions.AttributeError object>'
+p16
+sS'__getslice__'
+p17
+S"<method-wrapper '__getslice__' of exceptions.AttributeError object>"
+p18
+sS'__getitem__'
+p19
+S"<method-wrapper '__getitem__' of exceptions.AttributeError object>"
+p20
+sS'__setstate__'
+p21
+S'<built-in method __setstate__ of exceptions.AttributeError object>'
+p22
+sS'__reduce__'
+p23
+S'<built-in method __reduce__ of exceptions.AttributeError object>'
+p24
+sS'__str__'
+p25
+S"<method-wrapper '__str__' of exceptions.AttributeError object>"
+p26
+sS'__format__'
+p27
+S'<built-in method __format__ of exceptions.AttributeError object>'
+p28
+sS'__getattribute__'
+p29
+S"<method-wrapper '__getattribute__' of exceptions.AttributeError object>"
+p30
+sS'__class__'
+p31
+S"<type 'exceptions.AttributeError'>"
+p32
+sS'__unicode__'
+p33
+S'<built-in method __unicode__ of exceptions.AttributeError object>'
+p34
+sS'__delattr__'
+p35
+S"<method-wrapper '__delattr__' of exceptions.AttributeError object>"
+p36
+sS'__subclasshook__'
+p37
+S'<built-in method __subclasshook__ of type object>'
+p38
+sS'__repr__'
+p39
+S"<method-wrapper '__repr__' of exceptions.AttributeError object>"
+p40
+sS'args'
+p41
+S'("ReportHtmlDbWeb2py instance has no attribute \'charset\'",)'
+p42
+sS'__dict__'
+p43
+S'{}'
+p44
+sS'__sizeof__'
+p45
+S'<built-in method __sizeof__ of exceptions.AttributeError object>'
+p46
+sS'__doc__'
+p47
+S"'Attribute not found.'"
+p48
+sS'__init__'
+p49
+S"<method-wrapper '__init__' of exceptions.AttributeError object>"
+p50
+sS'__new__'
+p51
+S'<built-in method __new__ of type object>'
+p52
+ssS'evalue'
+p53
+S"ReportHtmlDbWeb2py instance has no attribute 'charset'"
+p54
+sS'request'
+p55
+(dp56
+S'function'
+p57
+S"'simple_report'"
+p58
+sS'body'
+p59
+S"<open file '<fdopen>', mode 'w+b'>"
+p60
+sS'wsgi'
+p61
+S"<Storage {'start_response': <function <lambda> a...>, 'HTTP_ACCEPT_ENCODING': 'gzip,deflate,sdch'}}>"
+p62
+sS'extension'
+p63
+S"'html'"
+p64
+sS'vars'
+p65
+S"<Storage {'person.email': '', 'person.phone': ''...ec2', '_formname': 'default', 'person.name': ''}>"
+p66
+sS'cid'
+p67
+S'None'
+p68
+sS'url'
+p69
+S'<gluon.html.XML object>'
+p70
+sS'raw_extension'
+p71
+S'None'
+p72
+sg41
+S'[]'
+p73
+sS'controller'
+p74
+S"'person'"
+p75
+sS'cookies'
+p76
+S"<SimpleCookie: session_id_admin='127.0.0.1-ab65c...'127.0.0.1-3fb54433-9a7e-4167-b09f-f0891a2471ca'>"
+p77
+sS'application'
+p78
+S"'plugin_appreport'"
+p79
+sS'ajax'
+p80
+S'False'
+p81
+sS'client'
+p82
+S"'127.0.0.1'"
+p83
+sS'env'
+p84
+S"<Storage {'content_length': '670', 'debugging': ...undaryXmzchcxe48a9mvYc', 'remote_port': '40186'}>"
+p85
+sS'raw_args'
+p86
+S'None'
+p87
+sS'get_vars'
+p88
+S'<Storage {}>'
+p89
+sS'folder'
+p90
+S"'/home/lucasdavila/central/ws/web2py/src/web2pydev/applications/plugin_appreport/'"
+p91
+sS'now'
+p92
+S'datetime.datetime(2011, 1, 26, 21, 51, 1, 617009)'
+p93
+sS'post_vars'
+p94
+S"<Storage {'person.email': '', 'person.phone': ''...ec2', '_formname': 'default', 'person.name': ''}>"
+p95
+ssS'frames'
+p96
+(lp97
+(dp98
+S'file'
+p99
+S'/home/lucasdavila/central/ws/web2py/src/web2pydev/gluon/restricted.py'
+p100
+sS'dump'
+p101
+(dp102
+S'environment'
+p103
+S"{'A': <class 'gluon.html.A'>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'CENTER': <class 'gluon.html.CENTER'>, 'CLEANUP': <class 'gluon.validators.CLEANUP'>, 'CODE': <class 'gluon.html.CODE'>, 'CRYPT': <class 'gluon.validators.CRYPT'>, ...}"
+p104
+sS'ccode'
+p105
+S'<code object <module> at 0xa36cec0, file "/home/.../plugin_appreport/controllers/person.py", line 3>'
+p106
+ssS'lnum'
+p107
+I188
+sS'lines'
+p108
+(dp109
+I192
+S'        # XXX Show exception in Wing IDE if running in debugger'
+p110
+sI183
+S'        if type(code) == types.CodeType:'
+p111
+sI184
+S'            ccode = code'
+p112
+sI185
+S'        else:'
+p113
+sI186
+S'            ccode = compile2(code,layer)'
+p114
+sI187
+S''
+sI188
+S'        exec ccode in environment'
+p115
+sI189
+S'    except HTTP:'
+p116
+sI190
+S'        raise'
+p117
+sI191
+S'    except Exception:'
+p118
+ssS'call'
+p119
+S"(code='# coding: utf8\\n\\ndef create():\\n\\n    form = crud.c...\\n\\nresponse._vars=response._caller(simple_report)\\n', environment={'A': <class 'gluon.html.A'>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'CENTER': <class 'gluon.html.CENTER'>, 'CLEANUP': <class 'gluon.validators.CLEANUP'>, 'CODE': <class 'gluon.html.CODE'>, 'CRYPT': <class 'gluon.validators.CRYPT'>, ...}, layer='/home/lucasdavila/central/ws/web2py/src/web2pyde...plications/plugin_appreport/controllers/person.py')"
+p120
+sS'func'
+p121
+S'restricted'
+p122
+sa(dp123
+g99
+S'/home/lucasdavila/central/ws/web2py/src/web2pydev/applications/plugin_appreport/controllers/person.py'
+p124
+sg101
+(dp125
+sg107
+I64
+sg108
+(dp126
+I53
+S'                                <td>Lucas Davila</td>'
+p127
+sI54
+S'                                <td>lucassdvl@gmail.com</td>'
+p128
+sI55
+S'                                <td>@lucadavila</td>'
+p129
+sI56
+S'                            </tr>'
+p130
+sI57
+S'                        </tbody>'
+p131
+sI58
+S'                    </table>'
+p132
+sI59
+S'                </body>'
+p133
+sI60
+S'            </html>'
+p134
+sI61
+S'    """'
+p135
+sI62
+S"    return plugin_appreport.REPORT(html = html, title = 'my custom report using the plugin appreport')"
+p136
+ssg119
+S'()'
+p137
+sg121
+S'<module>'
+p138
+sa(dp139
+g99
+S'/home/lucasdavila/central/ws/web2py/src/web2pydev/gluon/globals.py'
+p140
+sg101
+(dp141
+S'self'
+p142
+S'undefined'
+p143
+sS'f'
+S'<function simple_report>'
+p144
+ssg107
+I95
+sg108
+(dp145
+I96
+S'        self._view_environment = None'
+p146
+sI97
+S'        self._custom_commit = None'
+p147
+sI98
+S'        self._custom_rollback = None'
+p148
+sI99
+S''
+sI90
+S"        self.flash = ''           # used by the default view layout"
+p149
+sI91
+S'        self.meta = Storage()     # used by web2py_ajax.html'
+p150
+sI92
+S'        self.menu = []            # used by the default view layout'
+p151
+sI93
+S'        self.files = []           # used by web2py_ajax.html'
+p152
+sI94
+S'        self._vars = None'
+p153
+sI95
+S'        self._caller = lambda f: f()'
+p154
+ssg119
+S'(f=<function simple_report>)'
+p155
+sg121
+S'<lambda>'
+p156
+sa(dp157
+g99
+S'/home/lucasdavila/central/ws/web2py/src/web2pydev/applications/plugin_appreport/controllers/person.py'
+p158
+sg101
+(dp159
+S'form.vars'
+p160
+S"<Storage {'person.phone': '', 'person.email': '', 'person.id': '', 'person.name': ''}>"
+p161
+sS'form'
+p162
+S'<gluon.html.FORM object>'
+p163
+sS'title'
+p164
+g143
+sS'builtinfilter'
+p165
+S'<built-in function filter>'
+p166
+sS'builtindict'
+p167
+S"<type 'dict'>"
+p168
+sS'global plugin_appreport'
+p169
+S'<__builtin__.PluginAppreport instance>'
+p170
+sS'table'
+p171
+g143
+sS'global person'
+p172
+S"<Table {'ALL': <gluon.dal.SQLALL object at 0xa38...c>, 'id': <gluon.dal.Field object at 0xa38be6c>}>"
+p173
+sS'plugin_appreport.REPORT'
+p174
+S'<bound method PluginAppreport.REPORT of <__builtin__.PluginAppreport instance>>'
+p175
+ssg107
+I17
+sg108
+(dp176
+I12
+S'def simple_report():'
+p177
+sI13
+S''
+sI14
+S'    form = plugin_appreport.REPORTFORM(table=person)'
+p178
+sI15
+S''
+sI16
+S'    if form.accepts(request.vars, session):'
+p179
+sI17
+S"        return plugin_appreport.REPORT(table = person, title = 'List of persons', filter = dict(form.vars))"
+p180
+sI18
+S''
+sI19
+S'    return dict(form = form)'
+p181
+sI20
+S''
+sI21
+S'def report_persons():'
+p182
+ssg119
+S'()'
+p183
+sg121
+S'simple_report'
+p184
+sa(dp185
+g99
+S'/home/lucasdavila/central/ws/web2py/src/web2pydev/applications/plugin_appreport/models/plugin_appreport.py'
+p186
+sg101
+(dp187
+S'orientation'
+p188
+S"'P'"
+p189
+sS'title'
+p190
+S"'List of persons'"
+p191
+sS'format'
+p192
+S"'A4'"
+p193
+sS'plugin_appreport_appreport.report'
+p194
+S"<module 'applications.plugin_appreport.modules.p...rt/modules/plugin_appreport/appreport/report.py'>"
+p195
+sS'filter'
+p196
+S"{'person.email': '', 'person.id': '', 'person.name': '', 'person.phone': ''}"
+p197
+sS'plugin_appreport_appreport.report.ReportHtmlDbWeb2py'
+p198
+S'<class applications.plugin_appreport.modules.plugin_appreport.appreport.report.ReportHtmlDbWeb2py>'
+p199
+sS'global plugin_appreport_appreport'
+p200
+S"<module 'applications.plugin_appreport.modules.p...modules/plugin_appreport/appreport/__init__.pyc'>"
+p201
+sS'report'
+p202
+g143
+sS'table'
+p203
+S"<Table {'ALL': <gluon.dal.SQLALL object at 0xa38...c>, 'id': <gluon.dal.Field object at 0xa38be6c>}>"
+p204
+sS'user_name'
+p205
+S"''"
+p206
+sS'unit'
+p207
+S"'mm'"
+p208
+ssg107
+I72
+sg108
+(dp209
+I67
+S''
+sI68
+S"        if html.strip() != '':"
+p210
+sI69
+S'            report = plugin_appreport_appreport.report.ReportHtml(user_name = user_name,'
+p211
+sI70
+S'            title = title, html = html, orientation = orientation, unit = unit, format = format)'
+p212
+sI71
+S'        else:'
+p213
+sI72
+S'            report = plugin_appreport_appreport.report.ReportHtmlDbWeb2py(table = table, filter = filter, user_name = user_name, title = title, orientation = orientation, unit = unit, format = format)'
+p214
+sI73
+S''
+sI74
+S''
+sI75
+S"        if engine == 'pisa':"
+p215
+sI76
+S'            pdf_builder = plugin_appreport_appreport.pdf_builder.PdfBuilderPisa(report = report)'
+p216
+ssg119
+S"(self=<__builtin__.PluginAppreport instance>, table=<Table {'ALL': <gluon.dal.SQLALL object at 0xa38...c>, 'id': <gluon.dal.Field object at 0xa38be6c>}>, filter={'person.email': '', 'person.id': '', 'person.name': '', 'person.phone': ''}, html='', engine='pisa', title='List of persons', orientation='P', unit='mm', format='A4')"
+p217
+sg121
+S'REPORT'
+p218
+sa(dp219
+g99
+S'/home/lucasdavila/central/ws/web2py/src/web2pydev/applications/plugin_appreport/modules/plugin_appreport/appreport/report.py'
+p220
+sg101
+(dp221
+S'format'
+p222
+S"'A4'"
+p223
+sS'charset'
+p224
+S"'utf-8'"
+p225
+sS'orientation'
+p226
+S"'P'"
+p227
+sS'unit'
+p228
+S"'mm'"
+p229
+sS'title'
+p230
+S"'List of persons'"
+p231
+ssg107
+I87
+sg108
+(dp232
+I82
+S''
+sI83
+S''
+sI84
+S"    def __init__(self, table, filter = '', user_name = 'anonymous', title = 'Report', orientation = 'P', unit = 'mm', format = 'A4', charset = 'utf-8'):"
+p233
+sI85
+S''
+sI86
+S'        ReportHtmlDb.__init__(self, db = table._db, table = table, filter = filter, user_name = user_name,'
+p234
+sI87
+S'            title = title, orientation = orientation, unit = unit, format = format, charset = charset)'
+p235
+sI88
+S''
+sI89
+S'    def _get_filter(self):'
+p236
+sI90
+S''
+sI91
+S'        return utils.UtilsWeb2py().prep_filter(vars = self._filter, table = self.table)'
+p237
+ssg119
+S"(self=<applications.plugin_appreport.modules.plugin_ap...ort.appreport.report.ReportHtmlDbWeb2py instance>, table=<Table {'ALL': <gluon.dal.SQLALL object at 0xa38...c>, 'id': <gluon.dal.Field object at 0xa38be6c>}>, filter={'person.email': '', 'person.id': '', 'person.name': '', 'person.phone': ''}, user_name='', title='List of persons', orientation='P', unit='mm', format='A4', charset='utf-8')"
+p238
+sg121
+g49
+sa(dp239
+g99
+S'/home/lucasdavila/central/ws/web2py/src/web2pydev/applications/plugin_appreport/modules/plugin_appreport/appreport/report.py'
+p240
+sg101
+(dp241
+S'orientation'
+p242
+S"'P'"
+p243
+sS'format'
+p244
+S"'A4'"
+p245
+sS'self'
+p246
+S'<applications.plugin_appreport.modules.plugin_ap...ort.appreport.report.ReportHtmlDbWeb2py instance>'
+p247
+sS'charset'
+p248
+S"'utf-8'"
+p249
+sS'html'
+p250
+g143
+sS'self.get_html'
+p251
+S'<bound method ReportHtmlDbWeb2py.get_html of <ap...rt.appreport.report.ReportHtmlDbWeb2py instance>>'
+p252
+sS'unit'
+p253
+S"'mm'"
+p254
+ssg107
+I70
+sg108
+(dp255
+I65
+S''
+sI66
+S'        self.db = db'
+p256
+sI67
+S'        self.table = table'
+p257
+sI68
+S'        self._filter = filter'
+p258
+sI69
+S'        ReportHtml.__init__(self, user_name = user_name, title = title,'
+p259
+sI70
+S'            html = self.get_html(), orientation = orientation, unit = unit, format = format, charset = charset)'
+p260
+sI71
+S''
+sI72
+S'    def _get_filter(self):'
+p261
+sI73
+S''
+sI74
+S'        return self._filter'
+p262
+ssg119
+S"(self=<applications.plugin_appreport.modules.plugin_ap...ort.appreport.report.ReportHtmlDbWeb2py instance>, db=<DAL {'auth_permission': <Table {'ALL': <gluon.d...lications/plugin_appreport/databases/sql.log'}>}>, table=<Table {'ALL': <gluon.dal.SQLALL object at 0xa38...c>, 'id': <gluon.dal.Field object at 0xa38be6c>}>, filter={'person.email': '', 'person.id': '', 'person.name': '', 'person.phone': ''}, user_name='', title='List of persons', orientation='P', unit='mm', format='A4', charset='utf-8')"
+p263
+sg121
+g49
+sa(dp264
+g99
+S'/home/lucasdavila/central/ws/web2py/src/web2pydev/applications/plugin_appreport/modules/plugin_appreport/appreport/report.py'
+p265
+sg101
+(dp266
+S'global SQLTABLE'
+p267
+S"<class 'gluon.sqlhtml.SQLTABLE'>"
+p268
+sS'records'
+p269
+S'<gluon.dal.Rows object>'
+p270
+sS'self'
+p271
+S'<applications.plugin_appreport.modules.plugin_ap...ort.appreport.report.ReportHtmlDbWeb2py instance>'
+p272
+sS'headers'
+p273
+g143
+sS'self.charset'
+p274
+g143
+sS'global BODY'
+p275
+S"<class 'gluon.html.BODY'>"
+p276
+ssg107
+I97
+sg108
+(dp277
+I96
+S'        records = self.db(self._get_filter()).select()'
+p278
+sI97
+S'        return \'<html><head><meta charset="%s" /></head>%s</html>\'%(self.charset, BODY(\'relat\xc3\xb3rio %S\'%SQLTABLE(records, headers=\'fieldname:capitalize\')))'
+p279
+sI88
+S''
+sI89
+S'    def _get_filter(self):'
+p280
+sI90
+S''
+sI91
+S'        return utils.UtilsWeb2py().prep_filter(vars = self._filter, table = self.table)'
+p281
+sI92
+S''
+sI93
+S'    def get_html(self):'
+p282
+sI94
+S''
+sI95
+S'        #TODO: se records < 1 ent\xc3\xa3o exibir mensagem sem dados para exibir ?'
+p283
+ssg119
+S'(self=<applications.plugin_appreport.modules.plugin_ap...ort.appreport.report.ReportHtmlDbWeb2py instance>)'
+p284
+sg121
+S'get_html'
+p285
+sasS'pyver'
+p286
+S'Python 2.6.6: /usr/bin/python'
+p287
+sS'session'
+p288
+(dp289
+S'_formkey[person/None]'
+p290
+S"'088ef73d-ff1e-44a6-8f8e-0f861f3cba55'"
+p291
+sS'_formkey[default]'
+p292
+S"'59efc08e-d5fd-4364-889b-517a591a8608'"
+p293
+sS'_formkey[favorite_music/None]'
+p294
+S"'5033c80c-21f4-4275-996e-dae96170d1db'"
+p295
+sS'auth'
+p296
+S'None'
+p297
+ssS'etype'
+p298
+S"<type 'exceptions.AttributeError'>"
+p299
+sS'date'
+p300
+S'Wed Jan 26 21:51:01 2011'
+p301
+sS'response'
+p302
+(dp303
+S'status'
+p304
+S'200'
+p305
+sg59
+S'<cStringIO.StringO object>'
+p306
+sg76
+S"<SimpleCookie: session_id_plugin_appreport='127.0.0.1-56d0272b-4d25-4fdb-bf2c-da2c92731bad'>"
+p307
+sS'_vars'
+p308
+S'None'
+p309
+sS'title'
+p310
+S"'Plugin appreport'"
+p311
+sS'session_file'
+p312
+S"<open file '/home/lucasdavila/central/ws/web2py/...6d0272b-4d25-4fdb-bf2c-da2c92731bad', mode 'rb+'>"
+p313
+sS'flash'
+p314
+S"''"
+p315
+sS'_custom_rollback'
+p316
+S'None'
+p317
+sS'session_id'
+p318
+S"'127.0.0.1-56d0272b-4d25-4fdb-bf2c-da2c92731bad'"
+p319
+sS'headers'
+p320
+S"<Storage {'Expires': 'Wed, 26 Jan 2011 23:51:01 ...he, must-revalidate, post-check=0, pre-check=0'}>"
+p321
+sS'meta'
+p322
+S"<Storage {'keywords': 'web2py, python, framework... 'Web2py Enterprise Framework', 'author': 'you'}>"
+p323
+sS'session_filename'
+p324
+S"'/home/lucasdavila/central/ws/web2py/src/web2pyde...ns/127.0.0.1-56d0272b-4d25-4fdb-bf2c-da2c92731bad'"
+p325
+sS'postprocessing'
+p326
+S'[]'
+p327
+sS'menu'
+p328
+S"[(<lazyT 'Home'>, False, <gluon.html.XML object>, []), (<lazyT 'Files'>, False, <gluon.html.XML object>, [('person', False, <gluon.html.XML object>)]), (<lazyT 'Repors'>, False, <gluon.html.XML object>, [('Simple', False, <gluon.html.XML object>), ('Custon', False, <gluon.html.XML object>), ('Complex', False, <gluon.html.XML object>)]), (<lazyT 'About'>, False, <gluon.html.XML object>, [])]"
+p329
+sS'_view_environment'
+p330
+S"{'A': <class 'gluon.html.A'>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'CENTER': <class 'gluon.html.CENTER'>, 'CLEANUP': <class 'gluon.validators.CLEANUP'>, 'CODE': <class 'gluon.html.CODE'>, 'CRYPT': <class 'gluon.validators.CRYPT'>, ...}"
+p331
+sS'subtitle'
+p332
+S"<lazyT 'customize me!'>"
+p333
+sS'session_id_name'
+p334
+S"'session_id_plugin_appreport'"
+p335
+sS'_custom_commit'
+p336
+S'None'
+p337
+sS'_caller'
+p338
+S'<function <lambda>>'
+p339
+sS'files'
+p340
+S'[]'
+p341
+sS'view'
+p342
+S"'person/simple_report.html'"
+p343
+ssS'locals'
+p344
+(dp345
+S'records'
+p346
+S'<gluon.dal.Rows object>'
+p347
+sS'self'
+p348
+S'<applications.plugin_appreport.modules.plugin_ap...ort.appreport.report.ReportHtmlDbWeb2py instance>'
+p349
+sssS'traceback'
+p350
+S'Traceback (most recent call last):\n  File "/home/lucasdavila/central/ws/web2py/src/web2pydev/gluon/restricted.py", line 188, in restricted\n    exec ccode in environment\n  File "/home/lucasdavila/central/ws/web2py/src/web2pydev/applications/plugin_appreport/controllers/person.py", line 64, in <module>\n  File "/home/lucasdavila/central/ws/web2py/src/web2pydev/gluon/globals.py", line 95, in <lambda>\n    self._caller = lambda f: f()\n  File "/home/lucasdavila/central/ws/web2py/src/web2pydev/applications/plugin_appreport/controllers/person.py", line 17, in simple_report\n    return plugin_appreport.REPORT(table = person, title = \'List of persons\', filter = dict(form.vars))\n  File "/home/lucasdavila/central/ws/web2py/src/web2pydev/applications/plugin_appreport/models/plugin_appreport.py", line 72, in REPORT\n    report = plugin_appreport_appreport.report.ReportHtmlDbWeb2py(table = table, filter = filter, user_name = user_name, title = title, orientation = orientation, unit = unit, format = format)\n  File "applications/plugin_appreport/modules/plugin_appreport/appreport/report.py", line 87, in __init__\n    title = title, orientation = orientation, unit = unit, format = format, charset = charset)\n  File "applications/plugin_appreport/modules/plugin_appreport/appreport/report.py", line 70, in __init__\n    html = self.get_html(), orientation = orientation, unit = unit, format = format, charset = charset)\n  File "applications/plugin_appreport/modules/plugin_appreport/appreport/report.py", line 97, in get_html\n    return \'<html><head><meta charset="%s" /></head>%s</html>\'%(self.charset, BODY(\'relat\xc3\xb3rio %S\'%SQLTABLE(records, headers=\'fieldname:capitalize\')))\nAttributeError: ReportHtmlDbWeb2py instance has no attribute \'charset\'\n'
+p351
+s.

@@ -2,6 +2,7 @@
 
 from libs.pyfpdf.fpdf import FPDF
 from libs.pyfpdf.html import HTMLMixin
+from libs.pisa.xhtml2pdf.ho import pisa
 
 """
 Copyright (c) 2010, 2011 Lucas D'Avila - email lucassdvl@gmail.com / twitter @lucadavila
@@ -55,3 +56,24 @@ class PdfBuilderPyfpdf(FPDF, HTMLMixin):
         self.set_font('Arial','I',8)
         txt = '%s / %s' % (self.page_no(), self.alias_nb_pages())
         self.cell(0,10,txt,0,0,'R')
+
+
+#implementation to Pisa builder
+class PdfBuilderPisa:
+
+    def __init__(self, report):
+        """
+        report: instance of ReportHtml class
+        """
+
+        self.report = report
+
+    def output(self, path_report, *args):
+
+        doc = file(path_report, "wb")
+        pdf = pisa.CreatePDF(self.report.get_html(), dest = doc)
+        doc.close()
+
+        #uncomment this for debug
+#        if pdf.err:
+#            print "Errors on output report > %"%pdf.err

@@ -22,8 +22,9 @@ response.menu+=[
 
 response.menu+=[
     (T('Repors'), False, URL(request.application,'default','index'), [
-    ('person', False, URL(r=request, c='person', f='report')),
-    ('Custon report', False, URL(r=request, c='person', f='custom_report')),    
+    ('Simple', False, URL(r=request, c='person', f='simple_report')),
+    ('Custon', False, URL(r=request, c='person', f='custom_report')),    
+    ('Complex', False, URL(r=request, c='person', f='complex_report')),    
     ])
     ]
 

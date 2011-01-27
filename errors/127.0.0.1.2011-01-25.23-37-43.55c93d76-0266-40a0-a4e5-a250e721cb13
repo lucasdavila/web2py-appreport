@@ -1,0 +1,913 @@
+(dp1
+S'output'
+p2
+S''
+sS'layer'
+p3
+S'/home/lucasdavila/central/ws/web2py/src/web2pydev/applications/plugin_appreport/models/db.py'
+p4
+sS'code'
+p5
+S'# -*- coding: utf-8 -*- \n# this file is released under public domain and you can use without limitations\n\n#########################################################################\n## This scaffolding model makes your app work on Google App Engine too\n#########################################################################\n\nif request.env.web2py_runtime_gae:            # if running on Google App Engine\n    db = DAL(\'gae://mynamespace\')             # connect to Google BigTable\n    session.connect(request, response, db = db) # and store sessions and tickets there\n    ### or use the following lines to store sessions in Memcache\n    # from gluon.contrib.memdb import MEMDB\n    # from google.appengine.api.memcache import Client\n    # session.connect(request, response, db = MEMDB(Client()))\nelse:                                         # else use a normal relational database\n    db = DAL(\'sqlite://storage.sqlite\')       # if not, use SQLite or other DB\n## if no need for session\n# session.forget()\n\n#########################################################################\n## Here is sample code if you need for \n## - email capabilities\n## - authentication (registration, login, logout, ... )\n## - authorization (role based authorization)\n## - services (xml, csv, json, xmlrpc, jsonrpc, amf, rss)\n## - crud actions\n## (more options discussed in gluon/tools.py)\n#########################################################################\n\nfrom gluon.tools import *\nmail = Mail()                                  # mailer\nauth = Auth(globals(),db)                      # authentication/authorization\ncrud = Crud(globals(),db)                      # for CRUD helpers using auth\nservice = Service(globals())                   # for json, xml, jsonrpc, xmlrpc, amfrpc\nplugins = PluginManager()\n\nmail.settings.server = \'logging\' or \'smtp.gmail.com:587\'  # your SMTP server\nmail.settings.sender = \'you@gmail.com\'         # your email\nmail.settings.login = \'username:password\'      # your credentials or None\n\nauth.settings.hmac_key = \'sha512:d72f56b3-ca0d-4239-993d-c5f18cdea8c4\'   # before define_tables()\nauth.define_tables()                           # creates all needed tables\nauth.settings.mailer = mail                    # for user email verification\nauth.settings.registration_requires_verification = False\nauth.settings.registration_requires_approval = False\nauth.messages.verify_email = \'Click on the link http://\'+request.env.http_host+URL(r=request,c=\'default\',f=\'user\',args=[\'verify_email\'])+\'/%(key)s to verify your email\'\nauth.settings.reset_password_requires_verification = True\nauth.messages.reset_password = \'Click on the link http://\'+request.env.http_host+URL(r=request,c=\'default\',f=\'user\',args=[\'reset_password\'])+\'/%(key)s to reset your password\'\n\n#########################################################################\n## If you need to use OpenID, Facebook, MySpace, Twitter, Linkedin, etc.\n## register with janrain.com, uncomment and customize following\n# from gluon.contrib.login_methods.rpx_account import RPXAccount\n# auth.settings.actions_disabled=[\'register\',\'change_password\',\'request_reset_password\']\n# auth.settings.login_form = RPXAccount(request, api_key=\'...\',domain=\'...\',\n#    url = "http://localhost:8000/%s/default/user/login" % request.application)\n## other login methods are in gluon/contrib/login_methods\n#########################################################################\n\ncrud.settings.auth = None                      # =auth to enforce authorization on crud\n\n#########################################################################\n## Define your tables below (or better in another model file) for example\n##\n## >>> db.define_table(\'mytable\',Field(\'myfield\',\'string\'))\n##\n## Fields can be \'string\',\'text\',\'password\',\'integer\',\'double\',\'boolean\'\n##       \'date\',\'time\',\'datetime\',\'blob\',\'upload\', \'reference TABLENAME\'\n## There is an implicit \'id integer autoincrement\' field\n## Consult manual for more options, validators, etc.\n##\n## More API examples for controllers:\n##\n## >>> db.mytable.insert(myfield=\'value\')\n## >>> rows=db(db.mytable.myfield==\'value\').select(db.mytable.ALL)\n## >>> for row in rows: print row.id, row.myfield\n#########################################################################\n\nperson = db.define_table(\'person\',\n    Field(\'name\'),\n    Field(\'phone\'),\n    Field(\'email\'))\n\nperson.name.requires = IS_NOT_EMPTY()\nperson.email.requires = IS_NULL_OR(IS_EMAIL())\n\n\nfavorite_music = db.define_table(\'favorite_music\',\n    Field(\'person\', person),\n    Field(\'title\'),\n    Field(\'artist\'))\n\nmusic.person.requires = IS_IN_DB(db, person.id, \'%(person.name)s\')\nmusic.title.requires = IS_NOT_EMPTY()\n'
+p6
+sS'snapshot'
+p7
+(dp8
+S'exception'
+p9
+(dp10
+S'__hash__'
+p11
+S"<method-wrapper '__hash__' of exceptions.NameError object>"
+p12
+sS'__setattr__'
+p13
+S"<method-wrapper '__setattr__' of exceptions.NameError object>"
+p14
+sS'__reduce_ex__'
+p15
+S'<built-in method __reduce_ex__ of exceptions.NameError object>'
+p16
+sS'__getslice__'
+p17
+S"<method-wrapper '__getslice__' of exceptions.NameError object>"
+p18
+sS'__getitem__'
+p19
+S"<method-wrapper '__getitem__' of exceptions.NameError object>"
+p20
+sS'__setstate__'
+p21
+S'<built-in method __setstate__ of exceptions.NameError object>'
+p22
+sS'__reduce__'
+p23
+S'<built-in method __reduce__ of exceptions.NameError object>'
+p24
+sS'__str__'
+p25
+S"<method-wrapper '__str__' of exceptions.NameError object>"
+p26
+sS'__format__'
+p27
+S'<built-in method __format__ of exceptions.NameError object>'
+p28
+sS'__getattribute__'
+p29
+S"<method-wrapper '__getattribute__' of exceptions.NameError object>"
+p30
+sS'__class__'
+p31
+S"<type 'exceptions.NameError'>"
+p32
+sS'__unicode__'
+p33
+S'<built-in method __unicode__ of exceptions.NameError object>'
+p34
+sS'__delattr__'
+p35
+S"<method-wrapper '__delattr__' of exceptions.NameError object>"
+p36
+sS'__subclasshook__'
+p37
+S'<built-in method __subclasshook__ of type object>'
+p38
+sS'__repr__'
+p39
+S"<method-wrapper '__repr__' of exceptions.NameError object>"
+p40
+sS'args'
+p41
+S'("name \'music\' is not defined",)'
+p42
+sS'__dict__'
+p43
+S'{}'
+p44
+sS'__sizeof__'
+p45
+S'<built-in method __sizeof__ of exceptions.NameError object>'
+p46
+sS'__doc__'
+p47
+S"'Name not found globally.'"
+p48
+sS'__init__'
+p49
+S"<method-wrapper '__init__' of exceptions.NameError object>"
+p50
+sS'__new__'
+p51
+S'<built-in method __new__ of type object>'
+p52
+ssS'evalue'
+p53
+S"name 'music' is not defined"
+p54
+sS'request'
+p55
+(dp56
+S'function'
+p57
+S"'complex_report'"
+p58
+sS'body'
+p59
+S'<cStringIO.StringO object>'
+p60
+sS'wsgi'
+p61
+S"<Storage {'start_response': <function <lambda> a...>, 'HTTP_ACCEPT_ENCODING': 'gzip,deflate,sdch'}}>"
+p62
+sS'extension'
+p63
+S"'html'"
+p64
+sS'vars'
+p65
+S'<Storage {}>'
+p66
+sS'cid'
+p67
+S'None'
+p68
+sS'url'
+p69
+S'<gluon.html.XML object>'
+p70
+sS'raw_extension'
+p71
+S'None'
+p72
+sg41
+S'[]'
+p73
+sS'controller'
+p74
+S"'person'"
+p75
+sS'cookies'
+p76
+S"<SimpleCookie: session_id_admin='127.0.0.1-ab65c...'127.0.0.1-3fb54433-9a7e-4167-b09f-f0891a2471ca'>"
+p77
+sS'application'
+p78
+S"'plugin_appreport'"
+p79
+sS'ajax'
+p80
+S'False'
+p81
+sS'client'
+p82
+S"'127.0.0.1'"
+p83
+sS'env'
+p84
+S"<Storage {'wsgi_multithread': True, 'debugging':... 'wsgi_run_once': False, 'remote_port': '56741'}>"
+p85
+sS'raw_args'
+p86
+S'None'
+p87
+sS'get_vars'
+p88
+S'<Storage {}>'
+p89
+sS'folder'
+p90
+S"'/home/lucasdavila/central/ws/web2py/src/web2pydev/applications/plugin_appreport/'"
+p91
+sS'now'
+p92
+S'datetime.datetime(2011, 1, 25, 23, 37, 43, 371133)'
+p93
+sS'post_vars'
+p94
+S'<Storage {}>'
+p95
+ssS'frames'
+p96
+(lp97
+(dp98
+S'file'
+p99
+S'/home/lucasdavila/central/ws/web2py/src/web2pydev/gluon/restricted.py'
+p100
+sS'dump'
+p101
+(dp102
+S'environment'
+p103
+S"{'A': <class 'gluon.html.A'>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'CENTER': <class 'gluon.html.CENTER'>, 'CLEANUP': <class 'gluon.validators.CLEANUP'>, 'CODE': <class 'gluon.html.CODE'>, 'CRYPT': <class 'gluon.validators.CRYPT'>, ...}"
+p104
+sS'ccode'
+p105
+S'<code object <module> at 0x9ae0ad0, file "/home/...lications/plugin_appreport/models/db.py", line 8>'
+p106
+ssS'lnum'
+p107
+I188
+sS'lines'
+p108
+(dp109
+I192
+S'        # XXX Show exception in Wing IDE if running in debugger'
+p110
+sI183
+S'        if type(code) == types.CodeType:'
+p111
+sI184
+S'            ccode = code'
+p112
+sI185
+S'        else:'
+p113
+sI186
+S'            ccode = compile2(code,layer)'
+p114
+sI187
+S''
+sI188
+S'        exec ccode in environment'
+p115
+sI189
+S'    except HTTP:'
+p116
+sI190
+S'        raise'
+p117
+sI191
+S'    except Exception:'
+p118
+ssS'call'
+p119
+S'(code="# -*- coding: utf-8 -*- \\n# this file is released...n.name)s\')\\nmusic.title.requires = IS_NOT_EMPTY()\\n", environment={\'A\': <class \'gluon.html.A\'>, \'Auth\': <class \'gluon.tools.Auth\'>, \'B\': <class \'gluon.html.B\'>, \'BEAUTIFY\': <class \'gluon.html.BEAUTIFY\'>, \'BODY\': <class \'gluon.html.BODY\'>, \'BR\': <class \'gluon.html.BR\'>, \'CENTER\': <class \'gluon.html.CENTER\'>, \'CLEANUP\': <class \'gluon.validators.CLEANUP\'>, \'CODE\': <class \'gluon.html.CODE\'>, \'CRYPT\': <class \'gluon.validators.CRYPT\'>, ...}, layer=\'/home/lucasdavila/central/ws/web2py/src/web2pydev/applications/plugin_appreport/models/db.py\')'
+p120
+sS'func'
+p121
+S'restricted'
+p122
+sa(dp123
+g99
+S'/home/lucasdavila/central/ws/web2py/src/web2pydev/applications/plugin_appreport/models/db.py'
+p124
+sg101
+(dp125
+S'db'
+p126
+S"<DAL {'auth_permission': <Table {'ALL': <gluon.d...lications/plugin_appreport/databases/sql.log'}>}>"
+p127
+sS'person'
+p128
+S"<Table {'ALL': <gluon.dal.SQLALL object at 0x9ab...c>, 'id': <gluon.dal.Field object at 0x9abeeac>}>"
+p129
+sS'music'
+p130
+S'undefined'
+p131
+sS'person.id'
+p132
+S'<gluon.dal.Field object>'
+p133
+sS'IS_IN_DB'
+p134
+S"<class 'gluon.validators.IS_IN_DB'>"
+p135
+ssg107
+I93
+sg108
+(dp136
+I85
+S'person.email.requires = IS_NULL_OR(IS_EMAIL())'
+p137
+sI86
+S''
+sI87
+S''
+sI88
+S"favorite_music = db.define_table('favorite_music',"
+p138
+sI89
+S"    Field('person', person),"
+p139
+sI90
+S"    Field('title'),"
+p140
+sI91
+S"    Field('artist'))"
+p141
+sI92
+S''
+sI93
+S"music.person.requires = IS_IN_DB(db, person.id, '%(person.name)s')"
+p142
+sI94
+S'music.title.requires = IS_NOT_EMPTY()'
+p143
+ssg119
+S'()'
+p144
+sg121
+S'<module>'
+p145
+sasS'pyver'
+p146
+S'Python 2.6.6: /usr/bin/python'
+p147
+sS'session'
+p148
+(dp149
+S'_formkey[person/None]'
+p150
+S"'5d93c9de-7ae1-494f-a7a2-1070e1ddead8'"
+p151
+sS'_formkey[default]'
+p152
+S"'d9721528-d319-4aa3-a4d8-33b2e37ca2af'"
+p153
+sS'auth'
+p154
+S'None'
+p155
+ssS'etype'
+p156
+S"<type 'exceptions.NameError'>"
+p157
+sS'date'
+p158
+S'Tue Jan 25 23:37:43 2011'
+p159
+sS'response'
+p160
+(dp161
+S'status'
+p162
+S'200'
+p163
+sg59
+S'<cStringIO.StringO object>'
+p164
+sg76
+S"<SimpleCookie: session_id_plugin_appreport='127.0.0.1-56d0272b-4d25-4fdb-bf2c-da2c92731bad'>"
+p165
+sS'_vars'
+p166
+S'None'
+p167
+sS'session_file'
+p168
+S"<open file '/home/lucasdavila/central/ws/web2py/...6d0272b-4d25-4fdb-bf2c-da2c92731bad', mode 'rb+'>"
+p169
+sS'flash'
+p170
+S"''"
+p171
+sS'_custom_rollback'
+p172
+S'None'
+p173
+sS'session_id'
+p174
+S"'127.0.0.1-56d0272b-4d25-4fdb-bf2c-da2c92731bad'"
+p175
+sS'headers'
+p176
+S"<Storage {'Expires': 'Wed, 26 Jan 2011 01:37:43 ...he, must-revalidate, post-check=0, pre-check=0'}>"
+p177
+sS'meta'
+p178
+S'<Storage {}>'
+p179
+sS'session_filename'
+p180
+S"'/home/lucasdavila/central/ws/web2py/src/web2pyde...ns/127.0.0.1-56d0272b-4d25-4fdb-bf2c-da2c92731bad'"
+p181
+sS'postprocessing'
+p182
+S'[]'
+p183
+sS'menu'
+p184
+S'[]'
+p185
+sS'_view_environment'
+p186
+S"{'A': <class 'gluon.html.A'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'CENTER': <class 'gluon.html.CENTER'>, 'CLEANUP': <class 'gluon.validators.CLEANUP'>, 'CODE': <class 'gluon.html.CODE'>, 'CRYPT': <class 'gluon.validators.CRYPT'>, 'DAL': <class 'gluon.dal.DAL'>, ...}"
+p187
+sS'session_id_name'
+p188
+S"'session_id_plugin_appreport'"
+p189
+sS'_custom_commit'
+p190
+S'None'
+p191
+sS'_caller'
+p192
+S'<function <lambda>>'
+p193
+sS'files'
+p194
+S'[]'
+p195
+sS'view'
+p196
+S"'person/complex_report.html'"
+p197
+ssS'locals'
+p198
+(dp199
+S'Service'
+p200
+S"<class 'gluon.tools.Service'>"
+p201
+sS'OBJECT'
+p202
+S"<class 'gluon.html.OBJECT'>"
+p203
+sS'SQLDB'
+p204
+S"<class 'gluon.dal.DAL'>"
+p205
+sg148
+S"<Storage {'_formkey[person/None]': '5d93c9de-7ae...1528-d319-4aa3-a4d8-33b2e37ca2af', 'auth': None}>"
+p206
+sS'LINK'
+p207
+S"<class 'gluon.html.LINK'>"
+p208
+sS'BR'
+p209
+S"<class 'gluon.html.BR'>"
+p210
+sS'local_import'
+p211
+S'<function <lambda>>'
+p212
+sS'OPTGROUP'
+p213
+S"<class 'gluon.html.OPTGROUP'>"
+p214
+sS'PRE'
+p215
+S"<class 'gluon.html.PRE'>"
+p216
+sS'IS_INT_IN_RANGE'
+p217
+S"<class 'gluon.validators.IS_INT_IN_RANGE'>"
+p218
+sS'IS_LOWER'
+p219
+S"<class 'gluon.validators.IS_LOWER'>"
+p220
+sS'IS_STRONG'
+p221
+S"<class 'gluon.validators.IS_STRONG'>"
+p222
+sS'Recaptcha'
+p223
+S"<class 'gluon.tools.Recaptcha'>"
+p224
+sS'cache'
+p225
+S'<gluon.cache.Cache object>'
+p226
+sS'IS_IN_DB'
+p227
+S"<class 'gluon.validators.IS_IN_DB'>"
+p228
+sS'TAG'
+p229
+S'<gluon.html.__TAG__ object>'
+p230
+sS'SQLField'
+p231
+S"<class 'gluon.dal.Field'>"
+p232
+sS'mail'
+p233
+S'<gluon.tools.Mail object>'
+p234
+sS'BODY'
+p235
+S"<class 'gluon.html.BODY'>"
+p236
+sS'IS_DATE_IN_RANGE'
+p237
+S"<class 'gluon.validators.IS_DATE_IN_RANGE'>"
+p238
+sS'IFRAME'
+p239
+S"<class 'gluon.html.IFRAME'>"
+p240
+sS'URL'
+p241
+S'<function _URL>'
+p242
+sS'db'
+p243
+S"<DAL {'auth_permission': <Table {'ALL': <gluon.d...lications/plugin_appreport/databases/sql.log'}>}>"
+p244
+sS'auth'
+p245
+S'<gluon.tools.Auth object>'
+p246
+sS'P'
+S"<class 'gluon.html.P'>"
+p247
+sS'TFOOT'
+p248
+S"<class 'gluon.html.TFOOT'>"
+p249
+sS'XHTML'
+p250
+S"<class 'gluon.html.XHTML'>"
+p251
+sS'ON'
+p252
+S'True'
+p253
+sS'OL'
+p254
+S"<class 'gluon.html.OL'>"
+p255
+sS'TEXTAREA'
+p256
+S"<class 'gluon.html.TEXTAREA'>"
+p257
+sS'MENU'
+p258
+S"<class 'gluon.html.MENU'>"
+p259
+sS'EM'
+p260
+S"<class 'gluon.html.EM'>"
+p261
+sS'CODE'
+p262
+S"<class 'gluon.html.CODE'>"
+p263
+sS'HTTP'
+p264
+S"<class 'gluon.http.HTTP'>"
+p265
+sS'HR'
+p266
+S"<class 'gluon.html.HR'>"
+p267
+sS'IS_DATETIME'
+p268
+S"<class 'gluon.validators.IS_DATETIME'>"
+p269
+sS'STYLE'
+p270
+S"<class 'gluon.html.STYLE'>"
+p271
+sS'LABEL'
+p272
+S"<class 'gluon.html.LABEL'>"
+p273
+sS'CLEANUP'
+p274
+S"<class 'gluon.validators.CLEANUP'>"
+p275
+sS'plugins'
+p276
+S'<gluon.tools.PluginManager object>'
+p277
+sS'SELECT'
+p278
+S"<class 'gluon.html.SELECT'>"
+p279
+sS'CENTER'
+p280
+S"<class 'gluon.html.CENTER'>"
+p281
+sS'prettydate'
+p282
+S'<function prettydate>'
+p283
+sS'Crud'
+p284
+S"<class 'gluon.tools.Crud'>"
+p285
+sS'Auth'
+p286
+S"<class 'gluon.tools.Auth'>"
+p287
+sS'__builtins__'
+p288
+S"{'ArithmeticError': <type 'exceptions.ArithmeticError'>, 'AssertionError': <type 'exceptions.AssertionError'>, 'AttributeError': <type 'exceptions.AttributeError'>, 'BaseException': <type 'exceptions.BaseException'>, 'BufferError': <type 'exceptions.BufferError'>, 'BytesWarning': <type 'exceptions.BytesWarning'>, 'DeprecationWarning': <type 'exceptions.DeprecationWarning'>, 'EOFError': <type 'exceptions.EOFError'>, 'Ellipsis': Ellipsis, 'EnvironmentError': <type 'exceptions.EnvironmentError'>, ...}"
+p289
+sS'IS_LIST_OF'
+p290
+S"<class 'gluon.validators.IS_LIST_OF'>"
+p291
+sS'SQLFORM'
+p292
+S"<class 'gluon.sqlhtml.SQLFORM'>"
+p293
+sS'LOAD'
+p294
+S'<gluon.compileapp.LoadFactory object>'
+p295
+sS'redirect'
+p296
+S'<function redirect>'
+p297
+sS'FIELDSET'
+p298
+S"<class 'gluon.html.FIELDSET'>"
+p299
+sS'IS_EQUAL_TO'
+p300
+S"<class 'gluon.validators.IS_EQUAL_TO'>"
+p301
+sS'embed64'
+p302
+S'<function embed64>'
+p303
+sS'INPUT'
+p304
+S"<class 'gluon.html.INPUT'>"
+p305
+sS'EMBED'
+p306
+S"<class 'gluon.html.EMBED'>"
+p307
+sS'FORM'
+p308
+S"<class 'gluon.html.FORM'>"
+p309
+sS'H2'
+p310
+S"<class 'gluon.html.H2'>"
+p311
+sS'H3'
+p312
+S"<class 'gluon.html.H3'>"
+p313
+sS'H1'
+p314
+S"<class 'gluon.html.H1'>"
+p315
+sS'H6'
+p316
+S"<class 'gluon.html.H6'>"
+p317
+sS'H4'
+p318
+S"<class 'gluon.html.H4'>"
+p319
+sS'H5'
+p320
+S"<class 'gluon.html.H5'>"
+p321
+sS'UL'
+p322
+S"<class 'gluon.html.UL'>"
+p323
+sS'IS_UPPER'
+p324
+S"<class 'gluon.validators.IS_UPPER'>"
+p325
+sS'xmlescape'
+p326
+S'<function xmlescape>'
+p327
+sS'IS_TIME'
+p328
+S"<class 'gluon.validators.IS_TIME'>"
+p329
+sS'OPTION'
+p330
+S"<class 'gluon.html.OPTION'>"
+p331
+sS'TITLE'
+p332
+S"<class 'gluon.html.TITLE'>"
+p333
+sS'CRYPT'
+p334
+S"<class 'gluon.validators.CRYPT'>"
+p335
+sS'IS_EMPTY_OR'
+p336
+S"<class 'gluon.validators.IS_EMPTY_OR'>"
+p337
+sS'MARKMIN'
+p338
+S"<class 'gluon.html.MARKMIN'>"
+p339
+sS'service'
+p340
+S'<gluon.tools.Service object>'
+p341
+sS'SCRIPT'
+p342
+S"<class 'gluon.html.SCRIPT'>"
+p343
+sS'geocode'
+p344
+S'<function geocode>'
+p345
+sS'TABLE'
+p346
+S"<class 'gluon.html.TABLE'>"
+p347
+sS'IS_IPV4'
+p348
+S"<class 'gluon.validators.IS_IPV4'>"
+p349
+sS'IS_LENGTH'
+p350
+S"<class 'gluon.validators.IS_LENGTH'>"
+p351
+sS'XML'
+p352
+S"<class 'gluon.html.XML'>"
+p353
+sS'B'
+S"<class 'gluon.html.B'>"
+p354
+sS'IMG'
+p355
+S"<class 'gluon.html.IMG'>"
+p356
+sS'SQLTABLE'
+p357
+S"<class 'gluon.sqlhtml.SQLTABLE'>"
+p358
+sS'IS_MATCH'
+p359
+S"<class 'gluon.validators.IS_MATCH'>"
+p360
+sS'IS_ALPHANUMERIC'
+p361
+S"<class 'gluon.validators.IS_ALPHANUMERIC'>"
+p362
+sS'SPAN'
+p363
+S"<class 'gluon.html.SPAN'>"
+p364
+sS'IS_SLUG'
+p365
+S"<class 'gluon.validators.IS_SLUG'>"
+p366
+sS'META'
+p367
+S"<class 'gluon.html.META'>"
+p368
+sS'favorite_music'
+p369
+S"<Table {'ALL': <gluon.dal.SQLALL object at 0x9ab...pplications/plugin_appreport/databases/sql.log'}>"
+p370
+sS'fetch'
+p371
+S'<function fetch>'
+p372
+sS'IS_DATE'
+p373
+S"<class 'gluon.validators.IS_DATE'>"
+p374
+sS'IS_EMAIL'
+p375
+S"<class 'gluon.validators.IS_EMAIL'>"
+p376
+sS'IS_NOT_EMPTY'
+p377
+S"<class 'gluon.validators.IS_NOT_EMPTY'>"
+p378
+sS'IS_FLOAT_IN_RANGE'
+p379
+S"<class 'gluon.validators.IS_FLOAT_IN_RANGE'>"
+p380
+sS'BEAUTIFY'
+p381
+S"<class 'gluon.html.BEAUTIFY'>"
+p382
+sS'TBODY'
+p383
+S"<class 'gluon.html.TBODY'>"
+p384
+sS'Field'
+p385
+S"<class 'gluon.dal.Field'>"
+p386
+sS'Mail'
+p387
+S"<class 'gluon.tools.Mail'>"
+p388
+sS'DIV'
+p389
+S"<class 'gluon.html.DIV'>"
+p390
+sS'LEGEND'
+p391
+S"<class 'gluon.html.LEGEND'>"
+p392
+sS'DAL'
+p393
+S"<class 'gluon.dal.DAL'>"
+p394
+sS'TT'
+p395
+S"<class 'gluon.html.TT'>"
+p396
+sS'TR'
+p397
+S"<class 'gluon.html.TR'>"
+p398
+sS'LI'
+p399
+S"<class 'gluon.html.LI'>"
+p400
+sS'TH'
+p401
+S"<class 'gluon.html.TH'>"
+p402
+sS'TD'
+p403
+S"<class 'gluon.html.TD'>"
+p404
+sS'PluginManager'
+p405
+S"<class 'gluon.tools.PluginManager'>"
+p406
+sS'IS_URL'
+p407
+S"<class 'gluon.validators.IS_URL'>"
+p408
+sS'A'
+S"<class 'gluon.html.A'>"
+p409
+sS'HEAD'
+p410
+S"<class 'gluon.html.HEAD'>"
+p411
+sS'IS_DATETIME_IN_RANGE'
+p412
+S"<class 'gluon.validators.IS_DATETIME_IN_RANGE'>"
+p413
+sS'HTML'
+p414
+S"<class 'gluon.html.HTML'>"
+p415
+sS'IS_IMAGE'
+p416
+S"<class 'gluon.validators.IS_IMAGE'>"
+p417
+sS'I'
+S"<class 'gluon.html.I'>"
+p418
+sS'crud'
+p419
+S'<gluon.tools.Crud object>'
+p420
+sS'IS_NOT_IN_DB'
+p421
+S"<class 'gluon.validators.IS_NOT_IN_DB'>"
+p422
+sg160
+S"<Storage {'status': 200, 'body': <cStringIO.Stri...t': None, 'files': [], '_custom_rollback': None}>"
+p423
+sS'THEAD'
+p424
+S"<class 'gluon.html.THEAD'>"
+p425
+sS'IS_NULL_OR'
+p426
+S"<class 'gluon.validators.IS_EMPTY_OR'>"
+p427
+sg55
+S"<Storage {'function': 'complex_report', 'body': ... 23, 37, 43, 371133), 'post_vars': <Storage {}>}>"
+p428
+sS'IS_EXPR'
+p429
+S"<class 'gluon.validators.IS_EXPR'>"
+p430
+sS'person'
+p431
+S"<Table {'ALL': <gluon.dal.SQLALL object at 0x9ab...c>, 'id': <gluon.dal.Field object at 0x9abeeac>}>"
+p432
+sS'IS_IN_SET'
+p433
+S"<class 'gluon.validators.IS_IN_SET'>"
+p434
+sS'IS_UPLOAD_FILENAME'
+p435
+S"<class 'gluon.validators.IS_UPLOAD_FILENAME'>"
+p436
+sS'IS_DECIMAL_IN_RANGE'
+p437
+S"<class 'gluon.validators.IS_DECIMAL_IN_RANGE'>"
+p438
+sS'T'
+S'<gluon.languages.translator object>'
+p439
+sssS'traceback'
+p440
+S'Traceback (most recent call last):\n  File "/home/lucasdavila/central/ws/web2py/src/web2pydev/gluon/restricted.py", line 188, in restricted\n    exec ccode in environment\n  File "/home/lucasdavila/central/ws/web2py/src/web2pydev/applications/plugin_appreport/models/db.py", line 93, in <module>\n    music.person.requires = IS_IN_DB(db, person.id, \'%(person.name)s\')\nNameError: name \'music\' is not defined\n'
+p441
+s.

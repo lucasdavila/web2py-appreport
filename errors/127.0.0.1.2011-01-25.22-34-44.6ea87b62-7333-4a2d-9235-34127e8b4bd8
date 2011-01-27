@@ -1,0 +1,469 @@
+(dp1
+S'output'
+p2
+S''
+sS'layer'
+p3
+S'/home/lucasdavila/central/ws/web2py/src/web2pydev/applications/plugin_appreport/views/person/complex_report.html'
+p4
+sS'code'
+p5
+S'if response.get_vars.show_report != \'True\':\n    response.write(\'\\n\\n    \', escape=False)\n    response.write(\'<!DOCTYPE html>\\n<html lang="\', escape=False)\n    response.write(T.accepted_language or \'en\')\n    response.write(\'" class="no-js"><!-- no-js need it for modernzr -->\\n  <head>\\n    \\n    <meta charset="utf-8" />\\t  \\t\\n    <!-- www.phpied.com/conditional-comments-block-downloads/ -->\\n    <!--[if IE]><![endif]-->    \\n    <!-- Always force latest IE rendering engine \\n\\t (even in intranet) & Chrome Frame \\n\\t Remove this if you use the .htaccess -->\\n    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">\\n    \\n    <title>\', escape=False)\n    response.write(response.title or request.application)\n    response.write(\'</title>\\n    \\n    <!-- http://dev.w3.org/html5/markup/meta.name.html -->\\n    <meta name="application-name" content="\', escape=False)\n    response.write(request.application)\n    response.write(\'" />\\t\\n    \\n    <!-- Speaking of Google, don\\\'t forget to set your site up: \\n\\t http://google.com/webmasters -->\\n    <meta name="google-site-verification" content="" />\\n    \\n    <!--  Mobile Viewport Fix\\n\\t  j.mp/mobileviewport & davidbcalhoun.com/2010/viewport-metatag \\n\\t  device-width: Occupy full width of the screen in its current orientation\\n\\t  initial-scale = 1.0 retains dimensions instead of zooming out if page height > device height\\n\\t  maximum-scale = 1.0 retains dimensions instead of zooming in if page width < device width\\n      -->\\n    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;">\\n    \\n    <!-- Place favicon.ico and apple-touch-icon.png in the root of your domain and delete these references -->\\n    <link rel="shortcut icon" href="\', escape=False)\n    response.write(URL(\'static\',\'favicon.ico\'))\n    response.write(\'" type="image/x-icon">\\n    <link rel="apple-touch-icon" href="\', escape=False)\n    response.write(URL(\'static\',\'favicon.png\'))\n    response.write(\'">\\n\\n    <!-- For the less-enabled mobile browsers like Opera Mini -->\\n    <link rel="stylesheet" media="handheld" href="\', escape=False)\n    response.write(URL(\'static\',\'css/handheld.css\'))\n    response.write(\'">\\n    \\n    <!-- All JavaScript at the bottom, except for Modernizr which enables HTML5 elements & feature detects -->\\n    <script src="\', escape=False)\n    response.write(URL(\'static\',\'js/modernizr-1.6.min.js\'))\n    response.write(\'"></script>\\n    \\n    \', escape=False)\n    #------  require CSS and JS files for this page (read info in base.css) ------\n    response.write(\'\\n    \', escape=False)\n    response.files.append(URL(\'static\',\'css/base.css\'))\n    response.write(\'\\n    \', escape=False)\n    response.files.append(URL(\'static\',\'css/superfish.css\'))\n    response.write(\'\\n    \', escape=False)\n    response.files.append(URL(\'static\',\'js/superfish.js\'))\n    response.write(\'\\n    \', escape=False)\n    #------ include web2py specific js code (jquery, calendar, form stuff) ------\n    response.write(\'\\n    \', escape=False)\n    response.files.insert(0,URL(\'static\',\'js/jquery.js\'))\n    response.files.insert(1,URL(\'static\',\'css/calendar.css\'))\n    response.files.insert(2,URL(\'static\',\'js/calendar.js\'))\n    for _item in response.meta or []:\n        response.write(\'\\n     <meta name="\', escape=False)\n        response.write(_item)\n        response.write(\'" content="\', escape=False)\n        response.write(response.meta[_item])\n        response.write(\'" />\', escape=False)\n        pass\n    for _k,_file in enumerate(response.files or []):\n        if _file in response.files[:_k]:\n            continue\n        _file0=_file.lower().split(\'?\')[0]\n        if _file0.endswith(\'.css\'):\n            response.write(\'\\n     <link href="\', escape=False)\n            response.write(_file)\n            response.write(\'" rel="stylesheet" type="text/css" />\', escape=False)\n        elif _file0.endswith(\'.js\'):\n            response.write(\'\\n     <script src="\', escape=False)\n            response.write(_file)\n            response.write(\'" type="text/javascript"></script>\', escape=False)\n            pass\n        pass\n    response.write(\'\\n  \\n<script type="text/javascript"><!--\\nfunction popup(url) {\\n  newwindow=window.open(url,\\\'name\\\',\\\'height=400,width=600\\\');\\n  if (window.focus) newwindow.focus();\\n  return false;\\n}\\nfunction collapse(id) { jQuery(\\\'#\\\'+id).slideToggle(); }\\nfunction fade(id,value) { if(value>0) jQuery(\\\'#\\\'+id).hide().fadeIn(\\\'slow\\\'); else jQuery(\\\'#\\\'+id).show().fadeOut(\\\'slow\\\'); }\\nfunction ajax(u,s,t) {\\n    query = \\\'\\\';\\n    if (typeof s == "string") {\\n        d = jQuery(s).serialize();\\n        if(d){ query = d; }\\n    } else {\\n        pcs = [];\\n        for(i=0; i<s.length; i++) {\\n            q = jQuery("[name="+s[i]+"]").serialize();\\n            if(q){pcs.push(q);}\\n        }\\n        if (pcs.length>0){query = pcs.join("&");}\\n    }\\n    jQuery.ajax({type: "POST", url: u, data: query, success: function(msg) { if(t) { if(t==\\\':eval\\\') eval(msg); else jQuery("#" + t).html(msg); } } }); \\n}\\n\\nString.prototype.reverse = function () { return this.split(\\\'\\\').reverse().join(\\\'\\\');};\\nfunction web2py_ajax_init() {\\n  jQuery(\\\'.hidden\\\').hide();\\n  jQuery(\\\'.error\\\').hide().slideDown(\\\'slow\\\');\\n  jQuery(\\\'.flash\\\').click(function() { jQuery(this).fadeOut(\\\'slow\\\'); return false; });\\n  // jQuery(\\\'input[type=submit]\\\').click(function(){var t=jQuery(this);t.hide();t.after(\\\'<input class="submit_disabled" disabled="disabled" type="submit" name="\\\'+t.attr("name")+\\\'_dummy" value="\\\'+t.val()+\\\'">\\\')});\\n  jQuery(\\\'input.integer\\\').live(\\\'keyup\\\', function(){this.value=this.value.reverse().replace(/[^0-9\\\\-]|\\\\-(?=.)/g,\\\'\\\').reverse();});\\n  jQuery(\\\'input.double,input.decimal\\\').live(\\\'keyup\\\', function(){this.value=this.value.reverse().replace(/[^0-9\\\\-\\\\.]|[\\\\-](?=.)|[\\\\.](?=[0-9]*[\\\\.])/g,\\\'\\\').reverse();});\\n  jQuery("input[type=\\\'checkbox\\\'].delete").live(\\\'click\\\', function(){ if(this.checked) if(!confirm("\', escape=False)\n    response.write(T(\'Sure you want to delete this object?\'))\n    response.write(\'")) this.checked=false; });\\n  try {jQuery("input.date").live(\\\'focus\\\',function() {Calendar.setup({\\n     inputField:this, ifFormat:"\', escape=False)\n    response.write(T(\'%Y-%m-%d\'))\n    response.write(\'", showsTime:false\\n  }); }); } catch(e) {};\\n  try { jQuery("input.datetime").live(\\\'focus\\\', function() {Calendar.setup({\\n     inputField:this, ifFormat:"\', escape=False)\n    response.write(T(\'%Y-%m-%d %H:%M:%S\'))\n    response.write(\'", showsTime: true,timeFormat: "24"\\n  }); }); } catch(e) {};\\n\\n  jQuery("input.time").live(\\\'focus\\\', function() { var el = jQuery(this); \\n          if (!el.hasClass(\\\'hasTimeEntry\\\')) try { el.timeEntry(); } catch(e) {}; \\n  });\\n};\\n\\njQuery(document).ready(function() {   \\n   var flash = jQuery(\\\'.flash\\\');\\n   flash.hide();\\n   if(flash.html()) flash.slideDown();\\n   web2py_ajax_init();\\n});\\nfunction web2py_trap_form(action,target) {\\n   jQuery(\\\'#\\\'+target+\\\' form\\\').each(function(i){\\n      var form=jQuery(this);\\n      if(!form.hasClass(\\\'no_trap\\\'))\\n        form.submit(function(obj){\\n         jQuery(\\\'.flash\\\').hide().html(\\\'\\\');\\n         web2py_ajax_page(\\\'post\\\',action,form.serialize(),target);\\n         return false;\\n      });\\n   });\\n}\\nfunction web2py_ajax_page(method,action,data,target) {\\n  jQuery.ajax({\\\'type\\\':method,\\\'url\\\':action,\\\'data\\\':data,\\n    \\\'beforeSend\\\':function(xhr) {\\n      xhr.setRequestHeader(\\\'web2py-component-location\\\',document.location);\\n      xhr.setRequestHeader(\\\'web2py-component-element\\\',target);},\\n    \\\'complete\\\':function(xhr,text){\\n      var html=xhr.responseText;\\n      var content=xhr.getResponseHeader(\\\'web2py-component-content\\\'); \\n      var command=xhr.getResponseHeader(\\\'web2py-component-command\\\');\\n      var flash=xhr.getResponseHeader(\\\'web2py-component-flash\\\');\\n      var t = jQuery(\\\'#\\\'+target);\\n      if(content==\\\'prepend\\\') t.prepend(html); \\n      else if(content==\\\'append\\\') t.append(html);\\n      else if(content!=\\\'hide\\\') t.html(html);  \\n      web2py_trap_form(action,target);\\n      web2py_ajax_init();      \\n      if(command) eval(command);\\n      if(flash) jQuery(\\\'.flash\\\').html(flash).slideDown();\\n      }\\n    });\\n}\\nfunction web2py_component(action,target) {\\n  jQuery(document).ready(function(){ web2py_ajax_page(\\\'get\\\',action,null,target); });\\n}\\nfunction web2py_comet(url,onmessage,onopen,onclose) {\\n  if ("WebSocket" in window) {\\n    var ws = new WebSocket(url);\\n    ws.onopen = onopen?onopen:(function(){});\\n    ws.onmessage = onmessage;\\n    ws.onclose = onclose?onclose:(function(){});\\n    return true; // supported\\n  } else return false; // not supported\\n}\\n//--></script>\\n\', escape=False)\n    response.write(\'\\n\\n    \', escape=False)\n    #using sidebars need to know what sidebar you want to use\n    #prior of using it, because of static width size of content, you can use\n    #left_sidebar, right_sidebar, both or none (False left and right)\n    left_sidebar_enabled = globals().get(\'left_sidebar_enabled\',False)\n    right_sidebar_enabled = globals().get(\'right_sidebar_enabled\',False)\n    if left_sidebar_enabled and right_sidebar_enabled: width_content=\'63%\'\nelif left_sidebar_enabled != right_sidebar_enabled: width_content=\'740px\'\nelse: width_content=\'100%\'\nif left_sidebar_enabled: left_sidebar_style = \'style="display: block;"\'\nelse: left_sidebar_style = \'style="display: none;"\'\nif right_sidebar_enabled: right_sidebar_style = \'style="display: block;"\'\nelse: right_sidebar_style = \'style="display: none;"\'\nstyle_content = \'style="width: %s"\' % width_content\nresponse.write(\'\\n  </head>\\n  \\n  <!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->\\t\\n  <!--[if lt IE 7 ]> <body class="ie6"> <![endif]-->\\n  <!--[if IE 7 ]>    <body class="ie7"> <![endif]-->\\n  <!--[if IE 8 ]>    <body class="ie8"> <![endif]-->\\n  <!--[if IE 9 ]>    <body class="ie9"> <![endif]-->\\n  <!--[if (gt IE 9)|!(IE)]><!--> <body> <!--<![endif]-->\\n    \\n    <div class="flash">\', escape=False)\nresponse.write(response.flash or \'\')\nresponse.write(\'</div> <!-- notification div -->\\n    \\n    <div id="container">\\t      \\t\\t      \\t\\n      \\n      <div id="wrapper">\\t\\t\\n\\t\\n\\t<div id="header"> <!-- header and login nav -->\\n\\t  \', escape=False)\nresponse.write(\' <!-- this is default header -->\\n\\t  <!--\', escape=False)\ntry:\n    response.write(auth.navbar(action=URL(\'default\',\'user\')))\nexcept:pass\nresponse.write(\'-->\\n\\t  <div id="logo"><!-- put your logo here --></div>\\n\\t  <div style="clear: both;"></div><!-- Clear the divs -->\\n\\t  \', escape=False)\nresponse.write(\'\\t\\t\\n\\n          <h1>\', escape=False)\nresponse.write(response.title or \'response.title\')\nresponse.write(\'</h1>            \\n\\t</div><!-- header  -->\\n\\t\\n\\t<div id="statusbar"><!-- statusbar is menu zone -->\\n\\t  \', escape=False)\nresponse.write(\' <!-- this is default statusbar -->\\n\\t  \', escape=False)\n#------ superfish menu ------\nresponse.write(\'\\n\\t  \', escape=False)\nresponse.write(MENU(response.menu,_class=\'sf-menu\'))\nresponse.write(\'\\n\\t  <script type="text/javascript">\\n\\t    jQuery(document).ready(function(){\\n\\t    jQuery(\\\'ul.sf-menu\\\').superfish();});\\n\\t  </script>\\n\\t  <div style="clear: both;"></div><!-- Clear the divs -->\\t\\n\\t  \', escape=False)\nresponse.write(\'\\t\\t\\t\\t\\n\\t</div><!-- statusbar -->\\n\\t\\n\\t<div id="page"> <!-- Here my central body -->\\n\\n<strong>Note: </strong>This plugin is in alpha version, you can contribute by making a fork on <a href="https://github.com/lucasdavila/plugin-appreport">github</a> :)\\n<hr />\\n\\t  \', escape=False)\nif left_sidebar_enabled:\n    response.write(\'\\n          <div id="left_sidebar" \', escape=False)\n    response.write(XML(left_sidebar_style))\n    response.write(\' >\\n            <div style="padding: 4px;">\\n\\t      \', escape=False)\n    response.write(\'Content Left Sidebar\', escape=False)\n    response.write(\'\\t\\t  \\n            </div>\\n          </div><!-- left_sidebar -->\\n\\t  \', escape=False)\n    pass\nresponse.write(\'\\n\\n\\t  <!-- content -->\\n\\t  <div id="content" \', escape=False)\nresponse.write(XML(style_content))\nresponse.write(\' >\\n\\t    \', escape=False)\nresponse.write(\'\\n\\n    <h2>Complex report</h2>\\n    \', escape=False)\nresponse.write(form)\nresponse.write(\'\\n\\n\', escape=False)\nelse:\n    response.write(\'\\naa\\n\', escape=False)\n    pass\nresponse.write(\'\\n\', escape=False)\nresponse.write(\'\\t\\n\\t  </div>\\n\\t  <!-- content -->\\n\\n\\t  \', escape=False)\nif right_sidebar_enabled:\n    response.write(\'\\n          <div id="right_sidebar" \', escape=False)\n    response.write(XML(right_sidebar_style))\n    response.write(\' >\\n            <div style="padding: 4px;">\\n              \', escape=False)\n    response.write(\'Content Right Sidebar\', escape=False)\n    response.write(\'\\n            </div>\\n\\t  </div><!-- right_sidebar -->\\n          \', escape=False)\n    pass\nresponse.write(\'\\n\\n\\n\\t  <div style="clear: both;"></div><!-- Clear the divs -->\\n\\t  \\n\\t</div><!-- page -->\\t\\t\\t\\t\\t\\t\\t\\n\\t\\n\\t<div id="footer">\\n\\t  \', escape=False)\nresponse.write(\' <!-- this is default footer -->\\n\\t  <a href="http://www.web2py.com/" style="float: left; padding-right: 6px;">\\n\\t    <img src="\', escape=False)\nresponse.write(URL(\'static\',\'images/poweredby.png\'))\nresponse.write(\'"/>\\n\\t  </a>\\n\\t  \', escape=False)\nresponse.write(T(\'Copyright\'))\nresponse.write(\' &#169; 2010, 2011\\t\\t\\t\\t\\n\\t  <div style="clear: both;"></div><!-- Clear the divs -->\\n\\t  \', escape=False)\nresponse.write(\'\\n\\n\\t</div><!-- footer -->\\t\\t\\t\\n      </div><!-- wrapper -->\\n    </div><!-- container -->\\t\\t\\n    \\n    <!--[if lt IE 7 ]>\\n\\t<script src="\', escape=False)\nresponse.write(URL(\'static\',\'js/dd_belatedpng.js\'))\nresponse.write(\'"></script>\\n\\t<script> DD_belatedPNG.fix(\\\'img, .png_bg\\\'); //fix any <img> or .png_bg background-images </script>\\n\\t<![endif]-->\\n    \\n    <!-- asynchronous google analytics: mathiasbynens.be/notes/async-analytics-snippet \\n\\t change the UA-XXXXX-X to be your site\\\'s ID -->\\n    <!--   \\n\\t   <script>\\n\\t     var _gaq = [[\\\'_setAccount\\\', \\\'UA-XXXXX-X\\\'], [\\\'_trackPageview\\\']];\\n\\t     (function(d, t) {\\n\\t     var g = d.createElement(t),\\n\\t     s = d.getElementsByTagName(t)[0];\\n\\t     g.async = true;\\n\\t     g.src = \\\'//www.google-analytics.com/ga.js\\\';\\n\\t     s.parentNode.insertBefore(g, s);\\n\\t     })(document, \\\'script\\\');\\n\\t   </script>\\n\\t   -->    \\n  </body>\\n</html>\\n\', escape=False)'
+p6
+sS'snapshot'
+p7
+(dp8
+S'exception'
+p9
+(dp10
+S'__getslice__'
+p11
+S"<method-wrapper '__getslice__' of exceptions.SyntaxError object>"
+p12
+sS'text'
+p13
+S"'else:\\n'"
+p14
+sS'__str__'
+p15
+S"<method-wrapper '__str__' of exceptions.SyntaxError object>"
+p16
+sS'__reduce__'
+p17
+S'<built-in method __reduce__ of exceptions.SyntaxError object>'
+p18
+sS'__dict__'
+p19
+S'{}'
+p20
+sS'__sizeof__'
+p21
+S'<built-in method __sizeof__ of exceptions.SyntaxError object>'
+p22
+sS'__init__'
+p23
+S"<method-wrapper '__init__' of exceptions.SyntaxError object>"
+p24
+sS'__setattr__'
+p25
+S"<method-wrapper '__setattr__' of exceptions.SyntaxError object>"
+p26
+sS'__reduce_ex__'
+p27
+S'<built-in method __reduce_ex__ of exceptions.SyntaxError object>'
+p28
+sS'__new__'
+p29
+S'<built-in method __new__ of type object>'
+p30
+sS'__format__'
+p31
+S'<built-in method __format__ of exceptions.SyntaxError object>'
+p32
+sS'__class__'
+p33
+S"<type 'exceptions.SyntaxError'>"
+p34
+sS'filename'
+p35
+S"'/home/lucasdavila/central/ws/web2py/src/web2pyde...plugin_appreport/views/person/complex_report.html'"
+p36
+sS'lineno'
+p37
+S'103'
+p38
+sS'msg'
+p39
+S"'invalid syntax'"
+p40
+sS'__doc__'
+p41
+S"'Invalid syntax.'"
+p42
+sS'__getitem__'
+p43
+S"<method-wrapper '__getitem__' of exceptions.SyntaxError object>"
+p44
+sS'__setstate__'
+p45
+S'<built-in method __setstate__ of exceptions.SyntaxError object>'
+p46
+sS'__getattribute__'
+p47
+S"<method-wrapper '__getattribute__' of exceptions.SyntaxError object>"
+p48
+sS'print_file_and_line'
+p49
+S'None'
+p50
+sS'args'
+p51
+S"('invalid syntax', ('/home/lucasdavila/central/ws/web2py/src/web2pyde...plugin_appreport/views/person/complex_report.html', 103, 4, 'else:\\n'))"
+p52
+sS'__subclasshook__'
+p53
+S'<built-in method __subclasshook__ of type object>'
+p54
+sS'offset'
+p55
+S'4'
+sS'__unicode__'
+p56
+S'<built-in method __unicode__ of exceptions.SyntaxError object>'
+p57
+sS'__delattr__'
+p58
+S"<method-wrapper '__delattr__' of exceptions.SyntaxError object>"
+p59
+sS'__repr__'
+p60
+S"<method-wrapper '__repr__' of exceptions.SyntaxError object>"
+p61
+sS'__hash__'
+p62
+S"<method-wrapper '__hash__' of exceptions.SyntaxError object>"
+p63
+ssS'evalue'
+p64
+S'invalid syntax (complex_report.html, line 103)'
+p65
+sS'request'
+p66
+(dp67
+S'function'
+p68
+S"'complex_report'"
+p69
+sS'body'
+p70
+S'<cStringIO.StringO object>'
+p71
+sS'wsgi'
+p72
+S"<Storage {'start_response': <function <lambda> a...>, 'HTTP_ACCEPT_ENCODING': 'gzip,deflate,sdch'}}>"
+p73
+sS'extension'
+p74
+S"'html'"
+p75
+sS'vars'
+p76
+S'<Storage {}>'
+p77
+sS'cid'
+p78
+S'None'
+p79
+sS'url'
+p80
+S'<gluon.html.XML object>'
+p81
+sS'raw_extension'
+p82
+S'None'
+p83
+sg51
+S'[]'
+p84
+sS'controller'
+p85
+S"'person'"
+p86
+sS'cookies'
+p87
+S"<SimpleCookie: session_id_admin='127.0.0.1-ab65c...'127.0.0.1-3fb54433-9a7e-4167-b09f-f0891a2471ca'>"
+p88
+sS'application'
+p89
+S"'plugin_appreport'"
+p90
+sS'ajax'
+p91
+S'False'
+p92
+sS'client'
+p93
+S"'127.0.0.1'"
+p94
+sS'env'
+p95
+S"<Storage {'wsgi_multithread': True, 'debugging':... 'wsgi_run_once': False, 'remote_port': '59462'}>"
+p96
+sS'raw_args'
+p97
+S'None'
+p98
+sS'get_vars'
+p99
+S'<Storage {}>'
+p100
+sS'folder'
+p101
+S"'/home/lucasdavila/central/ws/web2py/src/web2pydev/applications/plugin_appreport/'"
+p102
+sS'now'
+p103
+S'datetime.datetime(2011, 1, 25, 22, 34, 44, 825854)'
+p104
+sS'post_vars'
+p105
+S'<Storage {}>'
+p106
+ssS'frames'
+p107
+(lp108
+(dp109
+S'file'
+p110
+S'/home/lucasdavila/central/ws/web2py/src/web2pydev/gluon/restricted.py'
+p111
+sS'dump'
+p112
+(dp113
+S'code'
+p114
+S'"if response.get_vars.show_report != \'True\':\\n    ...t   -->    \\\\n  </body>\\\\n</html>\\\\n\', escape=False)"'
+p115
+sS'layer'
+p116
+S"'/home/lucasdavila/central/ws/web2py/src/web2pyde...plugin_appreport/views/person/complex_report.html'"
+p117
+sS'global compile2'
+p118
+S'<function compile2>'
+p119
+sS'ccode'
+p120
+S'undefined'
+p121
+ssS'lnum'
+p122
+I186
+sS'lines'
+p123
+(dp124
+I181
+S''
+sI182
+S'    try:'
+p125
+sI183
+S'        if type(code) == types.CodeType:'
+p126
+sI184
+S'            ccode = code'
+p127
+sI185
+S'        else:'
+p128
+sI186
+S'            ccode = compile2(code,layer)'
+p129
+sI187
+S''
+sI188
+S'        exec ccode in environment'
+p130
+sI189
+S'    except HTTP:'
+p131
+sI190
+S'        raise'
+p132
+ssS'call'
+p133
+S'(code="if response.get_vars.show_report != \'True\':\\n    ...t   -->    \\\\n  </body>\\\\n</html>\\\\n\', escape=False)", environment={\'A\': <class \'gluon.html.A\'>, \'Auth\': <class \'gluon.tools.Auth\'>, \'B\': <class \'gluon.html.B\'>, \'BEAUTIFY\': <class \'gluon.html.BEAUTIFY\'>, \'BODY\': <class \'gluon.html.BODY\'>, \'BR\': <class \'gluon.html.BR\'>, \'CENTER\': <class \'gluon.html.CENTER\'>, \'CLEANUP\': <class \'gluon.validators.CLEANUP\'>, \'CODE\': <class \'gluon.html.CODE\'>, \'CRYPT\': <class \'gluon.validators.CRYPT\'>, ...}, layer=\'/home/lucasdavila/central/ws/web2py/src/web2pyde...plugin_appreport/views/person/complex_report.html\')'
+p134
+sS'func'
+p135
+S'restricted'
+p136
+sa(dp137
+g110
+S'/home/lucasdavila/central/ws/web2py/src/web2pydev/gluon/restricted.py'
+p138
+sg112
+(dp139
+S'builtincompile'
+p140
+S'<built-in function compile>'
+p141
+sS'code'
+p142
+S'"if response.get_vars.show_report != \'True\':\\n    ...t   -->    \\\\n  </body>\\\\n</html>\\\\n\', escape=False)"'
+p143
+sS'code.rstrip'
+p144
+S'<built-in method rstrip of str object>'
+p145
+sS').replace'
+p146
+g121
+sS'layer'
+p147
+S"'/home/lucasdavila/central/ws/web2py/src/web2pyde...plugin_appreport/views/person/complex_report.html'"
+p148
+ssg122
+I173
+sg123
+(dp149
+I168
+S''
+sI169
+S'def compile2(code,layer):'
+p150
+sI170
+S'    """'
+p151
+sI171
+S"    The +'\\n' is necessary else compile fails when code ends in a comment."
+p152
+sI172
+S'    """'
+p153
+sI173
+S"    return compile(code.rstrip().replace('\\r\\n','\\n')+'\\n', layer, 'exec')"
+p154
+sI174
+S''
+sI175
+S"def restricted(code, environment={}, layer='Unknown'):"
+p155
+sI176
+S'    """'
+p156
+sI177
+S'    runs code in environment and returns the output. if an exception occurs'
+p157
+ssg133
+S'(code="if response.get_vars.show_report != \'True\':\\n    ...t   -->    \\\\n  </body>\\\\n</html>\\\\n\', escape=False)", layer=\'/home/lucasdavila/central/ws/web2py/src/web2pyde...plugin_appreport/views/person/complex_report.html\')'
+p158
+sg135
+S'compile2'
+p159
+sasS'pyver'
+p160
+S'Python 2.6.6: /usr/bin/python'
+p161
+sS'session'
+p162
+(dp163
+S'_formkey[person/None]'
+p164
+S"'694cb263-72ed-4f0e-a3f5-f2dd18fe1b84'"
+p165
+sS'_formkey[default]'
+p166
+S"'33650c77-c31b-40c2-b76d-17689c28b6c4'"
+p167
+sS'auth'
+p168
+S'None'
+p169
+ssS'etype'
+p170
+S"<type 'exceptions.SyntaxError'>"
+p171
+sS'date'
+p172
+S'Tue Jan 25 22:34:44 2011'
+p173
+sS'response'
+p174
+(dp175
+S'status'
+p176
+S'200'
+p177
+sg70
+S'<cStringIO.StringO object>'
+p178
+sg87
+S"<SimpleCookie: session_id_plugin_appreport='127.0.0.1-56d0272b-4d25-4fdb-bf2c-da2c92731bad'>"
+p179
+sS'_vars'
+p180
+S"{'form': <gluon.html.FORM object>}"
+p181
+sS'title'
+p182
+S"'Plugin appreport'"
+p183
+sS'session_file'
+p184
+S"<open file '/home/lucasdavila/central/ws/web2py/...6d0272b-4d25-4fdb-bf2c-da2c92731bad', mode 'rb+'>"
+p185
+sS'flash'
+p186
+S"''"
+p187
+sS'_custom_rollback'
+p188
+S'None'
+p189
+sS'session_id'
+p190
+S"'127.0.0.1-56d0272b-4d25-4fdb-bf2c-da2c92731bad'"
+p191
+sS'headers'
+p192
+S"<Storage {'Expires': 'Wed, 26 Jan 2011 00:34:44 ...he, must-revalidate, post-check=0, pre-check=0'}>"
+p193
+sS'meta'
+p194
+S"<Storage {'keywords': 'web2py, python, framework... 'Web2py Enterprise Framework', 'author': 'you'}>"
+p195
+sS'session_filename'
+p196
+S"'/home/lucasdavila/central/ws/web2py/src/web2pyde...ns/127.0.0.1-56d0272b-4d25-4fdb-bf2c-da2c92731bad'"
+p197
+sS'postprocessing'
+p198
+S'[]'
+p199
+sS'menu'
+p200
+S"[(<lazyT 'Home'>, False, <gluon.html.XML object>, []), (<lazyT 'Files'>, False, <gluon.html.XML object>, [('person', False, <gluon.html.XML object>)]), (<lazyT 'Repors'>, False, <gluon.html.XML object>, [('Simple', False, <gluon.html.XML object>), ('Custon', False, <gluon.html.XML object>), ('Complex', False, <gluon.html.XML object>)]), (<lazyT 'About'>, False, <gluon.html.XML object>, [])]"
+p201
+sS'_view_environment'
+p202
+S"{'A': <class 'gluon.html.A'>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'CENTER': <class 'gluon.html.CENTER'>, 'CLEANUP': <class 'gluon.validators.CLEANUP'>, 'CODE': <class 'gluon.html.CODE'>, 'CRYPT': <class 'gluon.validators.CRYPT'>, ...}"
+p203
+sS'subtitle'
+p204
+S"<lazyT 'customize me!'>"
+p205
+sS'session_id_name'
+p206
+S"'session_id_plugin_appreport'"
+p207
+sS'_custom_commit'
+p208
+S'None'
+p209
+sS'_caller'
+p210
+S'<function <lambda>>'
+p211
+sS'files'
+p212
+S'[]'
+p213
+sS'view'
+p214
+S"'person/complex_report.html'"
+p215
+ssS'locals'
+p216
+(dp217
+g3
+S"'/home/lucasdavila/central/ws/web2py/src/web2pyde...plugin_appreport/views/person/complex_report.html'"
+p218
+sg5
+S'"if response.get_vars.show_report != \'True\':\\n    ...t   -->    \\\\n  </body>\\\\n</html>\\\\n\', escape=False)"'
+p219
+sssS'traceback'
+p220
+S'Traceback (most recent call last):\n  File "/home/lucasdavila/central/ws/web2py/src/web2pydev/gluon/restricted.py", line 186, in restricted\n    ccode = compile2(code,layer)\n  File "/home/lucasdavila/central/ws/web2py/src/web2pydev/gluon/restricted.py", line 173, in compile2\n    return compile(code.rstrip().replace(\'\\r\\n\',\'\\n\')+\'\\n\', layer, \'exec\')\n  File "/home/lucasdavila/central/ws/web2py/src/web2pydev/applications/plugin_appreport/views/person/complex_report.html", line 103\n    else:\n       ^\nSyntaxError: invalid syntax\n'
+p221
+s.

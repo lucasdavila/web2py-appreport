@@ -1,0 +1,14 @@
+(dp1
+S'id'
+p2
+S'INTEGER PRIMARY KEY AUTOINCREMENT'
+p3
+sS'telefone'
+p4
+S'CHAR(512)'
+p5
+sS'nome'
+p6
+S'CHAR(512)'
+p7
+s.
