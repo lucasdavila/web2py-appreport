@@ -3,7 +3,7 @@ Plugin appreport, is an implementation of the module appreport, for the framewor
 - The form is generated based on table fields.
 - The report can be generated based on the fields of the table or rendered by html code.
 
-To see examples and documentation please visit the wiki > github.com/lucasdavila/plugin-appreport/wiki 
+To see examples and documentation please visit the wiki > https://github.com/lucasdavila/plugin-appreport/wiki 
 
 
 created by Lucas D'Avila - email <lucassdvl@gmail.com> / twitter @lucadavila
