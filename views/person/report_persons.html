@@ -5,42 +5,38 @@
         <meta charset="utf-8" />	 
     </head>
 
-<body>
-    <h2>Report of persons</h2>
+    <body>
+        <h2>Report of persons</h2>
 
-    <table border="0">
-        <thead>
+        <table border="0">
             <tr>
-                <td><strong>Name</strong></td>
-                <td><strong>Phone</strong></td>
-                <td><strong>e-mail</strong></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td><strong>Favorite music</strong></td>
-                <td><strong>Artist</strong></td>
+                <th><strong>Name</strong></th>
+                <th><strong>Phone</strong></th>
+                <th><strong>e-mail</strong></th>
+                <th><strong>Favorite music</strong></th>
+                <th><strong>Artist</strong></th>
             </tr>                
-        
-        </thead>
-        <tbody>
             {{for p in persons:}}
                 <tr>
                     <td>{{=p.name}}</td>
                     <td>{{=p.phone}}</td>
                     <td>{{=p.email}}</td>
+                    <td></td>
+                    <td></td>
                 </tr>  
                     {{for m in p.favorite_music.select():}}
                         <tr>
 
                             <td></td>
+                            <td></td>
+                            <td></td>
                             <td>{{=m.title}}</td>
                             <td>{{=m.artist}}</td>
-    
+
                         </tr>                      
                     {{pass}}
             {{pass}}
-        </tbody>
-    </table>
+        </table>
     </body>
 </html>
 

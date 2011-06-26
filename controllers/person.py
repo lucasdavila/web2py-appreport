@@ -15,7 +15,7 @@ def simple_report():
 
     if form.accepts(request.vars, session):
         #build a report based on table fields (aka auto generates html) and filters informed in form
-        return plugin_appreport.REPORTPISA(table = person, title = 'List of persons', args = dict(form.vars))
+        return plugin_appreport.REPORTPISA(table = person, args = dict(form.vars))
 
     return dict(form = form)
 
@@ -38,7 +38,6 @@ def complex_report():
         return plugin_appreport.REPORTPISA(html = html)
 
     return dict(form = form)
-
 
 
 def custom_report():
@@ -71,3 +70,40 @@ def custom_report():
     #build a report based on static html
     return plugin_appreport.REPORTPISA(html = html)
     #or return plugin_appreport.REPORTPYFPDF(html = html, title = 'my custom report using the plugin appreport')
+
+
+def remote_report():
+    session.forget()
+    return service()
+
+
+import xmlrpclib
+
+@service.xmlrpc
+def pdf(html, **kargs):
+    """
+    Connect a xml-rpc client, to build remote reports, 
+    ex (python client):
+
+    import xmlrpclib
+
+    server = xmlrpclib.ServerProxy('http://localhost:8000/plugin-appreport/person/remote_report/xmlrpc')
+    report = server.pdf(html = '<html><body><h1>My first report</h1><table><tr><td>Hello world :P </td></tr><tr><td>using appreport and xmlrpc</td></tr><table></body></html>')['report']
+
+    report_file = open('/home/your_user_name/remote_report.pdf', 'w')
+    report_file.write(report.data)
+    report_file.close()
+
+    #now check your report on '/home/your_user_name/remote_report.pdf'
+
+    """
+
+    if not isinstance(html, str):
+        raise Exception('html arg must be string')
+    elif html.strip() == '':
+        raise Exception('html arg can not be empty')
+
+   
+    report = xmlrpclib.Binary(plugin_appreport.REPORTPISA(html = html))
+
+    return dict(report = report)

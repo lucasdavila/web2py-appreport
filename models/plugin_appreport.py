@@ -19,6 +19,8 @@ if request.folder not in sys.path:
 #        return plugin_appreport.REPORTPISA(table = db.table_name, filter = dict(form.vars))
 #            
 #    return dict(form = form)
+#
+#   more info check the project wiki on github https://github.com/lucasdavila/web2py-appreport/wiki
 
 import modules.plugin_appreport as plugin_appreport_module
 
@@ -30,10 +32,7 @@ class PluginAppreport:
         return plugin_appreport_module.form_report_web2py.FormReportWeb2py(table = table).get_form()
 
 
-#    def REPORT(self, table = None, filter = '', html = '', engine = 'pisa', charset = 'utf-8', title = 'Report', orientation = 'P', unit = 'mm', format = 'A4'):
-    def REPORT(self, **kargs):
-
-        engine = kargs.get('engine', 'pyfpdf')
+    def REPORT(self, engine = 'pyfpdf', **kargs):
 
         if engine == 'pisa':
             return REPORTPISA(**kargs)
@@ -47,21 +46,18 @@ class PluginAppreport:
         if not kargs.get('user_name'):
             kargs.update({'user_name' : auth.user.first_name if 'auth' in globals() and auth.user is not None else ''})     
         return kargs
+            
+
+    def __build_report(self, path_reports, pdf_builder):
+        return plugin_appreport_module.report_factory_web2py.ReportFactoryWeb2py(response = response, request = request, path_reports = path_reports, pdf_builder = pdf_builder).dumps()   
 
 
-    def _get_report_instance(self, kargs):
-        if kargs.get('html', '').strip() != '':
-            return plugin_appreport_module.libs.appreport.report.ReportHtml(**kargs)
-        else:
-            return plugin_appreport_module.report_web2py.ReportHtmlDbWeb2py(**kargs)            
-
-
-    def REPORTPISA(self, **kargs):
+    def REPORTPISA(self, table = None, filter = {}, html = '', **kargs):
         """
 
         You can pass the html manually *or* pass a table and a filter to automatically generate the html (based on table field and filtered using the filter :P )
 
-        Argument types:
+        Expected argument:
             - filter (or args): dict(form.vars) or {'table_name.field_name':'value', 'table_name.field2_name':'value2'}
             - table: db.your_table
             - html: string containing html and css
@@ -71,37 +67,47 @@ class PluginAppreport:
 
         """
         kargs = self._fix_kargs(kargs)
-        pdf_builder = plugin_appreport_module.libs.appreport.pdf_builder.PdfBuilderPisa(report = self._get_report_instance(kargs))
+
+        if html.strip() != '':
+            report = plugin_appreport_module.libs.appreport.report.ReportHtml(html = html, **kargs)
+        else:
+            report = plugin_appreport_module.report_web2py.ReportHtmlDbWeb2py(table = table, filter = filter, **kargs)        
+
+        pdf_builder = plugin_appreport_module.libs.appreport.pdf_builder.PdfBuilderPisa(report = report)
         return self.__build_report(self._path_reports, pdf_builder)
 
 
-    def REPORTPYFPDF(self, **kargs):
+    def REPORTPYFPDF(self, table = None, filter = {}, html = '', charset = 'utf-8', title = 'Report', orientation = 'P', unit = 'mm', format = 'A4', **kargs):
         """
-
-        You can pass the html manually *or* pass a table and a filter to automatically generate the html (based on table field and filtered using the filter :P )
-
-        Argument types:
+        Expected arguments:
             - filter (or args): dict(form.vars) or {'table_name.field_name':'value', 'table_name.field2_name':'value2'}
             - table: db.your_table
             - html: string containing html
 
-        Arguments supported by pyfpdf:
+        You can pass the html manually *or* pass a table and a filter to automatically generate the html (based on table field and filtered using the filter :P )
+
+        Notes:
+            - if you pass the html (aka != '') the report will be generated manually using html *ignoring* the table and filters
+            - css are not supported in pyfpdf, to customize the report, see the arguments explanation below
+
+        Other arguments supported by pyfpdf:
             - charset = 'utf-8' 
             - title = 'title of report' 
             - orientation = 'P' (for portrait (retrato)) or ('L' for landscape (paisagem)) 
             - unit = 'mm' 
             - format = 'A4'
 
-        Notes:
-            - if you pass the html (aka != '') the report will be generated manually using html *ignoring* the table and filters
-            - css are not supported in pyfpdf, to customize the report, see the arguments explanation below
         """
         kargs = self._fix_kargs(kargs)
+
+
+        if html.strip() != '':
+            report = plugin_appreport_module.libs.appreport.report.ReportHtml(html = html, charset = charset, title = title, orientation = orientation, unit = unit, format = format, **kargs)
+        else:
+            report = plugin_appreport_module.report_web2py.ReportHtmlDbWeb2py(table = table, filter = filter, charset = charset, title = title, orientation = orientation, unit = unit, format = format, **kargs)
+
         pdf_builder = plugin_appreport_module.libs.appreport.pdf_builder.PdfBuilderPyfpdf(report = self._get_report_instance(kargs))
         return self.__build_report(self._path_reports, pdf_builder)
-
-
-    def __build_report(self, path_reports, pdf_builder):
-        return plugin_appreport_module.report_factory_web2py.ReportFactoryWeb2py(response = response, request = request, path_reports = path_reports, pdf_builder = pdf_builder).dumps()        
+     
             
 plugin_appreport = PluginAppreport()
