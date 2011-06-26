@@ -53,3 +53,24 @@ def call():
     return service()
 
 
+def report():
+    session.forget()
+    return service()
+
+import xmlrpclib
+
+@service.xmlrpc
+def pdf(view_name, username = '', args = {}, *_args, **kargs):
+
+    if not view_name:
+        raise Exception('Invalid view_name')
+    if not isinstance(view_name, str):
+        raise Exception('View_name must be string')
+    if not isinstance(username, str):
+        raise Exception('Username must be string')
+    elif not isinstance(args, dict):
+        raise Exception('Invalid args')
+
+    report = xmlrpclib.Binary(plugin_appreport.REPORTJASPER(view_name = view_name, args = args))
+
+    return dict(report_name = '%s_%s.pdf'%(view_name, username), report = report)

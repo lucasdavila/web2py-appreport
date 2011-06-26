@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*- 
 
-response.title = 'Plugin appreport'
+response.title = 'web2py-appreport'
 response.subtitle = T('customize me!')
 
 #http://dev.w3.org/html5/markup/meta.name.html 
@@ -21,10 +21,10 @@ response.menu+=[
     ]
 
 response.menu+=[
-    (T('Repors'), False, URL(request.application,'default','index'), [
-    ('Simple', False, URL(r=request, c='person', f='simple_report')),
-    ('Custon', False, URL(r=request, c='person', f='custom_report')),    
-    ('Complex', False, URL(r=request, c='person', f='complex_report')),    
+    (T('Reports'), False, URL(request.application,'default','index'), [
+    ('Simple - automatically generates html', False, URL(r=request, c='person', f='simple_report')),
+    ('Custon - static html', False, URL(r=request, c='person', f='custom_report')),    
+    ('Complex - dynamic html (using views)', False, URL(r=request, c='person', f='complex_report')),
     ])
     ]
 

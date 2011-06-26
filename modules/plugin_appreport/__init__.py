@@ -1,0 +1,3 @@
+import form_report_web2py
+import report_web2py
+import report_factory_web2py
