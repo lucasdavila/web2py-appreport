@@ -1,0 +1,6 @@
+- Incluir exemplos
+- Criar wiki no github
+-Corrigir erro ao exibir imagens, quando integrado ao framework web2py (erro do pyfpdf ?)
+-Corrigir posicionamento dos campos ao exibir relatório para tabela com muitos campos (erro do pyfpdf ?).
+-remover "_" dos nomes das tabelas ao adicionar ao titulo, conforme template "c_report" e "v_report"
+-alterar campos referenciados para exibir a descrição (represent do web2py) (campo principal da tabela ?), nas views (read, list) e nos relatórios

@@ -1,0 +1,27 @@
+Appreport is a opensource module written in python to create PDF reports and HTML forms for emission of reports.
+
+- The form is generated based on table fields.
+- The report can be generated based on the fields of the table or rendered by html code,
+
+Appscaffold already has specific classes for the framework web2py.
+
+Created by Lucas D'Avila - email <lucassdvl@gmail.com> / twitter @lucadavila
+
+################################
+CHANGE LOG
+
+0.0.2
+-Fixed bug in method "__get_name_field" of class "ReportHtmlDbWeb2py"
+
+0.0.3
+-changed structure module, created news modules 'pdf_builder' and 'report_factory'
+
+0.0.4
+- Added new engine to build the PDF documents (in libs/pisa), for more information visit: http://www.xhtml2pdf.com/
+- Added suport to charset in class ReportHtml*
+- Added method "prep_filter" in class "FormReportWeb2py", for prepare a filter to execute a query in db
+
+0.1.0
+- Removed web2py specific modules and classes (moved to project-web2py appreport)
+
+

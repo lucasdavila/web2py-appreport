@@ -8,3 +8,5 @@
 .project
 .pydevproject
 *.class
+/modules/plugin_appreport/libs/appreport/.gitignore
+/modules/plugin_appreport/libs/appreport/.git
