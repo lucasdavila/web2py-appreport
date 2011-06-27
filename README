@@ -18,3 +18,9 @@ CHANGE LOG
 - Changed de helper REPORT to set default Pisa as engine to build PDF documents.
 - Included a example to create complex reports, rendering a web2py views in PDF document, using the appreport plugin.
 
+0.1.0
+- Updated appreport lib to version v0.1.0, and moved to this project modules and classes specific of web2py framework.
+- Implemented news helpers REPORTPISA and REPORTPYFPDF.
+- Added a new example to remote reports using xmlrpc.
+- Changed structure of plugin in directory modules/plugin_appreport, and more updates.
+
