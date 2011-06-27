@@ -1,9 +1,11 @@
+#Note: Changed the name of this repository (from plugin-appreport to web2py-appreport).
+
 Plugin appreport, is an implementation of the module appreport, for the framework web2py, using helpers is possible generate PDF reports and forms html for emission of the reports.
 
 - The form is generated based on table fields.
 - The report can be generated based on the fields of the table or rendered by html code.
 
-To see examples and documentation please visit the wiki > https://github.com/lucasdavila/plugin-appreport/wiki 
+See the screencast how-to > http://vimeo.com/18601633 for more examples and documentation please visit the wiki > https://github.com/lucasdavila/web2py-appreport/wiki 
 
 
 created by Lucas D'Avila - email <lucassdvl@gmail.com> / twitter @lucadavila
