@@ -10,3 +10,6 @@
 *.class
 /modules/plugin_appreport/libs/appreport/.gitignore
 /modules/plugin_appreport/libs/appreport/.git
+/views/reports/jasper
+/static/images/brasao.jpg
+/private/plugin_appreport
