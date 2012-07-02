@@ -23,7 +23,7 @@ import datetime
 from libs.appreport.report_factory import ReportFactory
 
 class ReportFactoryWeb2py(ReportFactory):
-    
+
     def __init__(self, response, **kargs):
         """
         pdf_builder: instance of PdfBuilder* class
@@ -38,7 +38,7 @@ class ReportFactoryWeb2py(ReportFactory):
         return os.path.join(self.path_reports, 'report_%s_%s_%s.pdf'%(report.get('table', report.get('view_name','')), report.get('user_name', ''), t))
 
 
-    def dumps(self, report = None):    
+    def dumps(self, report = None):
         """
         report: instance of ReportHtml class
         """
@@ -47,18 +47,20 @@ class ReportFactoryWeb2py(ReportFactory):
           report = self.pdf_builder.report
 
         if not os.path.exists(self.path_reports):
-            os.makedirs(self.path_reports)                            
+            os.makedirs(self.path_reports)
 
         path_report = self._get_path_report(report = report)
 
-        self.pdf_builder.output(path_report, 'F')      
+        self.pdf_builder.output(path_report, 'F')
 
         file_report = open(path_report,"rb").read()
 
         if path_report.endswith('.pdf'):
             os.unlink(path_report)
 
+        response_filename = report.get('response_filename', path_report)
+
         self.response.headers['Content-Type']='application/pdf'
-        self.response.headers['Content-Disposition'] = 'attachment; filename=%s'%os.path.basename(path_report)
+        self.response.headers['Content-Disposition'] = 'attachment; filename=%s'%os.path.basename(response_filename)
 
         return file_report #return response.stream(path_report)

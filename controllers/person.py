@@ -7,7 +7,7 @@ def create():
     persons = db().select(db.person.ALL, db.favorite_music.ALL, left=favorite_music.on(person.id == favorite_music.person))
 
     return dict(form = form, form_favs = form_favs, persons = persons)
-    
+
 
 def simple_report():
     #generates a html form to filter the data to be displayed in the report
@@ -15,11 +15,11 @@ def simple_report():
 
     if form.accepts(request.vars, session):
         #build a report based on table fields (aka auto generates html) and filters informed in form
-        return plugin_appreport.REPORTPISA(table = person, args = dict(form.vars))
+        return plugin_appreport.REPORTPISA(table = person, args = dict(form.vars), response_filename = 'change_my_name.pdf')
 
     return dict(form = form)
 
-    
+
 def report_persons():
     return dict(persons = db(person.id > 0).select())
 
@@ -41,7 +41,7 @@ def complex_report():
 
 
 def custom_report():
-    
+
     html = """<html>
                 <head>
                     <meta charset="utf-8" />
@@ -60,7 +60,7 @@ def custom_report():
                             <tr>
                                 <td>Lucas D'Avila</td>
                                 <td>lucassdvl@gmail.com</td>
-                                <td>@lucadavila</td>                                
+                                <td>@lucadavila</td>
                             </tr>
                         </tbody>
                     </table>
@@ -82,7 +82,7 @@ import xmlrpclib
 @service.xmlrpc
 def pdf(html, **kargs):
     """
-    Connect a xml-rpc client, to build remote reports, 
+    Connect a xml-rpc client, to build remote reports,
     ex (python client):
 
     import xmlrpclib
@@ -103,7 +103,7 @@ def pdf(html, **kargs):
     elif html.strip() == '':
         raise Exception('html arg can not be empty')
 
-   
+
     report = xmlrpclib.Binary(plugin_appreport.REPORTPISA(html = html))
 
     return dict(report = report)
