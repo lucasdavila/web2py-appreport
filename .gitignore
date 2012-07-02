@@ -13,3 +13,5 @@
 /views/reports/jasper
 /static/images/brasao.jpg
 /private/plugin_appreport
+*.~
+*~
