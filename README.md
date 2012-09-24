@@ -1,13 +1,11 @@
-# ABOUT
-
 web2py-appreport is a plugin for web2py, it was designed to help the generation of PDF reports.
 
 - screencast: http://vimeo.com/18601633
 - wiki for documentations and examples: https://github.com/lucasdavila/web2py-appreport/wiki 
 
-created by Lucas D'Avila - email <lucassdvl@gmail.com> / twitter @lucadavila
+[![endorse](http://api.coderwall.com/lucasdavila/endorsecount.png)](http://coderwall.com/lucasdavila)
 
-# CHANGE LOG
+## CHANGE LOG
 
 0.0.2
 - Updated appreport module, because was included a new engine (called Pisa) to build the PDF documents, for more information visit: http://www.xhtml2pdf.com/
